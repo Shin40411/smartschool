@@ -34,8 +34,11 @@ export function HomeView({ products }: Props) {
 
       <BackToTopButton />
 
-      <HomeHero />
-      <HomePricing />
+      <Stack sx={{ position: 'relative' }}>
+        <HomeHero />
+        <HomePricing sx={{ position: 'absolute', bgcolor: 'transparent' }} />
+      </Stack>
+
       <Stack sx={{ position: 'relative', bgcolor: 'background.default' }}>
 
         <ProductShopView products={products} allowTitle allowFilters={false} allowPagination={false} limitData={8} />

@@ -85,22 +85,15 @@ export function HomePricing({ sx, ...other }: BoxProps) {
       sx={[{ py: 10, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...other}
     >
-      {/* <MotionViewport> */}
-      {/* <FloatLine vertical sx={{ top: 0, left: 80 }} /> */}
-
       <Box
         sx={(theme) => ({
           position: 'relative',
         })}
       >
         <Container>{renderContentDesktop()}</Container>
-
-        {/* <FloatLine sx={{ top: 64, left: 0 }} />
-        <FloatLine sx={{ bottom: 64, left: 0 }} /> */}
       </Box>
 
       <Container>{renderContentMobile()}</Container>
-      {/* </MotionViewport> */}
     </Box>
   );
 }
