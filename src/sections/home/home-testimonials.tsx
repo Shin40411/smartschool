@@ -74,9 +74,8 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
 
   const renderDescription = () => (
     <SectionTitle
-      caption="testimonials"
-      title="Rumors are flying"
-      txtGradient="that..."
+      title="Mọi người đang nói gì"
+      txtGradient="về chúng tôi?"
       sx={{ mb: { xs: 5, md: 8 }, textAlign: 'center' }}
     />
   );
@@ -144,7 +143,7 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
                 <Box component="span">{item.name}</Box>
 
                 <Box component="span" sx={{ typography: 'body2', color: 'text.disabled' }}>
-                  {fToNow(new Date(item.postedAt))}
+                  {fToNow(new Date(item.postedAt))} trước
                 </Box>
               </Stack>
             </Box>
@@ -238,7 +237,7 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
         <Container>
           {renderDescription()}
           {renderContent()}
-          {renderNumber()}
+          {/* {renderNumber()} */}
         </Container>
       </MotionViewport>
     </Box>
@@ -257,53 +256,53 @@ const createReview = (index: number) => ({
 const TESTIMONIALS = [
   {
     ...createReview(1),
-    category: 'Design Quality',
-    content: `The quality of this template is very good, the TypeScript files are neat and the communication with the team behind this template is very good! I would recommend this template for any kind of project, as they implement new features every now and then and enhance their design. I will definitely be using more templates from this team and re-purchasing this template for other projects.`,
+    category: 'Hiệu quả triển khai',
+    content: `Giải pháp giúp trường tôi số hóa toàn bộ quy trình quản lý và giảng dạy. Từ điểm danh, thời khóa biểu đến học liệu điện tử đều được tích hợp chặt chẽ. Hiệu quả vận hành tăng rõ rệt.`,
     postedAt: 'April 20, 2024 23:15:30',
   },
   {
     ...createReview(2),
-    category: 'Design Quality',
-    content: `Amazing. I've never purchased complete front ends before, but I'll definitely be doing this again!`,
+    category: 'Trải nghiệm người dùng',
+    content: `Giao diện dễ sử dụng, giáo viên và phụ huynh tiếp cận rất nhanh. Tôi chưa từng thấy hệ thống nào thân thiện và thông minh đến vậy.`,
     postedAt: 'March 19, 2024 23:15:30',
   },
   {
     ...createReview(3),
-    category: 'Code Quality',
-    content: `Clean & Complete (Design & Code). Thansk Minimal team :)`,
+    category: 'Tính linh hoạt',
+    content: `Hệ thống có thể tùy biến phù hợp với nhu cầu từng trường. Chúng tôi tích hợp thêm hệ thống camera và cổng từ rất dễ dàng.`,
     postedAt: 'April 19, 2023 23:15:30',
   },
   {
     ...createReview(4),
-    category: 'Customer Support',
-    content: `Thanks to Minimal for customer support with email. I solved the problem. And the code quality is good, too.`,
+    category: 'Hỗ trợ kỹ thuật',
+    content: `Đội ngũ hỗ trợ rất nhiệt tình, phản hồi nhanh và có chuyên môn tốt. Giúp chúng tôi xử lý được các vấn đề phát sinh trong quá trình vận hành.`,
     postedAt: 'May 19, 2023 23:15:30',
   },
   {
     ...createReview(5),
-    category: 'Customer Support',
+    category: 'Tính toàn diện',
     content:
-      'Great UI kit, really beautiful as well. Also the customer support is very warm-hearted. However, I hope the components and themes can be provided as a separated project (package).',
+      'Giải pháp tích hợp đầy đủ từ quản trị học sinh, học tập trực tuyến, điểm danh, đến báo cáo phân tích. Chỉ cần một nền tảng duy nhất là đủ.',
     postedAt: 'June 19, 2023 23:15:30',
   },
   {
     ...createReview(6),
-    category: 'Design Quality',
-    content: 'I would never have been able to create all these beautifull components myself!',
+    category: 'Thiết kế giao diện',
+    content: 'Thiết kế hiện đại, phù hợp với môi trường giáo dục. Phụ huynh, học sinh và giáo viên đều dễ dàng thao tác.',
     postedAt: 'July 19, 2023 23:15:30',
   },
   {
     ...createReview(7),
-    category: 'Code Quality',
+    category: 'Chi phí đầu tư',
     content:
-      'The quality of this template is excellent. However, as an individual, the cost of obtaining the TypeScript Source version is beyond my means. Despite my strong desire to acquire it, my limited personal budget does not allow me to do so.',
+      'Chi phí hợp lý so với tính năng và lợi ích nhận được. Với ngân sách hạn chế, đây là một lựa chọn tối ưu cho nhiều trường học.',
     postedAt: 'August 19, 2023 23:15:30',
   },
   {
     ...createReview(8),
-    category: 'Customizability',
+    category: 'Khả năng mở rộng',
     content:
-      'The design and code quality are impressive. Regular updates and excellent customer support are major advantages.',
+      'Chúng tôi rất hài lòng với việc cập nhật liên tục và khả năng mở rộng của hệ thống. Có thể tích hợp thêm nhiều module mới khi cần.',
     postedAt: 'September 19, 2023 23:15:30',
   },
 ];

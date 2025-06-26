@@ -55,7 +55,7 @@ export function PostSort({ sort, sortOptions, onSort }: Props) {
         }
         sx={{ fontWeight: 'fontWeightSemiBold', textTransform: 'capitalize' }}
       >
-        Sort by:
+        Lọc theo:
         <Box component="span" sx={{ ml: 0.5, fontWeight: 'fontWeightBold' }}>
           {sort}
         </Box>

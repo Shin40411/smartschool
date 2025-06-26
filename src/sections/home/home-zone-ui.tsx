@@ -51,10 +51,9 @@ const renderLines = () => (
 export function HomeZoneUI({ sx, ...other }: BoxProps) {
   const renderDescription = () => (
     <SectionTitle
-      caption="Looking For a"
-      title="Landing page"
-      txtGradient="template?"
-      description="Fuse with dashboards to produce a superior product."
+      title="Giải pháp công nghệ toàn diện cho"
+      txtGradient="Trường Học Thông Minh"
+      description="Số hóa, quản lý và khai thác các nguồn lực, đối tượng và hoạt động giáo dục trong nhà trường, giữa các trường trong hệ thống giáo dục,… đảm bảo liên kết thời gian thực trên cùng một nền tảng kết nối, chia sẻ dữ liệu của ngành giáo dục, sẵn sàng để ứng dụng trí tuệ nhân tạo trong tương lai."
       sx={{ textAlign: { xs: 'center', md: 'left' } }}
     />
   );
@@ -76,19 +75,19 @@ export function HomeZoneUI({ sx, ...other }: BoxProps) {
       <Box
         component="img"
         alt="Zone landing page"
-        src={`${CONFIG.assetsDir}/assets/images/home/zone-landing.webp`}
+        src={`${CONFIG.assetsDir}/assets/images/home/2150062208-large.webp`}
         sx={[
           (theme) => ({
             width: 720,
             objectFit: 'cover',
             aspectRatio: '16/10',
-            borderRadius: '16px 16px 0 16px',
+            borderRadius: '16px',
             border: `solid 2px ${theme.vars.palette.common.white}`,
           }),
         ]}
       />
 
-      <Box sx={{ p: 0.5, bgcolor: 'common.white', borderRadius: '0 0 8px 8px' }}>
+      {/* <Box sx={{ p: 0.5, bgcolor: 'common.white', borderRadius: '0 0 8px 8px' }}>
         <Button
           variant="contained"
           target="_blank"
@@ -103,7 +102,7 @@ export function HomeZoneUI({ sx, ...other }: BoxProps) {
         >
           Visit Zone UI
         </Button>
-      </Box>
+      </Box> */}
     </Stack>
   );
 
@@ -114,7 +113,7 @@ export function HomeZoneUI({ sx, ...other }: BoxProps) {
         {
           pt: 10,
           position: 'relative',
-          pb: { xs: 10, md: 20 },
+          pb: { xs: 5, md: 7 },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -125,8 +124,8 @@ export function HomeZoneUI({ sx, ...other }: BoxProps) {
 
         <Container sx={{ position: 'relative' }}>
           <Grid container spacing={{ xs: 5, md: 8 }} sx={{ position: 'relative', zIndex: 9 }}>
-            <Grid size={{ xs: 12, md: 6, lg: 5 }}>{renderDescription()}</Grid>
             <Grid size={{ xs: 12, md: 6, lg: 7 }}>{renderImage()}</Grid>
+            <Grid size={{ xs: 12, md: 6, lg: 5 }}>{renderDescription()}</Grid>
           </Grid>
 
           <CircleSvg variants={varFade('in')} sx={{ display: { xs: 'none', md: 'block' } }} />

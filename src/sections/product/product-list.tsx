@@ -18,7 +18,7 @@ type Props = BoxProps & {
   limitData?: number;
 };
 
-export function ProductList({ products, loading, allowPagination = true, limitData, sx, ...other }: Props) {
+export function ProductList({ products, loading, allowPagination, limitData, sx, ...other }: Props) {
   const renderLoading = () => <ProductItemSkeleton />;
 
   const renderList = (customLength?: number) => {

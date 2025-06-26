@@ -183,7 +183,7 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
         <InputBase
           fullWidth
           autoFocus={open}
-          placeholder="Search..."
+          placeholder="Tìm kiếm...."
           value={searchQuery}
           onChange={handleSearch}
           startAdornment={

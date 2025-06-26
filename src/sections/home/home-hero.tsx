@@ -100,23 +100,43 @@ export function HomeHero({ sx, ...other }: BoxProps) {
       sx={{
         position: 'relative',
         backgroundImage: `url(${CONFIG.assetsDir}/assets/background/backgroundhero.jpg)`,
-        minHeight: '760px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '830px',
         height: '100vh',
         maxHeight: '1440px',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: {
+          xs: 'center',
+          md: 'flex-start',
+        },
+        px: { xs: 2, md: 45 },
       }}
     >
-
-      <Box sx={{
-        width: '30%',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        borderRadius: 5,
-        padding: 3,
-        position: 'absolute',
-        left: { xs: '19%' },
-      }}>
-        <Stack spacing={3} sx={{ textAlign: 'center', py: 10 }}>
+      <Box
+        sx={{
+          width: {
+            xs: '100%',
+            sm: '80%',
+            md: '100%',
+            lg: '60%',
+            xl: '60%',
+          },
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          borderRadius: {
+            xs: 2,
+            sm: 3,
+            md: 5,
+          },
+          padding: {
+            xs: 2,
+            sm: 3,
+            md: 4,
+          },
+        }}
+      >
+        <Stack spacing={3} sx={{ textAlign: 'center', py: { xs: 5, md: 10 } }}>
           <m.div>{renderHeading()}</m.div>
           <m.div>{renderText()}</m.div>
           <m.div>{renderButtons()}</m.div>

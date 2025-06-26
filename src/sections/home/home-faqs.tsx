@@ -134,7 +134,6 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
 
   const renderDescription = () => (
     <SectionTitle
-      caption="FAQs"
       title="We’ve got the"
       txtGradient="answers"
       sx={{ textAlign: 'center' }}
@@ -210,31 +209,41 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
         (theme) => ({
           px: 3,
           py: 8,
-          textAlign: 'center',
-          background: `linear-gradient(to left, ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}, transparent)`,
+          textAlign: 'justify',
+          background: theme.vars.palette.primary.main,
+          color: theme.vars.palette.primary.contrastText,
+          wordSpacing: 3
         }),
       ]}
     >
-      <m.div variants={varFade('in')}>
-        <Typography variant="h4">Still have questions?</Typography>
-      </m.div>
+      <Container>
+        <m.div variants={varFade('in')}>
+          <Typography variant="h4"
+            sx={{
+              letterSpacing: '0.3rem'
+            }}
+          >
+            Liên hệ
+          </Typography>
+        </m.div>
 
-      <m.div variants={varFade('in')}>
-        <Typography sx={{ mt: 2, mb: 3, color: 'text.secondary' }}>
-          Please describe your case to receive the most accurate advice
-        </Typography>
-      </m.div>
+        <m.div variants={varFade('in')}>
+          <Typography variant='h2' sx={{ mt: 2, mb: 3, fontSize: 19 }}>
+            Hãy liên hệ với chúng tôi ngay hôm nay để có những ưu đãi hấp dẫn nhất!
+          </Typography>
+        </m.div>
 
-      <m.div variants={varFade('in')}>
-        <Button
-          color="inherit"
-          variant="contained"
-          href="mailto:support@minimals.cc?subject=[Feedback] from Customer"
-          startIcon={<Iconify icon="solar:letter-bold" />}
-        >
-          Contact us
-        </Button>
-      </m.div>
+        <m.div variants={varFade('in')}>
+          <Button
+            variant="contained"
+            href="mailto:info@truonghocthongminh.vn?subject=[Feedback] from Customer"
+            startIcon={<Iconify icon="solar:letter-bold" />}
+            sx={{ backgroundColor: '#fff', color: '#000', borderRadius: 5, px: 3, py: 1.5 }}
+          >
+            Liên hệ
+          </Button>
+        </m.div>
+      </Container>
     </Box>
   );
 
@@ -243,13 +252,12 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
       <MotionViewport sx={{ py: 10, position: 'relative' }}>
         {topLines()}
 
-        <Container>
-          {renderDescription()}
-          {renderContent()}
-        </Container>
+        {/* <Container> */}
+        {/* {renderDescription()} */}
+        {/* {renderContent()} */}
+        {/* </Container> */}
 
         <Stack sx={{ position: 'relative' }}>
-          {bottomLines()}
           {renderContact()}
         </Stack>
       </MotionViewport>

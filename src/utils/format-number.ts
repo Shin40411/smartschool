@@ -37,17 +37,17 @@ export function fNumber(inputValue: InputNumberValue, options?: Options) {
 
 // ----------------------------------------------------------------------
 
-export function fCurrency(inputValue: InputNumberValue, options?: Options) {
-  const locale = formatNumberLocale() || DEFAULT_LOCALE;
-
+export function fCurrency(inputValue: InputNumberValue, options?: Intl.NumberFormatOptions) {
   const number = processInput(inputValue);
   if (number === null) return '';
 
-  const fm = new Intl.NumberFormat(locale.code, {
+  const amountVND = number * 1_000_000;
+
+  const fm = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
-    currency: locale.currency,
+    currency: 'VND',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 0,
     ...options,
   }).format(number);
 

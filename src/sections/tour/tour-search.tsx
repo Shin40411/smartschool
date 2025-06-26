@@ -87,7 +87,7 @@ export function TourSearch({ redirectPath, sx }: Props) {
       renderInput={(params) => (
         <TextField
           {...params}
-          placeholder="Search..."
+          placeholder="Tìm kiếm...."
           slotProps={{
             input: {
               ...params.InputProps,

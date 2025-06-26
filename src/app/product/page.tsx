@@ -7,10 +7,8 @@ import { ProductShopView } from 'src/sections/product/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Product shop - ${CONFIG.appName}` };
+export const metadata: Metadata = { title: `Sản phẩm - ${CONFIG.appName}` };
 
 export default async function Page() {
-  const { products } = await getProducts();
-
-  return <ProductShopView products={products} allowTitle />;
+  return <ProductShopView allowTitle={false} />;
 }

@@ -18,14 +18,20 @@ import { EmptyContent } from 'src/components/empty-content';
 import { PostList } from '../post-list';
 import { PostSort } from '../post-sort';
 import { PostSearch } from '../post-search';
+import { SxProps } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
 type Props = {
   posts: IPostItem[];
+  CustomTitle?: string;
+  customTitleStyle?: SxProps<Theme>;
+  allowFilters?: boolean;
+  limitData?: number;
 };
 
-export function PostListHomeView({ posts }: Props) {
+export function PostListHomeView({ posts, CustomTitle, customTitleStyle, allowFilters = true, limitData }: Props) {
   const [sortBy, setSortBy] = useState('latest');
 
   const dataFiltered = applyFilter({ inputData: posts, sortBy });
@@ -36,32 +42,37 @@ export function PostListHomeView({ posts }: Props) {
 
   return (
     <Container sx={{ mb: 10 }}>
-      <Typography variant="h4" sx={[{ my: { xs: 3, md: 5 } }]}>
-        Blog
+      <Typography
+        variant="h4"
+        sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
+      >
+        {CustomTitle || 'Blog'}
       </Typography>
 
-      <Box
-        sx={[
-          {
-            gap: 3,
-            display: 'flex',
-            mb: { xs: 3, md: 5 },
-            justifyContent: 'space-between',
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'flex-end', sm: 'center' },
-          },
-        ]}
-      >
-        <PostSearch redirectPath={(title: string) => paths.post.details(title)} />
+      {allowFilters &&
+        <Box
+          sx={[
+            {
+              gap: 3,
+              display: 'flex',
+              mb: { xs: 3, md: 5 },
+              justifyContent: 'space-between',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'flex-end', sm: 'center' },
+            },
+          ]}
+        >
+          <PostSearch redirectPath={(title: string) => paths.post.details(title)} />
 
-        <PostSort
-          sort={sortBy}
-          onSort={(newValue: string) => setSortBy(newValue)}
-          sortOptions={POST_SORT_OPTIONS}
-        />
-      </Box>
+          <PostSort
+            sort={sortBy}
+            onSort={(newValue: string) => setSortBy(newValue)}
+            sortOptions={POST_SORT_OPTIONS}
+          />
+        </Box>
+      }
 
-      {isEmpty ? renderNoData() : <PostList posts={dataFiltered} />}
+      {isEmpty ? renderNoData() : <PostList posts={dataFiltered} limitData={limitData} />}
     </Container>
   );
 }

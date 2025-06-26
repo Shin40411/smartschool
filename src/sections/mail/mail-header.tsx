@@ -41,7 +41,7 @@ export function MailHeader({ onOpenNav, onOpenMail, sx, ...other }: Props) {
       <TextField
         fullWidth
         size="small"
-        placeholder="Search..."
+        placeholder="Tìm kiếm...."
         slotProps={{
           input: {
             startAdornment: (

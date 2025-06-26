@@ -59,15 +59,23 @@ export function MainLayout({
 
   const { value: open, onFalse: onClose, onTrue: onOpen } = useBoolean();
 
-  const isHomePage = pathname === '/';
+  const isCommingSoonPage = pathname === '/coming-soon/';
 
   const navData = slotProps?.nav?.data ?? mainNavData;
 
   const renderHeader = () => {
+    if (isCommingSoonPage) return null;
+
     const headerSlots: HeaderSectionProps['slots'] = {
       topArea: (
         <Box width='100%' sx={{ display: 'flex', margin: '0 auto', padding: '15px 0 40px 0', alignItems: 'center', justifyContent: 'space-evenly' }}>
-          <Typography variant='body1' color='#fff'>Chào mừng đến với trường học thông minh</Typography>
+          <Typography
+            variant='body1'
+            color='#fff'
+            sx={{ display: { xs: 'none', md: 'block' } }}
+          >
+            Chào mừng đến với trường học thông minh
+          </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
             <>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -123,13 +131,9 @@ export function MainLayout({
   };
 
   const renderFooter = () =>
-  // isHomePage ? (
-  //   <HomeFooter sx={slotProps?.footer?.sx} />
-  // )
-  //   :
-  (
-    <Footer sx={slotProps?.footer?.sx} layoutQuery={layoutQuery} />
-  );
+    !isCommingSoonPage && (
+      <Footer sx={slotProps?.footer?.sx} layoutQuery={layoutQuery} />
+    );
 
   const renderMain = () => <MainSection {...slotProps?.main}>{children}</MainSection>;
 

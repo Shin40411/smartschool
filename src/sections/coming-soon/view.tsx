@@ -25,15 +25,17 @@ export function ComingSoonView() {
 
   return (
     <Container>
-      <Typography variant="h3" sx={{ mb: 2 }}>
-        Coming soon!
-      </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', my: 10 }}>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Trang đang được phát triển!
+        </Typography>
 
-      <Typography sx={{ color: 'text.secondary' }}>
-        We are currently working hard on this page!
-      </Typography>
+        <Typography sx={{ color: 'text.secondary' }}>
+          Chúng tôi đang phát triển trang này!
+        </Typography>
 
-      <ComingSoonIllustration sx={{ my: { xs: 5, sm: 10 } }} />
+        <ComingSoonIllustration sx={{ my: { xs: 5, sm: 10 } }} />
+      </Box>
 
       <Stack
         divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
@@ -45,7 +47,7 @@ export function ComingSoonView() {
         <TimeBlock label="seconds" value={countdown.seconds} />
       </Stack>
 
-      <TextField
+      {/* <TextField
         fullWidth
         placeholder="Enter your email"
         slotProps={{
@@ -74,8 +76,8 @@ export function ComingSoonView() {
           },
         }}
         sx={{ my: 5 }}
-      />
-      <Box sx={{ gap: 1, display: 'flex', justifyContent: 'center' }}>
+      /> */}
+      {/* <Box sx={{ gap: 1, display: 'flex', justifyContent: 'center' }}>
         {_socials.map((social) => (
           <IconButton key={social.label}>
             {social.value === 'twitter' && <Iconify icon="socials:twitter" />}
@@ -84,7 +86,7 @@ export function ComingSoonView() {
             {social.value === 'linkedin' && <Iconify icon="socials:linkedin" />}
           </IconButton>
         ))}
-      </Box>
+      </Box> */}
     </Container>
   );
 }

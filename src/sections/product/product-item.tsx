@@ -28,7 +28,18 @@ type Props = {
 export function ProductItem({ product, detailsHref }: Props) {
   const { onAddToCart } = useCheckoutContext();
 
-  const { id, name, coverUrl, price, colors, available, sizes, priceSale, newLabel, saleLabel } =
+  const {
+    id,
+    name,
+    coverUrl,
+    price,
+    colors,
+    available,
+    sizes,
+    priceSale,
+    newLabel,
+    saleLabel }
+    =
     product;
 
   const handleAddCart = async () => {
@@ -101,7 +112,7 @@ export function ProductItem({ product, detailsHref }: Props) {
         </Fab>
       )}
 
-      <Tooltip title={!available && 'Out of stock'} placement="bottom-end">
+      <Tooltip title={!available && 'Hết hàng'} placement="bottom-end">
         <Image
           alt={name}
           src={coverUrl}
@@ -123,7 +134,13 @@ export function ProductItem({ product, detailsHref }: Props) {
           <ColorPreview colors={colors} />
         </Tooltip>
 
-        <Box sx={{ gap: 0.5, display: 'flex', typography: 'subtitle1' }}>
+        <Box sx={{
+          gap: 0.5,
+          display: 'flex',
+          typography: 'subtitle1',
+          justifyContent: 'flex-end',
+          flexWrap: 'wrap'
+        }}>
           {priceSale && (
             <Box component="span" sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>
               {fCurrency(priceSale)}

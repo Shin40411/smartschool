@@ -1,6 +1,6 @@
 import type { Dayjs, OpUnitType } from 'dayjs';
-
 import dayjs from 'dayjs';
+import 'dayjs/locale/vi';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -117,8 +117,13 @@ export function fTimestamp(date: DatePickerFormat): number | 'Invalid date' {
  */
 export function fToNow(date: DatePickerFormat): string {
   if (!isValidDate(date)) {
-    return 'Invalid date';
+    return 'Ngày không hợp lệ';
   }
+
+  // Set Vietnamese locale for dayjs relative time
+  // Import vi locale if not already imported
+  // import 'dayjs/locale/vi';
+  dayjs.locale('vi');
 
   return dayjs(date).toNow(true);
 }

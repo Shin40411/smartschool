@@ -6,7 +6,7 @@ import { ComingSoonView } from 'src/sections/coming-soon/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Coming soon - ${CONFIG.appName}` };
+export const metadata: Metadata = { title: `Trang đang được phát triển - ${CONFIG.appName}` };
 
 export default function Page() {
   return <ComingSoonView />;

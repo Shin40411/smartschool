@@ -1,4 +1,4 @@
-import { SimpleLayout } from 'src/layouts/simple';
+import { MainLayout } from 'src/layouts/main';
 
 // ----------------------------------------------------------------------
 
@@ -8,12 +8,8 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <SimpleLayout
-      slotProps={{
-        content: { compact: true },
-      }}
-    >
+    <MainLayout>
       {children}
-    </SimpleLayout>
+    </MainLayout>
   );
 }

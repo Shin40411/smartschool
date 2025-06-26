@@ -47,7 +47,7 @@ export const PRODUCT_SIZE_OPTIONS = [
 export const PRODUCT_STOCK_OPTIONS = [
   { value: 'in stock', label: 'In stock' },
   { value: 'low stock', label: 'Low stock' },
-  { value: 'out of stock', label: 'Out of stock' },
+  { value: 'out of stock', label: 'Hết hàng' },
 ];
 
 export const PRODUCT_PUBLISH_OPTIONS = [
@@ -56,10 +56,10 @@ export const PRODUCT_PUBLISH_OPTIONS = [
 ];
 
 export const PRODUCT_SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
-  { value: 'newest', label: 'Newest' },
-  { value: 'priceDesc', label: 'Price: High - Low' },
-  { value: 'priceAsc', label: 'Price: Low - High' },
+  { value: 'featured', label: 'Nổi bật' },
+  { value: 'newest', label: 'Mới nhất' },
+  { value: 'priceDesc', label: 'Giá: Cao đến Thấp' },
+  { value: 'priceAsc', label: 'Giá: Thấp đến Cao' },
 ];
 
 export const PRODUCT_CATEGORY_GROUP_OPTIONS = [

@@ -106,7 +106,7 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
         }}
       >
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Filters
+          Bộ lọc
         </Typography>
 
         <Tooltip title="Reset">
@@ -150,7 +150,7 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
   const renderCategory = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Category
+        Danh mục sản phẩm
       </Typography>
       {options.categories.map((option) => (
         <FormControlLabel
@@ -186,7 +186,7 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
 
   const renderPrice = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="subtitle2">Price</Typography>
+      <Typography variant="subtitle2">Giá</Typography>
 
       <Box sx={{ my: 2, gap: 5, display: 'flex' }}>
         <InputRange type="min" value={currentFilters.priceRange} onChange={updateFilters} />
@@ -249,7 +249,7 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
         }
         onClick={onOpen}
       >
-        Filters
+        Bộ lọc
       </Button>
 
       <Drawer
@@ -265,11 +265,8 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
 
         <Scrollbar sx={{ px: 2.5, py: 3 }}>
           <Stack spacing={3}>
-            {renderGender()}
             {renderCategory()}
-            {renderColor()}
             {renderPrice()}
-            {renderRating()}
           </Stack>
         </Scrollbar>
       </Drawer>

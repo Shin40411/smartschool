@@ -2,7 +2,7 @@
 
 import type { IProductItem, IProductFilters } from 'src/types/product';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { orderBy } from 'es-toolkit';
 import { useBoolean, useSetState } from 'minimal-shared/hooks';
 
@@ -30,19 +30,26 @@ import { ProductSearch } from '../product-search';
 import { useCheckoutContext } from '../../checkout/context';
 import { ProductFiltersDrawer } from '../product-filters-drawer';
 import { ProductFiltersResult } from '../product-filters-result';
+import { SxProps } from '@mui/material';
+import { Theme } from '@mui/material/styles';
+import { getProducts } from 'src/actions/product-ssr';
+import mapToProductItem from 'src/utils/format-product';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  products: IProductItem[];
   allowTitle: boolean;
   allowFilters?: boolean;
   allowPagination?: boolean;
   limitData?: number;
+  customTitle?: string;
+  customTitleStyle?: SxProps<Theme>;
 };
 
-export function ProductShopView({ products, allowTitle, allowFilters, allowPagination, limitData }: Props) {
+export function ProductShopView({ allowTitle, allowFilters = true, allowPagination = true, limitData, customTitle, customTitleStyle }: Props) {
   const { state: checkoutState } = useCheckoutContext();
+
+  const [products, setProducts] = useState<IProductItem[]>([]);
 
   const openFilters = useBoolean();
 
@@ -56,6 +63,28 @@ export function ProductShopView({ products, allowTitle, allowFilters, allowPagin
     priceRange: [0, 200],
   });
   const { state: currentFilters } = filters;
+
+  useEffect(() => {
+    getProducts({ pageNumber: 1, pageSize: 10 }).then(({ data }) => {
+      const pro = data.items.map(mapToProductItem);
+      setProducts(pro);
+    });
+
+    // getProducts().then(({ data }) => {
+    //   data.forEach((product: any, index: number) => {
+    //     const mockName = _mock.productName(index);
+    //     if (mockName) {
+    //       product.name = mockName;
+    //     }
+    //     const mockCoverUrl = _mock.image.coverProduct(mockName);
+    //     if (mockCoverUrl) {
+    //       product.coverUrl = mockCoverUrl;
+    //     }
+    //   });
+    //   setProducts(data);
+    // });
+  }, []);
+
 
   const dataFiltered = applyFilter({
     inputData: products,
@@ -117,12 +146,15 @@ export function ProductShopView({ products, allowTitle, allowFilters, allowPagin
   const renderNotFound = () => <EmptyContent filled sx={{ py: 10 }} />;
 
   return (
-    <Container sx={{ mb: 10 }}>
+    <Container sx={!allowTitle ? { my: 10 } : { mb: 10 }}>
       <CartIcon totalItems={checkoutState.totalItems} />
 
-      {allowTitle &&
-        <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
-          Shop
+      {allowTitle == true &&
+        <Typography
+          variant="h4"
+          sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
+        >
+          {customTitle || 'Shop'}
         </Typography>
       }
 
@@ -133,7 +165,13 @@ export function ProductShopView({ products, allowTitle, allowFilters, allowPagin
         </Stack>
       }
 
-      {notFound || isEmpty ? renderNotFound() : <ProductList products={dataFiltered} allowPagination={allowPagination} limitData={limitData} />}
+      {notFound || isEmpty ? renderNotFound()
+        :
+        <ProductList
+          products={dataFiltered}
+          allowPagination={allowPagination}
+          limitData={limitData}
+        />}
     </Container>
   );
 }

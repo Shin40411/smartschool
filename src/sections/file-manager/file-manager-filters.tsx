@@ -95,7 +95,7 @@ export function FileManagerFilters({
     <TextField
       value={currentFilters.name}
       onChange={handleFilterName}
-      placeholder="Search..."
+      placeholder="Tìm kiếm...."
       slotProps={{
         input: {
           startAdornment: (

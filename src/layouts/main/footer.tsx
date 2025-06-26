@@ -21,28 +21,21 @@ import { Iconify } from 'src/components/iconify';
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'Menu chính',
     children: [
-      { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
-      { name: 'FAQs', href: paths.faqs },
+      { name: 'Giới thiệu', href: paths.about },
+      { name: 'Sản phẩm', href: paths.product.root },
+      // { name: 'Tin tức', href: paths.post.root },
     ],
   },
-  {
-    headline: 'Legal',
-    children: [
-      { name: 'Terms and condition', href: '#' },
-      { name: 'Privacy policy', href: '#' },
-    ],
-  },
-  { headline: 'Contact', children: [{ name: 'support@minimals.cc', href: '#' }] },
+  { headline: 'Liên hệ', children: [{ name: 'info@truonghocthongminh.vn', href: '#' }] },
 ];
 
 // ----------------------------------------------------------------------
 
 const FooterRoot = styled('footer')(({ theme }) => ({
   position: 'relative',
-  backgroundColor: theme.vars.palette.background.default,
+  backgroundColor: '#f8f9fa',
 }));
 
 export type FooterProps = React.ComponentProps<typeof FooterRoot>;
@@ -78,18 +71,17 @@ export function Footer({
         >
           <Grid size={{ xs: 12, [layoutQuery]: 3 }}>
             <Typography
-              variant="body2"
+              variant="h4"
               sx={(theme) => ({
                 mx: 'auto',
-                maxWidth: 280,
+                maxWidth: 300,
                 [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
               })}
             >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
+              Mang đến cho con bạn sự khởi đầu tốt nhất trong cuộc sống
             </Typography>
 
-            <Box
+            {/* <Box
               sx={(theme) => ({
                 mt: 3,
                 mb: 5,
@@ -106,7 +98,7 @@ export function Footer({
                   {social.value === 'linkedin' && <Iconify icon="socials:linkedin" />}
                 </IconButton>
               ))}
-            </Box>
+            </Box> */}
           </Grid>
 
           <Grid size={{ xs: 12, [layoutQuery]: 6 }}>

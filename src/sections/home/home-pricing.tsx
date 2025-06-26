@@ -22,41 +22,51 @@ import { varFade, varScale, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatXIcon } from './components/svg-elements';
+import { IconButton } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
 export function HomePricing({ sx, ...other }: BoxProps) {
-  const tabs = useTabs('Standard');
-
+  const tabs = useTabs(PLANS[0].license);
   const renderContentDesktop = () => (
-    <Box gridTemplateColumns="repeat(3, 1fr)" sx={{ display: { xs: 'none', md: 'grid' } }}>
+    <Box
+      sx={{
+        display: { xs: 'none', md: 'flex' },
+        justifyContent: 'space-between',
+        px: 2,
+        gap: 3,
+      }}
+    >
       {PLANS.map((plan) => (
         <PlanCard
           key={plan.license}
           plan={plan}
           sx={(theme) => ({
-            ...(plan.license === 'Plus' && {
-              [theme.breakpoints.down(1440)]: {
-                borderLeft: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
-                borderRight: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
-              },
-            }),
+            borderRadius: 2,
+            flex: 1,
+            color: theme.palette.common.white,
+            zIndex: 1,
           })}
         />
       ))}
     </Box>
   );
 
+
   const renderContentMobile = () => (
     <Stack spacing={5} alignItems="center" sx={{ display: { md: 'none' } }}>
       <Tabs
         value={tabs.value}
         onChange={tabs.onChange}
-        sx={[
-          (theme) => ({
-            boxShadow: `0px -2px 0px 0px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)} inset`,
-          }),
-        ]}
+        variant="scrollable"
+        scrollButtons="auto"
+        allowScrollButtonsMobile
+        sx={(theme) => ({
+          boxShadow: `0px -2px 0px 0px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)} inset`,
+          bgcolor: '#fff',
+          px: 2,
+          borderRadius: 2,
+        })}
       >
         {PLANS.map((tab) => (
           <Tab key={tab.license} value={tab.license} label={tab.license} />
@@ -64,16 +74,18 @@ export function HomePricing({ sx, ...other }: BoxProps) {
       </Tabs>
 
       <Box
-        sx={[
-          (theme) => ({
-            width: 1,
-            borderRadius: 2,
-            border: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
-          }),
-        ]}
+        sx={(theme) => ({
+          width: 1,
+          borderRadius: 2,
+          border: `dashed 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.2)}`,
+        })}
       >
         {PLANS.map(
-          (tab) => tab.license === tabs.value && <PlanCard key={tab.license} plan={tab} />
+          (tab) => tab.license === tabs.value && <PlanCard key={tab.license} plan={tab}
+            sx={(theme) => ({
+              zIndex: 1,
+              color: theme.palette.common.white,
+            })} />
         )}
       </Box>
     </Stack>
@@ -82,7 +94,7 @@ export function HomePricing({ sx, ...other }: BoxProps) {
   return (
     <Box
       component="section"
-      sx={[{ py: 10, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[{ pb: 10, top: -35, right: 0, left: 0 }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...other}
     >
       <Box
@@ -103,10 +115,11 @@ export function HomePricing({ sx, ...other }: BoxProps) {
 type PlanCardProps = BoxProps & {
   plan: {
     license: string;
-    price: number;
+    // price: number;
     commons: string[];
-    options: string[];
     icons: string[];
+    bg_color: string;
+    bg_image?: string;
   };
 };
 
@@ -122,80 +135,91 @@ const renderLines = () => (
 );
 
 function PlanCard({ plan, sx, ...other }: PlanCardProps) {
-  const standardLicense = plan.license === 'Standard';
-
-  const plusLicense = plan.license === 'Plus';
-
   return (
     <MotionViewport>
       <Box
         sx={[
-          () => ({
-            px: 6,
-            py: 8,
-            gap: 5,
+          {
+            px: 4,
+            py: 4,
+            gap: 2,
             display: 'flex',
-            position: 'relative',
             flexDirection: 'column',
-          }),
+            position: 'relative',
+            backgroundImage: `url(${plan.bg_image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            borderRadius: 2,
+            boxShadow: 3,
+            height: '100%',
+            ":before": {
+              bgcolor: plan.bg_color,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              content: '""',
+              opacity: 0.9,
+              zIndex: -1,
+              borderRadius: 2,
+            },
+          },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
         {...other}
       >
-        {plusLicense && renderLines()}
-
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ flex: '1 1 auto' }}>
-            <m.div variants={varFade('inLeft', { distance: 24 })}>
-              <Typography variant="h4" component="h6">
-                {plan.license}
-              </Typography>
-            </m.div>
-
-            <m.div variants={varScale('inX')}>
-              <Box
-                sx={{
-                  width: 32,
-                  height: 6,
-                  opacity: 0.24,
-                  borderRadius: 1,
-                  bgcolor: 'error.main',
-                  ...(standardLicense && { bgcolor: 'primary.main' }),
-                  ...(plusLicense && { bgcolor: 'secondary.main' }),
-                }}
-              />
-            </m.div>
-          </Box>
-
-          <m.div variants={varFade('inLeft', { distance: 24 })}>
-            <Box component="span" sx={{ typography: 'h3' }}>
-              ${plan.price}
-            </Box>
-          </m.div>
-        </Box>
-
-        <Box sx={{ gap: 2, display: 'flex' }}>
+        {/* Icons */}
+        <Box sx={{
+          display: 'inline-flex',
+          justifyContent: 'center',
+          width: 135,
+          height: 131,
+          alignItems: 'center',
+          margin: '-63px auto 20px',
+          backgroundImage: `url(${CONFIG.assetsDir}/assets/icons/glass/ser-col-bg7.svg)`,
+          backgroundPosition: 'center center',
+        }}>
           {plan.icons.map((icon, index) => (
             <Box
               component={m.img}
               variants={varFade('in')}
               key={icon}
-              alt={icon}
+              alt={`icon-${index}`}
               src={icon}
               sx={{
-                width: 24,
-                height: 24,
-                ...(standardLicense && [1, 2].includes(index) && { display: 'none' }),
+                maxWidth: '100%',
+                width: 50,
+                height: 'auto',
               }}
             />
           ))}
-          {standardLicense && (
-            <Box component={m.span} variants={varFade('in')} sx={{ ml: -1 }}>
-              (only)
-            </Box>
-          )}
         </Box>
 
+        {/* Title & underline */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ flex: 1 }}>
+            <m.div variants={varFade('inLeft', { distance: 24 })}>
+              <Typography variant="h4" component="h6" sx={{ textAlign: 'center' }}>
+                {plan.license}
+              </Typography>
+            </m.div>
+
+            {/* <m.div variants={varScale('inX')}>
+              <Box
+                sx={{
+                  width: 32,
+                  height: 6,
+                  borderRadius: 1,
+                  opacity: 0.24,
+                  bgcolor: 'primary.main',
+                }}
+              />
+            </m.div> */}
+          </Box>
+        </Box>
+
+        {/* Feature list */}
         <Stack spacing={2.5}>
           {plan.commons.map((option) => (
             <Box
@@ -203,88 +227,76 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
               component={m.div}
               variants={varFade('in')}
               sx={{
-                gap: 1.5,
                 display: 'flex',
-                typography: 'body2',
                 alignItems: 'center',
+                gap: 1.5,
+                typography: 'body2',
               }}
             >
               <Iconify width={16} icon="eva:checkmark-fill" />
               {option}
             </Box>
           ))}
-
-          <m.div variants={varFade('inLeft', { distance: 24 })}>
-            <Divider sx={{ borderStyle: 'dashed' }} />
-          </m.div>
-
-          {plan.options.map((option, index) => {
-            const disabled =
-              (standardLicense && [1, 2, 3].includes(index)) ||
-              (plusLicense && [3].includes(index));
-
-            return (
-              <Box
-                key={option}
-                component={m.div}
-                variants={varFade('in')}
-                sx={{
-                  gap: 1.5,
-                  display: 'flex',
-                  typography: 'body2',
-                  alignItems: 'center',
-                  ...(disabled && { color: 'text.disabled', textDecoration: 'line-through' }),
-                }}
-              >
-                <Iconify
-                  width={18}
-                  icon={disabled ? 'mingcute:close-line' : 'eva:checkmark-fill'}
-                />
-                {option}
-              </Box>
-            );
-          })}
         </Stack>
 
+        {/* CTA button */}
         <m.div variants={varFade('inUp', { distance: 24 })}>
-          <Button
-            fullWidth
-            variant={plusLicense ? 'contained' : 'outlined'}
-            color="inherit"
-            size="large"
-            target="_blank"
-            rel="noopener"
-            href={paths.minimalStore}
-          >
-            Get started
-          </Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <IconButton
+              // href={paths.minimalStore}
+              // target="_blank"
+              rel="noopener"
+              sx={{
+                bgcolor: 'primary.main',
+                color: '#fff',
+                '&:hover': {
+                  bgcolor: 'primary.dark',
+                },
+                padding: 2,
+                margin: '0 0 -50px 0'
+              }}
+            >
+              <Iconify icon="eva:arrow-ios-forward-fill" width={24} height={24} />
+            </IconButton>
+          </Box>
         </m.div>
       </Box>
-    </MotionViewport>
+    </MotionViewport >
   );
 }
 
 // ----------------------------------------------------------------------
 
 const PLANS = Array.from({ length: 3 }, (_, index) => ({
-  license: ['Standard', 'Plus', 'Extended'][index],
-  price: [69, 129, 599][index],
+  license: [
+    'Xây dựng trường học thông minh',
+    'Đào tạo trực tuyến E-Learning',
+    'Kiểm soát an toàn, xác minh truy cập'
+  ][index],
   commons: [
-    'One end products',
-    '12 months updates',
-    '6 months of support',
-    'One-time payments',
-    'Lifetime perpetual license.',
-  ],
-  options: [
-    'JavaScript version',
-    'TypeScript version',
-    'Design resources (Figma)',
-    'Commercial applications',
-  ],
+    [
+      'Quản lý tổng thể các mảng công việc của nhà trường',
+    ],
+    [
+      'Học tập và giảng dạy trực tuyến với các bài giảng điện tử',
+    ],
+    [
+      'Giám sát toàn bộ quá trình hoạt động từ đón trả',
+    ],
+  ][index],
   icons: [
-    `${CONFIG.assetsDir}/assets/icons/platforms/ic-js.svg`,
-    `${CONFIG.assetsDir}/assets/icons/platforms/ic-ts.svg`,
-    `${CONFIG.assetsDir}/assets/icons/platforms/ic-figma.svg`,
-  ],
+    [`${CONFIG.assetsDir}/assets/images/cpu-large.png`],
+    [`${CONFIG.assetsDir}/assets/images/online-learning-large.png`],
+    [`${CONFIG.assetsDir}/assets/images/protection-large.png`],
+  ][index],
+  bg_color: [
+    '#078a94',
+    '#851c25',
+    '#0056a9'
+  ][index],
+  bg_image: [
+    `${CONFIG.assetsDir}/assets/images/mock/course/course-1.webp`,
+    `${CONFIG.assetsDir}/assets/images/mock/course/course-2.webp`,
+    `${CONFIG.assetsDir}/assets/images/mock/course/course-3.webp`
+  ][index],
 }));

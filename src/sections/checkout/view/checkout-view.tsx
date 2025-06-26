@@ -17,9 +17,9 @@ export function CheckoutView() {
   const { steps, activeStep, completed, onResetCart } = useCheckoutContext();
 
   return (
-    <Container sx={{ mb: 10 }}>
+    <Container sx={{ my: 10 }}>
       <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
-        Checkout
+        Thanh toán
       </Typography>
 
       <Grid container justifyContent={completed ? 'center' : 'flex-start'}>
@@ -36,7 +36,7 @@ export function CheckoutView() {
         {activeStep === 2 && <CheckoutPayment />}
 
         {completed && (
-          <CheckoutOrderComplete open onResetCart={onResetCart} onDownloadPDF={() => {}} />
+          <CheckoutOrderComplete open onResetCart={onResetCart} onDownloadPDF={() => { }} />
         )}
       </>
     </Container>

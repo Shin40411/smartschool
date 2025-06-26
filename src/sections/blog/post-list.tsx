@@ -16,9 +16,10 @@ import { PostItem, PostItemLatest } from './post-item';
 type Props = {
   posts: IPostItem[];
   loading?: boolean;
+  limitData?: number;
 };
 
-export function PostList({ posts, loading }: Props) {
+export function PostList({ posts, loading, limitData }: Props) {
   const renderLoading = () => (
     <Box
       sx={{
@@ -31,59 +32,63 @@ export function PostList({ posts, loading }: Props) {
     </Box>
   );
 
-  const renderList = () => (
-    <Grid container spacing={3}>
-      {posts.slice(0, 3).map((post, index) => (
-        <Grid
-          key={post.id}
-          sx={{ display: { xs: 'none', lg: 'block' } }}
-          size={{
-            xs: 12,
-            sm: 6,
-            md: 4,
-            lg: index === 0 ? 6 : 3,
-          }}
-        >
-          <PostItemLatest post={post} index={index} detailsHref={paths.post.details(post.title)} />
-        </Grid>
-      ))}
+  const renderList = (customLength?: number) => {
+    const list = typeof customLength === 'number' ? posts.slice(0, customLength) : posts;
 
-      {posts.slice(0, 3).map((post) => (
-        <Grid
-          key={post.id}
-          sx={{ display: { lg: 'none' } }}
-          size={{
-            xs: 12,
-            sm: 6,
-            md: 4,
-            lg: 3,
-          }}
-        >
-          <PostItem post={post} detailsHref={paths.post.details(post.title)} />
-        </Grid>
-      ))}
+    return (
+      <Grid container spacing={3}>
+        {list.slice(0, 3).map((post, index) => (
+          <Grid
+            key={`latest-lg-${post.id}`}
+            sx={{ display: { xs: 'none', lg: 'block' } }}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+              lg: index === 0 ? 6 : 3,
+            }}
+          >
+            <PostItemLatest post={post} index={index} detailsHref={paths.post.details(post.title)} />
+          </Grid>
+        ))}
 
-      {posts.slice(3, posts.length).map((post) => (
-        <Grid
-          key={post.id}
-          size={{
-            xs: 12,
-            sm: 6,
-            md: 4,
-            lg: 3,
-          }}
-        >
-          <PostItem post={post} detailsHref={paths.post.details(post.title)} />
-        </Grid>
-      ))}
-    </Grid>
-  );
+        {list.slice(0, 3).map((post) => (
+          <Grid
+            key={`latest-xs-${post.id}`}
+            sx={{ display: { lg: 'none' } }}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+              lg: 3,
+            }}
+          >
+            <PostItem post={post} detailsHref={paths.post.details(post.title)} />
+          </Grid>
+        ))}
+
+        {list.slice(3).map((post) => (
+          <Grid
+            key={`rest-${post.id}`}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+              lg: 3,
+            }}
+          >
+            <PostItem post={post} detailsHref={paths.post.details(post.title)} />
+          </Grid>
+        ))}
+      </Grid>
+    );
+  };
 
   return (
     <>
-      {loading ? renderLoading() : renderList()}
+      {loading ? renderLoading() : renderList(limitData)}
 
-      {posts.length > 8 && (
+      {posts.length > 8 && (typeof limitData === 'number' && limitData > 8) && (
         <Stack sx={{ mt: 8, alignItems: 'center' }}>
           <Button
             size="large"
