@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from 'next';
 import type { IProductItem } from 'src/types/product';
 
@@ -9,40 +11,23 @@ import { ProductShopDetailsView } from 'src/sections/product/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Chi tiết sản phẩm - ${CONFIG.appName}` };
+// export const metadata: Metadata = { title: `Chi tiết sản phẩm - ${CONFIG.appName}` };
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
-
-export default async function Page({ params }: Props) {
-  const { id } = await params;
-
-  return <ProductShopDetailsView param={id} />;
+export default function Page() {
+  return <ProductShopDetailsView />;
 }
 
 // ----------------------------------------------------------------------
 
-/**
- * Static Exports in Next.js
- *
- * 1. Set `isStaticExport = true` in `next.config.{mjs|ts}`.
- * 2. This allows `generateStaticParams()` to pre-render dynamic routes at build time.
- *
- * For more details, see:
- * https://nextjs.org/docs/app/building-your-application/deploying/static-exports
- *
- * NOTE: Remove all "generateStaticParams()" functions if not using static exports.
- */
-export async function generateStaticParams() {
-  const res = await axios.get(endpoints.product.list);
+// export async function generateStaticParams() {
+//   const res = await axios.get(endpoints.product.list);
 
-  const products: IProductItem[] = CONFIG.isStaticExport
-    ? res.data.data.items || []
-    : (res.data.data.items || []).slice(0, 1);
+//   const products: IProductItem[] = CONFIG.isStaticExport
+//     ? res.data.data.items || []
+//     : (res.data.data.items || []).slice(0, 1);
 
-  return products.map((product) => ({
-    id: product.id,
-  }));
-}
+//   return products.map((product) => ({
+//     id: product.id,
+//   }));
+// }
 

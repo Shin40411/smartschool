@@ -34,6 +34,7 @@ import { SxProps } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 import { getProducts } from 'src/actions/product-ssr';
 import mapToProductItem from 'src/utils/format-product';
+import productsData from 'public/assets/data/data.json';
 
 // ----------------------------------------------------------------------
 
@@ -49,12 +50,10 @@ type Props = {
 export function ProductShopView({ allowTitle, allowFilters = true, allowPagination = true, limitData, customTitle, customTitleStyle }: Props) {
   const { state: checkoutState } = useCheckoutContext();
 
-  const [products, setProducts] = useState<IProductItem[]>([]);
+  // const [products, setProducts] = useState<IProductItem[]>([]);
 
   const openFilters = useBoolean();
-
   const [sortBy, setSortBy] = useState('featured');
-
   const filters = useSetState<IProductFilters>({
     gender: [],
     colors: [],
@@ -64,27 +63,61 @@ export function ProductShopView({ allowTitle, allowFilters = true, allowPaginati
   });
   const { state: currentFilters } = filters;
 
-  useEffect(() => {
-    getProducts({ pageNumber: 1, pageSize: 10 }).then(({ data }) => {
-      const pro = data.items.map(mapToProductItem);
-      setProducts(pro);
-    });
+  // useEffect(() => {
+  // getProducts({ pageNumber: 1, pageSize: 10 }).then(({ data }) => {
+  //   const pro = data.items.map(mapToProductItem);
+  //   setProducts(pro);
+  // });
 
-    // getProducts().then(({ data }) => {
-    //   data.forEach((product: any, index: number) => {
-    //     const mockName = _mock.productName(index);
-    //     if (mockName) {
-    //       product.name = mockName;
-    //     }
-    //     const mockCoverUrl = _mock.image.coverProduct(mockName);
-    //     if (mockCoverUrl) {
-    //       product.coverUrl = mockCoverUrl;
-    //     }
-    //   });
-    //   setProducts(data);
-    // });
-  }, []);
+  // getProducts().then(({ data }) => {
+  //   data.forEach((product: any, index: number) => {
+  //     const mockName = _mock.productName(index);
+  //     if (mockName) {
+  //       product.name = mockName;
+  //     }
+  //     const mockCoverUrl = _mock.image.coverProduct(mockName);
+  //     if (mockCoverUrl) {
+  //       product.coverUrl = mockCoverUrl;
+  //     }
+  //   });
+  //   setProducts(data);
+  // });
+  // }, []);
 
+  const products = (productsData as any[]).map((item) => ({
+    id: item.id ?? item.code ?? '',
+    sku: item.sku ?? '',
+    code: item.code ?? '',
+    name: item.name ?? '',
+    coverUrl: item.coverUrl ?? '',
+    images: item.images ?? [],
+    price: item.price ?? 0,
+    priceSale: item.priceSale ?? null,
+    colors: item.colors ?? [],
+    status: item.status ?? '',
+    inventoryType: item.inventoryType ?? '',
+    available: item.available ?? 0,
+    description: item.description ?? '',
+    sold: item.sold ?? 0,
+    totalSold: item.totalSold ?? 0,
+    totalRatings: item.totalRatings ?? 0,
+    totalReviews: item.totalReviews ?? 0,
+    category: item.category ?? '',
+    gender: item.gender ?? [],
+    createdAt: item.createdAt ?? '',
+    taxes: item.taxes ?? [],
+    tags: item.tags ?? [],
+    sizes: item.sizes ?? [],
+    priceUnit: item.priceUnit ?? '',
+    subDescription: item.subDescription ?? '',
+    highlights: item.highlights ?? [],
+    reviews: item.reviews ?? [],
+    newLabel: item.newLabel ?? { content: '', enabled: false },
+    saleLabel: item.saleLabel ?? { content: '', enabled: false },
+    publish: item.publish ?? '',
+    quantity: item.quantity ?? 0,
+    ratings: item.ratings ?? 0,
+  }));
 
   const dataFiltered = applyFilter({
     inputData: products,

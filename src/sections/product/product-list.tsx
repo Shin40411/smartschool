@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type { BoxProps } from '@mui/material/Box';
 import type { IProductItem } from 'src/types/product';
 
@@ -19,10 +21,20 @@ type Props = BoxProps & {
 };
 
 export function ProductList({ products, loading, allowPagination, limitData, sx, ...other }: Props) {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 8;
+
   const renderLoading = () => <ProductItemSkeleton />;
 
   const renderList = (customLength?: number) => {
-    const list = typeof customLength === 'number' ? products.slice(0, customLength) : products;
+    let list = products;
+    if (typeof customLength === 'number') {
+      list = products.slice(0, customLength);
+    } else if (allowPagination && products.length > itemsPerPage) {
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      list = products.slice(start, end);
+    }
     return list.map((product) => (
       <ProductItem
         key={product.id}
@@ -31,6 +43,8 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
       />
     ));
   };
+
+  const pageCount = Math.ceil(products.length / itemsPerPage);
 
   return (
     <>
@@ -53,9 +67,11 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
         {loading ? renderLoading() : renderList(limitData)}
       </Box>
 
-      {allowPagination && products.length > 8 && (
+      {allowPagination && products.length > itemsPerPage && (
         <Pagination
-          count={8}
+          count={pageCount}
+          page={page}
+          onChange={(_, value) => setPage(value)}
           sx={{
             mt: { xs: 5, md: 8 },
             [`& .${paginationClasses.ul}`]: { justifyContent: 'center' },

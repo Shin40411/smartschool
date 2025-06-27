@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 
 import { fetcher, endpoints } from 'src/lib/axios';
 import mapToProductItem from 'src/utils/format-product';
+import productsData from 'public/assets/data/data.json';
 
 // ----------------------------------------------------------------------
 
@@ -72,31 +73,58 @@ type SearchResultsData = {
   };
 };
 
+// export function useSearchProducts(query: string) {
+//   const url = query
+//     ? [endpoints.product.search, { params: { productName: query, pageNumber: 1, pageSize: 100 } }]
+//     : null;
+
+//   const { data, isLoading, error, isValidating } = useSWR<SearchResultsData>(url, fetcher, {
+//     ...swrOptions,
+//     keepPreviousData: true,
+//   });
+
+//   const mappedResults: IProductItem[] = useMemo(
+//     () => (data?.data?.items || []).map(mapToProductItem),
+//     [data]
+//   );
+
+//   const memoizedValue = useMemo(
+//     () => ({
+//       searchResults: mappedResults,
+//       searchLoading: isLoading,
+//       searchError: error,
+//       searchValidating: isValidating,
+//       searchEmpty: !isLoading && !isValidating && mappedResults.length === 0,
+//     }),
+//     [mappedResults, error, isLoading, isValidating]
+//   );
+
+//   return memoizedValue;
+// }
+
 export function useSearchProducts(query: string) {
-  const url = query
-    ? [endpoints.product.search, { params: { productName: query, pageNumber: 1, pageSize: 100 } }]
-    : null;
-
-  const { data, isLoading, error, isValidating } = useSWR<SearchResultsData>(url, fetcher, {
-    ...swrOptions,
-    keepPreviousData: true,
-  });
-
-  const mappedResults: IProductItem[] = useMemo(
-    () => (data?.data?.items || []).map(mapToProductItem),
-    [data]
+  const mappedData: IProductItem[] = useMemo(
+    () => productsData.map(mapToProductItem),
+    []
   );
 
-  const memoizedValue = useMemo(
-    () => ({
-      searchResults: mappedResults,
-      searchLoading: isLoading,
-      searchError: error,
-      searchValidating: isValidating,
-      searchEmpty: !isLoading && !isValidating && mappedResults.length === 0,
-    }),
-    [mappedResults, error, isLoading, isValidating]
-  );
+  const filteredResults = useMemo(() => {
+    if (!query) return [];
 
-  return memoizedValue;
+    const lowerQuery = query.toLowerCase();
+
+    return mappedData.filter(
+      (item) =>
+        item.name.toLowerCase().includes(lowerQuery) ||
+        item.sku?.toLowerCase().includes(lowerQuery)
+    );
+  }, [query, mappedData]);
+
+  return {
+    searchResults: filteredResults,
+    searchLoading: false,
+    searchError: null,
+    searchValidating: false,
+    searchEmpty: filteredResults.length === 0,
+  };
 }

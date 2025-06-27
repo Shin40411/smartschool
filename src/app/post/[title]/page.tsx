@@ -11,19 +11,19 @@ import { PostDetailsHomeView } from 'src/sections/blog/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Post details - ${CONFIG.appName}` };
+// export const metadata: Metadata = { title: `Post details - ${CONFIG.appName}` };
 
-type Props = {
-  params: { title: string };
-};
+// type Props = {
+//   params: { title: string };
+// };
 
-export default async function Page({ params }: Props) {
-  const { title } = params;
+export default async function Page() {
+  // const { title } = params;
 
-  const { post } = await getPost(title);
-  const { latestPosts } = await getLatestPosts(title);
+  // const { post } = await getPost(title);
+  // const { latestPosts } = await getLatestPosts(title);
 
-  return <PostDetailsHomeView post={post} latestPosts={latestPosts} />;
+  return;
 }
 
 // ----------------------------------------------------------------------
@@ -39,16 +39,16 @@ export default async function Page({ params }: Props) {
  *
  * NOTE: Remove all "generateStaticParams()" functions if not using static exports.
  */
-export async function generateStaticParams() {
-  try {
-    const res = await axios.get(endpoints.post.list);
-    const data: IPostItem[] = CONFIG.isStaticExport ? res.data.posts : res.data.posts.slice(0, 1);
+// export async function generateStaticParams() {
+//   try {
+//     const res = await axios.get(endpoints.post.list);
+//     const data: IPostItem[] = CONFIG.isStaticExport ? res.data.posts : res.data.posts.slice(0, 1);
 
-    return data.map((post) => ({
-      title: kebabCase(post.title),
-    }));
-  } catch (error) {
-    console.error('❌ generateStaticParams error:', error);
-    return [];
-  }
-}
+//     return data.map((post) => ({
+//       title: kebabCase(post.title),
+//     }));
+//   } catch (error) {
+//     console.error('❌ generateStaticParams error:', error);
+//     return [];
+//   }
+// }

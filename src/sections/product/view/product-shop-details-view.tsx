@@ -24,8 +24,12 @@ import { ProductDetailsReview } from '../product-details-review';
 import { ProductDetailsSummary } from '../product-details-summary';
 import { ProductDetailsCarousel } from '../product-details-carousel';
 import { ProductDetailsDescription } from '../product-details-description';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getProduct } from 'src/actions/product-ssr';
+import productsData from 'public/assets/data/data.json';
+import mapToProductItem from 'src/utils/format-product';
+import { usePathname } from 'next/navigation';
+
 
 // ----------------------------------------------------------------------
 
@@ -48,23 +52,15 @@ const SUMMARY = [
 ] as const;
 
 // ----------------------------------------------------------------------
+export function ProductShopDetailsView() {
+  const pathname = usePathname();
+  const segments = pathname.split('/').filter(Boolean);
+  const param = segments.pop()
+  const rawProduct = useMemo(() => {
+    return productsData.find((item) => item.code === param);
+  }, [param]);
 
-type Props = {
-  param: string;
-};
-
-export function ProductShopDetailsView({ param }: Props) {
-  const [product, setProduct] = useState<IProductItem | null>(null);
-
-  useEffect(() => {
-    getProduct(param)
-      .then((data) => {
-        setProduct(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching product details:', error);
-      });
-  }, []);
+  const product = rawProduct ? mapToProductItem(rawProduct) : null;
 
   const { state: checkoutState, onAddToCart } = useCheckoutContext();
 

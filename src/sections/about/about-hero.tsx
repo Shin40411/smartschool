@@ -21,7 +21,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
           ...theme.mixins.bgGradient({
             images: [
               `url(${CONFIG.assetsDir}/assets/background/overlay.svg)`,
-              `url(${CONFIG.assetsDir}/assets/images/about/hero.webp)`,
+              `url(${CONFIG.assetsDir}/assets/images/mock/m-product/vision.jpg)`,
             ],
           }),
           height: { md: 560 },
@@ -44,7 +44,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
           <AnimateText
             component="h1"
             variant="h1"
-            textContent={['Who', 'we are?']}
+            textContent={['Trường học thông minh', 'là gì?']}
             variants={varFade('inRight', { distance: 24 })}
             sx={{
               color: 'common.white',
@@ -57,10 +57,12 @@ export function AboutHero({ sx, ...other }: BoxProps) {
           <m.div variants={varFade('inUp', { distance: 24 })}>
             <Typography
               variant="h4"
-              sx={{ mt: 3, color: 'common.white', fontWeight: 'fontWeightSemiBold' }}
+              sx={{ mt: 3, color: 'common.white', fontWeight: 'fontWeightSemiBold', textAlign: { xs: 'center', md: 'justify' } }}
             >
-              Let&apos;s work together and
-              <br /> make awesome site easily
+              Giáo dục thông minh đã và đang trở thành xu thế mới của nền giáo dục trên thế giới,
+              <br /> hướng đến mục tiêu xây dựng các thế hệ công dân thông minh nhằm xây dựng quốc gia thông minh.
+              <br /> Trường học thông minh là mô hình trường tiên tiến, tạo điều kiện
+              <br /> và cơ hội để tăng cường năng lực phát triển, thích ứng trước những biến đổi nhanh chóng của xã hội.
             </Typography>
           </m.div>
         </Box>
