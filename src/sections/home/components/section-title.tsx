@@ -22,6 +22,7 @@ type SectionTitleProps = BoxProps & {
   txtGradient?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
+  caption?: string;
   slotProps?: {
     title?: Omit<TextProps, 'title'>;
     caption?: Omit<TextProps, 'title'>;
@@ -35,6 +36,7 @@ export function SectionTitle({
   slotProps,
   txtGradient,
   description,
+  caption,
   ...other
 }: SectionTitleProps) {
   return (

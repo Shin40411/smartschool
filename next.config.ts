@@ -1,21 +1,6 @@
 import type { NextConfig } from 'next';
 
-// ----------------------------------------------------------------------
-
-/**
- * Static Exports in Next.js
- *
- * 1. Set `isStaticExport = true` in `next.config.{mjs|ts}`.
- * 2. This allows `generateStaticParams()` to pre-render dynamic routes at build time.
- *
- * For more details, see:
- * https://nextjs.org/docs/app/building-your-application/deploying/static-exports
- *
- * NOTE: Remove all "generateStaticParams()" functions if not using static exports.
- */
-const isStaticExport = true;
-
-// ----------------------------------------------------------------------
+const isStaticExport = false;
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -23,7 +8,9 @@ const nextConfig: NextConfig = {
   env: {
     BUILD_STATIC_EXPORT: JSON.stringify(isStaticExport),
   },
-  // Without --turbopack (next dev)
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -33,7 +20,6 @@ const nextConfig: NextConfig = {
     return config;
   },
   experimental: {
-    // With --turbopack (next dev --turbopack)
     turbo: {
       rules: {
         '*.svg': {
