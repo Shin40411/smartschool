@@ -18,7 +18,7 @@ import { CheckoutContext } from './checkout-context';
 // ----------------------------------------------------------------------
 
 const CHECKOUT_STORAGE_KEY = 'app-checkout';
-const CHECKOUT_STEPS = ['Cart', 'Billing & address', 'Payment'];
+const CHECKOUT_STEPS = ['Giỏ hàng', 'Thông tin giao hàng', 'Thanh toán'];
 
 const initialState: ICheckoutState = {
   items: [],

@@ -9,6 +9,6 @@ import { ProductShopView } from 'src/sections/product/view';
 
 export const metadata: Metadata = { title: `Sản phẩm - ${CONFIG.appName}` };
 
-export default async function Page() {
+export default function Page() {
   return <ProductShopView allowTitle={false} />;
 }

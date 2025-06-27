@@ -43,7 +43,7 @@ export function CheckoutCartProduct({ row, onDeleteCartItem, onChangeItemQuantit
 
             <Box
               sx={{
-                display: 'flex',
+                display: 'none',
                 typography: 'body2',
                 alignItems: 'center',
                 color: 'text.secondary',
@@ -69,7 +69,7 @@ export function CheckoutCartProduct({ row, onDeleteCartItem, onChangeItemQuantit
           />
 
           <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mt: 1 }}>
-            available: {row.available}
+            Còn: {row.available}
           </Typography>
         </Box>
       </TableCell>

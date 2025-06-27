@@ -28,7 +28,7 @@ const LINKS = [
       // { name: 'Tin tức', href: paths.post.root },
     ],
   },
-  { headline: 'Liên hệ', children: [{ name: 'info@truonghocthongminh.vn', href: '#' }] },
+  { headline: 'Liên hệ', children: [{ name: 'info@iit.vn', href: '#' }] },
 ];
 
 // ----------------------------------------------------------------------

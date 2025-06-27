@@ -142,17 +142,17 @@ export function ProductDetailsSummary({
     >
       <Link>
         <Iconify icon="mingcute:add-line" width={16} />
-        Compare
+        So sánh
       </Link>
 
       <Link>
         <Iconify icon="solar:heart-bold" width={16} />
-        Favorite
+        Yêu thích
       </Link>
 
       <Link>
         <Iconify icon="solar:share-bold" width={16} />
-        Share
+        Chia sẻ
       </Link>
     </Box>
   );
@@ -209,7 +209,7 @@ export function ProductDetailsSummary({
   const renderQuantity = () => (
     <Box sx={{ display: 'flex' }}>
       <Typography variant="subtitle2" sx={{ flexGrow: 1 }}>
-        Quantity
+        Số lượng
       </Typography>
 
       <Stack spacing={1}>
@@ -226,7 +226,7 @@ export function ProductDetailsSummary({
           component="div"
           sx={{ textAlign: 'right', color: 'text.secondary' }}
         >
-          Available: {available}
+          Còn: {available}
         </Typography>
       </Stack>
     </Box>
@@ -238,17 +238,17 @@ export function ProductDetailsSummary({
         fullWidth
         disabled={isMaxQuantity || disableActions}
         size="large"
-        color="warning"
+        color="primary"
         variant="contained"
         startIcon={<Iconify icon="solar:cart-plus-bold" width={24} />}
         onClick={handleAddCart}
         sx={{ whiteSpace: 'nowrap' }}
       >
-        Add to cart
+        Thêm vào giỏ hàng
       </Button>
 
       <Button fullWidth size="large" type="submit" variant="contained" disabled={disableActions}>
-        Buy now
+        Mua ngay
       </Button>
     </Box>
   );
@@ -287,8 +287,8 @@ export function ProductDetailsSummary({
       sx={{
         typography: 'overline',
         color:
-          (inventoryType === 'out of stock' && 'error.main') ||
-          (inventoryType === 'low stock' && 'warning.main') ||
+          (inventoryType === 'hết hàng' && 'error.main') ||
+          (inventoryType === 'sắp hết hàng' && 'warning.main') ||
           'success.main',
       }}
     >
@@ -305,15 +305,15 @@ export function ProductDetailsSummary({
 
           <Typography variant="h5">{name}</Typography>
 
-          {renderRating()}
+          {/* {renderRating()} */}
           {renderPrice()}
           {renderSubDescription()}
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        {renderColorOptions()}
-        {renderSizeOptions()}
+        {/* {renderColorOptions()} */}
+        {/* {renderSizeOptions()} */}
         {renderQuantity()}
 
         <Divider sx={{ borderStyle: 'dashed' }} />

@@ -1,4 +1,5 @@
 import axios, { endpoints } from 'src/lib/axios';
+import mapToProductItem from 'src/utils/format-product';
 
 // ----------------------------------------------------------------------
 type ProductQueryParams = {
@@ -21,6 +22,7 @@ export async function getProduct(id: string) {
   const URL = id ? `${endpoints.product.details}?productId=${id}` : '';
 
   const res = await axios.get(URL);
+  console.log(res.data);
 
-  return res.data;
+  return mapToProductItem(res.data.data);
 }

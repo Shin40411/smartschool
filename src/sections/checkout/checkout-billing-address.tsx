@@ -13,6 +13,7 @@ import { Iconify } from 'src/components/iconify';
 import { useCheckoutContext } from './context';
 import { CheckoutSummary } from './checkout-summary';
 import { AddressItem, AddressNewForm } from '../address';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -21,19 +22,38 @@ export function CheckoutBillingAddress() {
 
   const addressForm = useBoolean();
 
+  const [localAddresses, setLocalAddresses] = useState(() => {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const stored = localStorage.getItem('addresses');
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
+
+  const addressesToShow = localAddresses.length > 0 ? localAddresses : _addressBooks;
+
+  const allowDelete = localAddresses.length > 0 ? true : false;
+
+  const handleDelete = (indexToRemove: any) => {
+    const updated = [...localAddresses];
+    updated.splice(indexToRemove, 1);
+    setLocalAddresses(updated);
+    localStorage.setItem('addresses', JSON.stringify(updated));
+  };
+
   return (
     <>
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, md: 8 }}>
-          {_addressBooks.slice(0, 4).map((address) => (
+          {addressesToShow.slice(0, 4).map((address: any, index: Number) => (
             <AddressItem
-              key={address.id}
+              key={address.id || `address-${index}`}
               address={address}
               action={
                 <Box sx={{ flexShrink: 0, display: 'flex', flexWrap: 'wrap' }}>
-                  {!address.primary && (
-                    <Button size="small" color="error" sx={{ mr: 1 }}>
-                      Delete
+                  {allowDelete && (
+                    <Button size="small" color="error" sx={{ mr: 1 }} onClick={() => handleDelete(index)}>
+                      Xóa
                     </Button>
                   )}
                   <Button
@@ -44,7 +64,7 @@ export function CheckoutBillingAddress() {
                       onCreateBillingAddress(address);
                     }}
                   >
-                    Deliver to this address
+                    Giao tới địa chỉ này
                   </Button>
                 </Box>
               }
@@ -66,7 +86,7 @@ export function CheckoutBillingAddress() {
               onClick={() => onChangeStep('back')}
               startIcon={<Iconify icon="eva:arrow-ios-back-fill" />}
             >
-              Back
+              Quay lại
             </Button>
 
             <Button
@@ -75,7 +95,7 @@ export function CheckoutBillingAddress() {
               onClick={addressForm.onTrue}
               startIcon={<Iconify icon="mingcute:add-line" />}
             >
-              New address
+              Thêm địa chỉ mới
             </Button>
           </Box>
         </Grid>

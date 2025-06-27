@@ -20,7 +20,7 @@ export function SearchNotFound({ query, sx, slotProps, ...other }: SearchNotFoun
   if (!query) {
     return (
       <Typography variant="body2" {...slotProps?.description}>
-        Please enter keywords
+        Vui lòng nhập từ khóa tìm kiếm.
       </Typography>
     );
   }
@@ -49,14 +49,14 @@ export function SearchNotFound({ query, sx, slotProps, ...other }: SearchNotFoun
             : [slotProps?.title?.sx]),
         ]}
       >
-        Not found
+        Không tìm thấy kết quả
       </Typography>
 
       <Typography variant="body2" {...slotProps?.description}>
-        No results found for &nbsp;
+        Không tìm thấy kết quả cho &nbsp;
         <strong>{`"${query}"`}</strong>
         .
-        <br /> Try checking for typos or using complete words.
+        <br /> Vui lòng kiểm tra lỗi chính tả hoặc sử dụng từ hoàn chỉnh.
       </Typography>
     </Box>
   );

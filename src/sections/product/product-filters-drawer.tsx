@@ -40,17 +40,18 @@ type Props = {
   };
 };
 
-const MAX_AMOUNT = 200;
+const MAX_AMOUNT = 200_000_000;
 
-const marksLabel = Array.from({ length: 21 }, (_, index) => {
-  const value = index * 10;
-  const firstValue = index === 0 ? `$${value}` : `${value}`;
-
-  return {
-    value,
-    label: index % 4 ? '' : firstValue,
-  };
-});
+const marksLabel = [
+  {
+    value: 0,
+    label: '0 ₫',
+  },
+  {
+    value: 200_000_000,
+    label: '200.000.000 ₫',
+  },
+];
 
 export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters, options }: Props) {
   const { state: currentFilters, setState: updateFilters, resetState: resetFilters } = filters;
@@ -126,27 +127,6 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
     </>
   );
 
-  const renderGender = () => (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Gender
-      </Typography>
-      {options.genders.map((option) => (
-        <FormControlLabel
-          key={option.value}
-          label={option.label}
-          control={
-            <Checkbox
-              checked={currentFilters.gender.includes(option.label)}
-              onClick={() => handleFilterGender(option.label)}
-              slotProps={{ input: { id: `${option.value}-checkbox` } }}
-            />
-          }
-        />
-      ))}
-    </Box>
-  );
-
   const renderCategory = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Typography variant="subtitle2" sx={{ mb: 1 }}>
@@ -169,21 +149,6 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
     </Box>
   );
 
-  const renderColor = () => (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Color
-      </Typography>
-
-      <ColorPicker
-        options={options.colors}
-        value={currentFilters.colors}
-        onChange={(colors) => handleFilterColors(colors as string[])}
-        limit={6}
-      />
-    </Box>
-  );
-
   const renderPrice = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Typography variant="subtitle2">Giá</Typography>
@@ -196,13 +161,17 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
       <Slider
         value={currentFilters.priceRange}
         onChange={handleFilterPriceRange}
-        step={10}
+        step={10_000_000}
         min={0}
-        max={MAX_AMOUNT}
+        max={200_000_000}
         marks={marksLabel}
-        getAriaValueText={(value) => `$${value}`}
-        valueLabelFormat={(value) => `$${value}`}
-        sx={{ alignSelf: 'center', width: `calc(100% - 24px)` }}
+        getAriaValueText={(value) =>
+          `${(value / 100).toLocaleString('vi-VN').replaceAll('.', ' ')} ₫`
+        }
+        valueLabelFormat={(value) =>
+          `${(value / 100).toLocaleString('vi-VN').replaceAll('.', ' ')} ₫`
+        }
+        sx={{ alignSelf: 'center', width: `calc(100% - 100px)` }}
       />
     </Box>
   );
@@ -258,7 +227,7 @@ export function ProductFiltersDrawer({ open, onOpen, onClose, canReset, filters,
         onClose={onClose}
         slotProps={{
           backdrop: { invisible: true },
-          paper: { sx: { width: 320 } },
+          paper: { sx: { width: 520 } },
         }}
       >
         {renderHead()}
@@ -286,9 +255,11 @@ function InputRange({ type, value, onChange: onFilters }: InputRangeProps) {
   const minValue = value[0];
   const maxValue = value[1];
 
+  const displayValue = type === 'min' ? minValue : maxValue;
+
   const handleBlur = useCallback(() => {
-    const newMin = Math.max(0, Math.min(minValue, MAX_AMOUNT));
-    const newMax = Math.max(0, Math.min(maxValue, MAX_AMOUNT));
+    const newMin = Math.max(0, Math.min(minValue, 200_000_000));
+    const newMax = Math.max(0, Math.min(maxValue, 200_000_000));
 
     if (newMin !== minValue || newMax !== maxValue) {
       onFilters({ priceRange: [newMin, newMax] });
@@ -306,18 +277,23 @@ function InputRange({ type, value, onChange: onFilters }: InputRangeProps) {
           fontWeight: 'fontWeightSemiBold',
         }}
       >
-        {`${type} ($)`}
+        {`${type} (₫)`}
       </Typography>
 
       <NumberInput
         hideButtons
-        max={MAX_AMOUNT}
-        value={type === 'min' ? minValue : maxValue}
-        onChange={(event, newValue) =>
-          onFilters({ priceRange: type === 'min' ? [newValue, maxValue] : [minValue, newValue] })
-        }
+        max={2_000_000}
+        value={Math.floor(displayValue / 100)}
+        onChange={(event, newValue) => {
+          const actualValue = newValue * 100;
+          onFilters({
+            priceRange: type === 'min'
+              ? [actualValue, maxValue]
+              : [minValue, actualValue],
+          });
+        }}
         onBlur={handleBlur}
-        sx={{ maxWidth: 64 }}
+        sx={{ maxWidth: 80 }}
         slotProps={{
           input: {
             sx: {

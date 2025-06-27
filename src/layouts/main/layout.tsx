@@ -5,24 +5,19 @@ import type { Breakpoint } from '@mui/material/styles';
 import { useBoolean } from 'minimal-shared/hooks';
 
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
 
-import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 
 import { Logo } from 'src/components/logo';
 
 import { NavMobile } from './nav/mobile';
 import { NavDesktop } from './nav/desktop';
-import { Footer, HomeFooter } from './footer';
+import { Footer } from './footer';
 import { MainSection } from '../core/main-section';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
 import { navData as mainNavData } from '../nav-config-main';
-import { SignInButton } from '../components/sign-in-button';
-import { SettingsButton } from '../components/settings-button';
 
 import type { FooterProps } from './footer';
 import type { NavMainProps } from './nav/types';
@@ -82,7 +77,7 @@ export function MainLayout({
                 <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
                   <Icon icon="material-symbols:mail-outline" color='#fff' width="24" height="24" />
                   <Typography variant="body2" color="#fff" sx={{ ml: 0.5 }}>
-                    info@truonghocthongminh.vn
+                    info@iit.vn
                   </Typography>
                 </Box>
               </Box>

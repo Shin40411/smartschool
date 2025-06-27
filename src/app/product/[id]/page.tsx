@@ -9,7 +9,7 @@ import { ProductShopDetailsView } from 'src/sections/product/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata: Metadata = { title: `Product details - ${CONFIG.appName}` };
+export const metadata: Metadata = { title: `Chi tiết sản phẩm - ${CONFIG.appName}` };
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -18,9 +18,7 @@ type Props = {
 export default async function Page({ params }: Props) {
   const { id } = await params;
 
-  const { product } = await getProduct(id);
-
-  return <ProductShopDetailsView product={product} />;
+  return <ProductShopDetailsView param={id} />;
 }
 
 // ----------------------------------------------------------------------
@@ -38,11 +36,13 @@ export default async function Page({ params }: Props) {
  */
 export async function generateStaticParams() {
   const res = await axios.get(endpoints.product.list);
-  const data: IProductItem[] = CONFIG.isStaticExport
-    ? res.data.products
-    : res.data.products.slice(0, 1);
 
-  return data.map((product) => ({
+  const products: IProductItem[] = CONFIG.isStaticExport
+    ? res.data.data.items || []
+    : (res.data.data.items || []).slice(0, 1);
+
+  return products.map((product) => ({
     id: product.id,
   }));
 }
+

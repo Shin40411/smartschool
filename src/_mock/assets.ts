@@ -71,30 +71,30 @@ export const _nativeL = [
 ];
 
 export const _fullAddress = [
-  `19034 Verna Unions Apt. 164 - Honolulu, RI / 87535`,
-  `1147 Rohan Drive Suite 819 - Burlington, VT / 82021`,
-  `18605 Thompson Circle Apt. 086 - Idaho Falls, WV / 50337`,
-  `110 Lamar Station Apt. 730 - Hagerstown, OK / 49808`,
-  `36901 Elmer Spurs Apt. 762 - Miramar, DE / 92836`,
-  `2089 Runolfsson Harbors Suite 886 - Chapel Hill, TX / 32827`,
-  `279 Karolann Ports Apt. 774 - Prescott Valley, WV / 53905`,
-  `96607 Claire Square Suite 591 - St. Louis Park, HI / 40802`,
-  `9388 Auer Station Suite 573 - Honolulu, AK / 98024`,
-  `47665 Adaline Squares Suite 510 - Blacksburg, NE / 53515`,
-  `989 Vernice Flats Apt. 183 - Billings, NV / 04147`,
-  `91020 Wehner Locks Apt. 673 - Albany, WY / 68763`,
-  `585 Candelario Pass Suite 090 - Columbus, LA / 25376`,
-  `80988 Renner Crest Apt. 000 - Fargo, VA / 24266`,
-  `28307 Shayne Pike Suite 523 - North Las Vegas, AZ / 28550`,
-  `205 Farrell Highway Suite 333 - Rock Hill, OK / 63421`,
-  `253 Kara Motorway Suite 821 - Manchester, SD / 09331`,
-  `13663 Kiara Oval Suite 606 - Missoula, AR / 44478`,
-  `8110 Claire Port Apt. 703 - Anchorage, TN / 01753`,
-  `4642 Demetris Lane Suite 407 - Edmond, AZ / 60888`,
-  `74794 Asha Flat Suite 890 - Lancaster, OR / 13466`,
-  `8135 Keeling Pines Apt. 326 - Alexandria, MA / 89442`,
-  `441 Gibson Shores Suite 247 - Pasco, NM / 60678`,
-  `4373 Emelia Valley Suite 596 - Columbia, NM / 42586`,
+  '19034 Đường Trần Quang Diệu, P.14, Q.3 - TP. Hồ Chí Minh / 700000',
+  '1147 Đường Lý Thường Kiệt, P.7, Q.10 - TP. Hồ Chí Minh / 700100',
+  '18605 Đường Cách Mạng Tháng 8, P.15, Q.10 - TP. Hồ Chí Minh / 700200',
+  '110 Đường Lê Duẩn, P. Phước Ninh, Q. Hải Châu - Đà Nẵng / 550000',
+  '36901 Đường Nguyễn Văn Linh, P. Tân Phong, Q.7 - TP. Hồ Chí Minh / 700300',
+  '2089 Đường Trần Hưng Đạo, P. Lý Thái Tổ, Q. Hoàn Kiếm - Hà Nội / 100000',
+  '279 Đường Nguyễn Văn Cừ, P. Gia Thụy, Q. Long Biên - Hà Nội / 100200',
+  '96607 Đường 2/9, P. Hòa Cường Bắc, Q. Hải Châu - Đà Nẵng / 550100',
+  '9388 Đường Võ Nguyên Giáp, P. Khuê Mỹ, Q. Ngũ Hành Sơn - Đà Nẵng / 550200',
+  '47665 Đường Lê Lợi, P. Vĩnh Ninh, TP. Huế - Thừa Thiên Huế / 530000',
+  '989 Đường Điện Biên Phủ, P. Chính Gián, Q. Thanh Khê - Đà Nẵng / 550300',
+  '91020 Đường Nguyễn Trãi, P. Nguyễn Cư Trinh, Q.1 - TP. Hồ Chí Minh / 700400',
+  '585 Đường Lạc Long Quân, P. Nhật Tân, Q. Tây Hồ - Hà Nội / 100300',
+  '80988 Đường Phạm Văn Đồng, P. Linh Tây, TP. Thủ Đức - TP. Hồ Chí Minh / 700500',
+  '28307 Đường Tôn Đức Thắng, P. Bến Nghé, Q.1 - TP. Hồ Chí Minh / 700600',
+  '205 Đường Huỳnh Tấn Phát, P. Phú Thuận, Q.7 - TP. Hồ Chí Minh / 700700',
+  '253 Đường Nguyễn Hữu Thọ, P. Hòa Thuận Tây, Q. Hải Châu - Đà Nẵng / 550400',
+  '13663 Đường Trần Phú, P. Lộc Thọ, TP. Nha Trang - Khánh Hòa / 650000',
+  '8110 Đường Trần Hưng Đạo, P. Mỹ Phước, TP. Long Xuyên - An Giang / 880000',
+  '4642 Đường Quang Trung, P. Nguyễn Du, TP. Hà Tĩnh - Hà Tĩnh / 450000',
+  '74794 Đường 30/4, P. Hưng Lợi, Q. Ninh Kiều - TP. Cần Thơ / 900000',
+  '8135 Đường Nguyễn Tất Thành, P. Xuân Hà, Q. Thanh Khê - Đà Nẵng / 550500',
+  '441 Đường Tô Hiệu, P. Trại Cau, Q. Lê Chân - TP. Hải Phòng / 180000',
+  '4373 Đường Hùng Vương, P. Vĩnh Bảo, TP. Rạch Giá - Kiên Giang / 920000',
 ];
 
 // ----------------------------------------------------------------------
@@ -213,46 +213,44 @@ export const _lastNames = [
 // ----------------------------------------------------------------------
 
 export const _phoneNumbers = [
-  '+1 202-555-0143',
-  '+1 416-555-0198',
-  '+44 20 7946 0958',
-  '+61 2 9876 5432',
-  '+91 22 1234 5678',
-  '+49 30 123456',
-  '+33 1 23456789',
-  '+81 3 1234 5678',
-  '+86 10 1234 5678',
-  '+55 11 2345-6789',
-  '+27 11 123 4567',
-  '+7 495 123-4567',
-  '+52 55 1234 5678',
-  '+39 06 123 4567',
-  '+34 91 123 4567',
-  '+31 20 123 4567',
-  '+46 8 123 456',
-  '+41 22 123 45 67',
-  '+82 2 123 4567',
-  '+54 11 1234-5678',
-  '+64 9 123 4567',
-  '+65 1234 5678',
-  '+60 3-1234 5678',
-  '+66 2 123 4567',
-  '+62 21 123 4567',
-  '+63 2 123 4567',
-  '+90 212 123 45 67',
-  '+966 11 123 4567',
-  '+971 2 123 4567',
-  '+20 2 12345678',
-  '+234 1 123 4567',
-  '+254 20 123 4567',
-  '+972 3-123-4567',
-  '+30 21 1234 5678',
-  '+353 1 123 4567',
-  '+351 21 123 4567',
-  '+47 21 23 45 67',
-  '+45 32 12 34 56',
-  '+358 9 123 4567',
-  '+48 22 123 45 67',
+  '+84 28 3555 0143',  // TP.HCM
+  '+84 24 3555 0198',  // Hà Nội
+  '+84 28 3794 6095',  // TP.HCM
+  '+84 236 987 6543',  // Đà Nẵng
+  '+84 24 3123 5678',  // Hà Nội
+  '+84 28 3012 3456',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 2234 5678',  // TP.HCM
+  '+84 292 312 3456',  // Cần Thơ
+  '+84 24 3495 1234',  // Hà Nội
+  '+84 28 3555 5678',  // TP.HCM
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 24 3912 3456',  // Hà Nội
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 236 812 3456',  // Đà Nẵng
+  '+84 24 3223 4567',  // Hà Nội
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3912 3456',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3456 7890',  // TP.HCM
+  '+84 3 1234 5678',   // Di động cũ
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 28 3123 4567',  // TP.HCM
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 236 3123 456',  // Đà Nẵng
+  '+84 24 3123 4567',  // Hà Nội
+  '+84 24 3123 4567',  // Hà Nội
 ];
 
 // ----------------------------------------------------------------------

@@ -24,23 +24,25 @@ import { ProductDetailsReview } from '../product-details-review';
 import { ProductDetailsSummary } from '../product-details-summary';
 import { ProductDetailsCarousel } from '../product-details-carousel';
 import { ProductDetailsDescription } from '../product-details-description';
+import { useEffect, useState } from 'react';
+import { getProduct } from 'src/actions/product-ssr';
 
 // ----------------------------------------------------------------------
 
 const SUMMARY = [
   {
-    title: '100% original',
-    description: 'Chocolate bar candy canes ice cream toffee cookie halvah.',
+    title: 'Sản phẩm chính hãng',
+    description: 'Thiết bị được cung cấp bởi các thương hiệu uy tín, đảm bảo nguồn gốc rõ ràng và chất lượng đạt chuẩn giáo dục.',
     icon: 'solar:verified-check-bold',
   },
   {
-    title: '10 days replacement',
-    description: 'Marshmallow biscuit donut dragée fruitcake wafer.',
+    title: 'Hỗ trợ đổi trả 10 ngày',
+    description: 'Đổi trả dễ dàng trong vòng 10 ngày nếu phát sinh lỗi từ nhà sản xuất hoặc không đúng mô tả.',
     icon: 'solar:clock-circle-bold',
   },
   {
-    title: 'Year warranty',
-    description: 'Cotton candy gingerbread cake I love sugar sweet.',
+    title: 'Bảo hành 1 năm',
+    description: 'Chế độ bảo hành lên đến 12 tháng giúp đảm bảo an tâm sử dụng trong môi trường học đường.',
     icon: 'solar:shield-check-bold',
   },
 ] as const;
@@ -48,22 +50,34 @@ const SUMMARY = [
 // ----------------------------------------------------------------------
 
 type Props = {
-  product?: IProductItem;
+  param: string;
 };
 
-export function ProductShopDetailsView({ product }: Props) {
+export function ProductShopDetailsView({ param }: Props) {
+  const [product, setProduct] = useState<IProductItem | null>(null);
+
+  useEffect(() => {
+    getProduct(param)
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching product details:', error);
+      });
+  }, []);
+
   const { state: checkoutState, onAddToCart } = useCheckoutContext();
 
   const tabs = useTabs('description');
 
   return (
-    <Container sx={{ mt: 5, mb: 10 }}>
+    <Container sx={{ mt: 10, mb: 10 }}>
       <CartIcon totalItems={checkoutState.totalItems} />
 
       <CustomBreadcrumbs
         links={[
-          { name: 'Home', href: '/' },
-          { name: 'Shop', href: paths.product.root },
+          { name: 'Trang chủ', href: '/' },
+          { name: 'Sản phẩm', href: paths.product.root },
           { name: product?.name },
         ]}
         sx={{ mb: 5 }}
@@ -120,8 +134,8 @@ export function ProductShopDetailsView({ product }: Props) {
           ]}
         >
           {[
-            { value: 'description', label: 'Description' },
-            { value: 'reviews', label: `Reviews (${product?.reviews.length})` },
+            { value: 'description', label: 'Mô tả sản phẩm' },
+            // { value: 'reviews', label: `Đánh giá (${product?.reviews.length})` },
           ].map((tab) => (
             <Tab key={tab.value} value={tab.value} label={tab.label} />
           ))}

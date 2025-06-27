@@ -42,8 +42,11 @@ export function ProductFiltersResult({ filters, totalResults, sx }: Props) {
   );
 
   const handleRemovePrice = useCallback(() => {
-    updateFilters({ priceRange: [0, 200] });
+    updateFilters({ priceRange: [0, 200_000_000] });
   }, [updateFilters]);
+
+  const formatPriceLabel = (value: number) =>
+    `${(value / 100).toLocaleString('vi-VN').replaceAll('.', ' ')} ₫`;
 
   const handleRemoveRating = useCallback(() => {
     updateFilters({ rating: '' });
@@ -57,7 +60,7 @@ export function ProductFiltersResult({ filters, totalResults, sx }: Props) {
         ))}
       </FiltersBlock>
 
-      <FiltersBlock label="Category:" isShow={currentFilters.category !== 'all'}>
+      <FiltersBlock label="Danh mục sản phẩm:" isShow={currentFilters.category !== 'all'}>
         <Chip {...chipProps} label={currentFilters.category} onDelete={handleRemoveCategory} />
       </FiltersBlock>
 
@@ -86,12 +89,12 @@ export function ProductFiltersResult({ filters, totalResults, sx }: Props) {
       </FiltersBlock>
 
       <FiltersBlock
-        label="Price:"
-        isShow={currentFilters.priceRange[0] !== 0 || currentFilters.priceRange[1] !== 200}
+        label="Giá:"
+        isShow={currentFilters.priceRange[0] !== 0 || currentFilters.priceRange[1] !== 200_000_000}
       >
         <Chip
           {...chipProps}
-          label={`$${currentFilters.priceRange[0]} - ${currentFilters.priceRange[1]}`}
+          label={`${formatPriceLabel(currentFilters.priceRange[0])} - ${formatPriceLabel(currentFilters.priceRange[1])}`}
           onDelete={handleRemovePrice}
         />
       </FiltersBlock>

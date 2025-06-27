@@ -236,7 +236,7 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
         <m.div variants={varFade('in')}>
           <Button
             variant="contained"
-            href="mailto:info@truonghocthongminh.vn?subject=[Feedback] from Customer"
+            href="mailto:info@iit.vn?subject=[Feedback] from Customer"
             startIcon={<Iconify icon="solar:letter-bold" />}
             sx={{ backgroundColor: '#fff', color: '#000', borderRadius: 5, px: 3, py: 1.5 }}
           >

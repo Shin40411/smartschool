@@ -39,7 +39,7 @@ export function ComingSoonView() {
 
       <Stack
         divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
-        sx={{ typography: 'h2', justifyContent: 'center', flexDirection: 'row' }}
+        sx={{ typography: 'h2', justifyContent: 'center', flexDirection: 'row', display: 'none' }}
       >
         <TimeBlock label="days" value={countdown.days} />
         <TimeBlock label="hours" value={countdown.hours} />

@@ -116,7 +116,7 @@ export function ProductShopView({ allowTitle, allowFilters = true, allowPaginati
       <ProductSearch redirectPath={(id: string) => paths.product.details(id)} />
 
       <Box sx={{ gap: 1, flexShrink: 0, display: 'flex' }}>
-        <ProductFiltersDrawer
+        {/* <ProductFiltersDrawer
           filters={filters}
           canReset={canReset}
           open={openFilters.value}
@@ -128,7 +128,7 @@ export function ProductShopView({ allowTitle, allowFilters = true, allowPaginati
             genders: PRODUCT_GENDER_OPTIONS,
             categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
           }}
-        />
+        /> */}
 
         <ProductSort
           sort={sortBy}
@@ -223,7 +223,9 @@ function applyFilter({ inputData, filters, sortBy }: ApplyFilterProps) {
   }
 
   if (min !== 0 || max !== 200) {
-    inputData = inputData.filter((product) => product.price >= min && product.price <= max);
+    inputData = inputData.filter(
+      (product) => product.price >= min && product.price <= max
+    );
   }
 
   if (rating) {

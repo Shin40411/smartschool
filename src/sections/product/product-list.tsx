@@ -31,7 +31,6 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
       />
     ));
   };
-  console.log(allowPagination);
 
   return (
     <>
