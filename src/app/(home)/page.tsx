@@ -6,9 +6,9 @@ import { HomeView } from 'src/sections/home/view';
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = {
-  title: 'Trường học thông minh',
+  title: 'Sản phẩm Giáo Dục Stem IIT',
   description:
-    'Trường học thông minh - Nơi kết nối tri thức và công nghệ',
+    'Sản phẩm Giáo Dục Stem IIT - Nơi kết nối tri thức và công nghệ',
 };
 
 export default function Page() {

@@ -269,7 +269,7 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
 
 const PLANS = Array.from({ length: 3 }, (_, index) => ({
   license: [
-    'Xây dựng trường học thông minh',
+    'Sản phẩm Giáo Dục Stem IIT',
     'Đào tạo trực tuyến E-Learning',
     'Kiểm soát an toàn, xác minh truy cập'
   ][index],

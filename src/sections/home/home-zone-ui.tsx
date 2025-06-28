@@ -51,8 +51,8 @@ const renderLines = () => (
 export function HomeZoneUI({ sx, ...other }: BoxProps) {
   const renderDescription = () => (
     <SectionTitle
-      title="Giải pháp công nghệ toàn diện cho"
-      txtGradient="Trường Học Thông Minh"
+      title="Giải pháp công nghệ toàn diện"
+      txtGradient="Sản phẩm Giáo Dục Stem IIT"
       description="Số hóa, quản lý và khai thác các nguồn lực, đối tượng và hoạt động giáo dục trong nhà trường, giữa các trường trong hệ thống giáo dục,… đảm bảo liên kết thời gian thực trên cùng một nền tảng kết nối, chia sẻ dữ liệu của ngành giáo dục, sẵn sàng để ứng dụng trí tuệ nhân tạo trong tương lai."
       sx={{ textAlign: { xs: 'center', md: 'left' } }}
     />

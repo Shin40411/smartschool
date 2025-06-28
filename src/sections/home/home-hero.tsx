@@ -46,8 +46,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         ]}
       >
         <Box component="span" sx={{ width: 1 }}>
-          Giải Pháp Công Nghệ Toàn Diện Cho
-          Trường Học Thông Minh
+          Sản phẩm Giáo Dục Stem IIT
         </Box>
       </Box>
     </m.div>

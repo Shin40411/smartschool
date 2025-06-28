@@ -44,12 +44,12 @@ export function AboutHero({ sx, ...other }: BoxProps) {
           <AnimateText
             component="h1"
             variant="h1"
-            textContent={['Trường học thông minh', 'là gì?']}
-            variants={varFade('inRight', { distance: 24 })}
+            textContent={['Sản phẩm Giáo Dục Stem IIT', 'là gì?']}
+            variants={varFade('inRight', { distance: 50 })}
             sx={{
               color: 'common.white',
               [`& .${animateTextClasses.line}[data-index="0"]`]: {
-                [`& .${animateTextClasses.word}[data-index="0"]`]: { color: 'primary.main' },
+                [`& .${animateTextClasses.word}[data-index="4"]`]: { color: 'primary.main' },
               },
             }}
           />
@@ -61,7 +61,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
             >
               Giáo dục thông minh đã và đang trở thành xu thế mới của nền giáo dục trên thế giới,
               <br /> hướng đến mục tiêu xây dựng các thế hệ công dân thông minh nhằm xây dựng quốc gia thông minh.
-              <br /> Trường học thông minh là mô hình trường tiên tiến, tạo điều kiện
+              <br /> Sản phẩm giáo dục Stem IIT là mô hình trường tiên tiến, tạo điều kiện
               <br /> và cơ hội để tăng cường năng lực phát triển, thích ứng trước những biến đổi nhanh chóng của xã hội.
             </Typography>
           </m.div>

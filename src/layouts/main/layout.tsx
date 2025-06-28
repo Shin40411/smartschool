@@ -69,7 +69,7 @@ export function MainLayout({
             color='#fff'
             sx={{ display: { xs: 'none', md: 'block' } }}
           >
-            Chào mừng đến với trường học thông minh
+            Chào mừng đến với sản phẩm Giáo Dục Stem IIT
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
             <>
