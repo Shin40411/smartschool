@@ -1,0 +1,7 @@
+1. https://circuitdiagrams.in/automatic-plant-watering-system-with-arduino/
+
+2. https://www.youtube.com/watch?v=ciD3ILxgXzU
+
+3. https://techatronic.com/how-to-make-smart-irrigation-project/
+
+4. https://www.google.com/url?sa=i&url=https%3A%2F%2Ftheiotprojects.com%2Ftutorials%2Fhow-to-use-arduino-uno-to-build-an-automatic-plant-watering-system%2F&psig=AOvVaw05mNNriGRdOehaZ6snpAz8&ust=1751338647202000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCOj-p7STmI4DFQAAAAAdAAAAABAK

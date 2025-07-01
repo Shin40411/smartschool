@@ -1,0 +1,1 @@
+1. https://arduinointro.com/articles/projects/stay-alerted-building-a-temperature-alarm-with-arduino-dht11

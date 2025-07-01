@@ -1,0 +1,5 @@
+1. https://techatronic.com/air-quality-monitoring-system-project/
+2. https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.makerguides.com%2Fair-pollution-monitoring-and-alert-system-using-arduino-and-mq135%2F&psig=AOvVaw0cQ6u9lB5hv4ObcadhW6Bw&ust=1751339249938000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPitoMKVmI4DFQAAAAAdAAAAABAK
+
+
+3. https://www.google.com/url?sa=i&url=https%3A%2F%2Fgithub.com%2Fsighmon%2Fbike_air_quality_sensors&psig=AOvVaw17thIOAUW_B0CBNEFMqwUZ&ust=1751339366080000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCLCw2duVmI4DFQAAAAAdAAAAABA6

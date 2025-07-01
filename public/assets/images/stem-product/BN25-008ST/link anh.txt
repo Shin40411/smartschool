@@ -1,0 +1,5 @@
+1. https://blog.csdn.net/mbs520/article/details/135477213
+
+2. https://www.circuitschools.com/anti-theft-alarm-system-using-force-sensor-and-arduino/
+
+3. https://iotprojectsideas.com/fingerprint-door-lock-security-systems-using-arduino-lcd/

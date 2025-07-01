@@ -1,0 +1,7 @@
+1. https://letsmakeprojects.com/gas-leakage-detection-using-arduino-with-alerting-system/
+
+2. https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.instructables.com%2FArduino-LPG-Gas-Leakage-Detection-System-With-Auto%2F&psig=AOvVaw3zV6uqj5LUtNVEKEdZwrN_&ust=1751340525933000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPD__qKamI4DFQAAAAAdAAAAABAo
+
+3. https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DPpQpoBH_kwM&psig=AOvVaw3zV6uqj5LUtNVEKEdZwrN_&ust=1751340525933000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCPD__qKamI4DFQAAAAAdAAAAABBQ
+
+4. https://content.instructables.com/FIU/2FI8/LXX9YXRE/FIU2FI8LXX9YXRE.png?auto=webp&crop=1.2%3A1&frame=1&width=270
