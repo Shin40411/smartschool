@@ -28,6 +28,7 @@ import productsData from 'public/assets/data/data.json';
 import mapToProductItem from 'src/utils/format-product';
 import { usePathname } from 'next/navigation';
 import { Divider } from '@mui/material';
+import { ProductRelated } from '../product-related';
 
 
 // ----------------------------------------------------------------------
@@ -147,6 +148,7 @@ export function ProductShopDetailsView() {
           />
         )}
       </Card>
+      <ProductRelated code={product?.code ?? ''}/>
     </Container>
   );
 }

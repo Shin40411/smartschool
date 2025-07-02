@@ -237,6 +237,7 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
     >
       <Box
         sx={{
+          position: 'relative',
           flex: 1,
           width: '100%',
           display: 'flex',
@@ -244,28 +245,62 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           justifyContent: 'center',
           mb: { xs: 3, md: 0 },
           pl: { xs: 0, md: 10 },
+          overflow: 'hidden',
+          borderRadius: 2,
+          height: { xs: 180, sm: 240, md: 320, lg: 360 },
+          backgroundImage: `url(${CONFIG.assetsDir}/assets/images/mock/cover/getintouch.jpg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          // '&::before': {
+          //   content: '""',
+          //   position: 'absolute',
+          //   inset: 0,
+          //   backgroundColor: 'rgba(0,0,0,0.3)',
+          //   backdropFilter: 'blur(4px)',
+          //   zIndex: 1,
+          // },
         }}
       >
-        <Box
-          component={m.img}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.5 }}
-          src={`${CONFIG.assetsDir}/assets/images/mock/cover/getintouch.jpg`}
-          alt="Liên hệ"
-          sx={{
-            width: '100%',
-            maxWidth: '100%',
-            height: { xs: 180, sm: 240, md: 320, lg: 360 },
-            objectFit: 'cover',
-            borderRadius: 2,
-            display: 'block',
-            minHeight: 120,
-            minWidth: { xs: 0, md: 500 },
-            boxShadow: 2,
-          }}
-        />
+        {[...Array(5)].map((_, i) => (
+          <Box
+            key={i}
+            sx={{
+              position: 'absolute',
+              top: -50,
+              left: `${10 + i * 15}%`,
+              width: 48,
+              height: 48,
+              borderRadius: '50%',
+              backgroundColor: '#fff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              zIndex: 2,
+              animation: `fall ${4 + i}s infinite linear`,
+            }}
+          >
+            <Box
+              component="img"
+              src={`${CONFIG.assetsDir}/assets/icons/navbar/ic-mail.svg`}
+              sx={{
+                width: 24,
+                height: 24,
+                opacity: 2,
+              }}
+            />
+          </Box>
+        ))}
+
+        <style>
+          {`
+            @keyframes fall {
+              0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+              10% { opacity: 0.4; }
+              100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+            }
+          `}
+        </style>
       </Box>
       <Box sx={{ minWidth: 0 }}>
         <SectionTitle

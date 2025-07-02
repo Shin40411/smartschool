@@ -91,7 +91,7 @@ export function ProductItem({ product, detailsHref }: Props) {
       {!!available && (
         <Fab
           size="medium"
-          color="warning"
+          color="primary"
           onClick={handleAddCart}
           sx={[
             (theme) => ({

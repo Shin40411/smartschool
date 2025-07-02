@@ -22,7 +22,7 @@ type Props = BoxProps & {
 
 export function ProductList({ products, loading, allowPagination, limitData, sx, ...other }: Props) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   const renderLoading = () => <ProductItemSkeleton />;
 
@@ -72,6 +72,7 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
           count={pageCount}
           page={page}
           onChange={(_, value) => setPage(value)}
+          color='primary'
           sx={{
             mt: { xs: 5, md: 8 },
             [`& .${paginationClasses.ul}`]: { justifyContent: 'center' },

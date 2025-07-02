@@ -74,7 +74,7 @@ export function HomeMinimal({ sx, ...other }: BoxProps) {
       <Box
         sx={[
           (theme) => ({
-            left: 0,
+            // left: 0,
             width: 720,
             borderRadius: 2,
             position: 'absolute',

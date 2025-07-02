@@ -48,7 +48,14 @@ type Props = {
   customTitleStyle?: SxProps<Theme>;
 };
 
-export function ProductShopView({ allowTitle, allowFilters = true, allowPagination = true, limitData, customTitle, customTitleStyle }: Props) {
+export function ProductShopView({
+  allowTitle,
+  allowFilters = true,
+  allowPagination = true,
+  limitData,
+  customTitle,
+  customTitleStyle
+}: Props) {
   const { state: checkoutState } = useCheckoutContext();
 
   // const [products, setProducts] = useState<IProductItem[]>([]);

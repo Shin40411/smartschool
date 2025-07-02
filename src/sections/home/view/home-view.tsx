@@ -18,6 +18,7 @@ import { HomeAdvertisement } from '../home-advertisement';
 import { HomeForDesigner } from '../home-for-designer';
 import { HomeMinimal } from '../home-minimal';
 import { Divider } from '@mui/material';
+import SocialPopin from 'src/components/socials/socical-popin';
 
 // ----------------------------------------------------------------------
 // type Props = {
@@ -38,6 +39,7 @@ export function HomeView() {
 
       <BackToTopButton />
 
+      <SocialPopin />
       <Stack sx={{ position: 'relative' }}>
         <HomeHero />
       </Stack>
@@ -100,9 +102,9 @@ export function HomeView() {
         <HomeTestimonials />
 
         <HomeFAQs
-          // sx={(theme) => ({
-          //   background: `linear-gradient(135deg, #232526 60%, #00B8D9 100%)`
-          // })}
+        // sx={(theme) => ({
+        //   background: `linear-gradient(135deg, #232526 60%, #00B8D9 100%)`
+        // })}
         />
       </Stack>
     </>

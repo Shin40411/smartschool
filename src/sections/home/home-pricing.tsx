@@ -296,36 +296,38 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
 
 // ----------------------------------------------------------------------
 
-const PLANS = Array.from({ length: 3 }, (_, index) => ({
-  license: [
-    'Xe Tự Hành STEM – Giải pháp học lập trình và công nghệ thông minh',
-    'Khóa học thực hành xe tự hành – Tăng cường kỹ năng công nghệ cho học sinh',
-    'Giám sát, điều khiển và tự động hóa – Ứng dụng thực tiễn với xe tự hành giáo dục'
-  ][index],
-  commons: [
-    [
-      'Quản lý tổng thể các mảng công việc của nhà trường',
+const PLANS = [
+  {
+    license: 'Tăng cường kỹ năng công nghệ cho học sinh',
+    commons: [
+      'Thực hành lập trình với thiết bị thật',
+      'Tăng cường kỹ năng công nghệ',
+      'Hỗ trợ giáo viên và học sinh trong học tập',
     ],
-    [
-      'Học tập và giảng dạy trực tuyến với các bài giảng điện tử',
+    icons: [`${CONFIG.assetsDir}/assets/images/online-learning-large.png`],
+    bg_color: '#715cc5',
+    bg_image: `${CONFIG.assetsDir}/assets/images/home/school.jpg`,
+  },
+  {
+    license: 'Giải pháp học lập trình và công nghệ thông minh',
+    commons: [
+      'Học lập trình điều khiển xe tự hành',
+      'Tích hợp cảm biến thực tế',
+      'Phát triển tư duy công nghệ cho học sinh',
     ],
-    [
-      'Giám sát toàn bộ quá trình hoạt động từ đón trả',
+    icons: [`${CONFIG.assetsDir}/assets/images/cpu-large.png`],
+    bg_color: '#715cc5',
+    bg_image: `${CONFIG.assetsDir}/assets/images/mock/m-product/robotnew.jpg`,
+  },
+  {
+    license: 'Giám sát, ứng dụng thực tiễn với xe tự hành',
+    commons: [
+      'Giám sát hoạt động xe tự hành',
+      'Điều khiển và tự động hóa thiết bị',
+      'Ứng dụng thực tiễn trong giáo dục',
     ],
-  ][index],
-  icons: [
-    [`${CONFIG.assetsDir}/assets/images/cpu-large.png`],
-    [`${CONFIG.assetsDir}/assets/images/online-learning-large.png`],
-    [`${CONFIG.assetsDir}/assets/images/protection-large.png`],
-  ][index],
-  bg_color: [
-    '#715cc5',
-    '#715cc5',
-    '#715cc5'
-  ][index],
-  bg_image: [
-    `${CONFIG.assetsDir}/assets/images/mock/m-product/robotnew.jpg`,
-    `${CONFIG.assetsDir}/assets/images/mock/course/course-2.webp`,
-    `${CONFIG.assetsDir}/assets/images/mock/m-product/security.png`
-  ][index],
-}));
+    icons: [`${CONFIG.assetsDir}/assets/images/protection-large.png`],
+    bg_color: '#715cc5',
+    bg_image: `${CONFIG.assetsDir}/assets/images/mock/m-product/security.png`,
+  },
+];

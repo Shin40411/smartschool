@@ -208,6 +208,22 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           </svg>
                         </IconButton>
                       </m.div>
+                      <m.div variants={varFade('inUp', { distance: 24 })}>
+                        <IconButton
+                          component="a"
+                          href="https://zalo.me/(+84)368909968"
+                          target="_blank"
+                          rel="noopener"
+                          sx={{ color: 'common.white', bgcolor: '#1877F3', '&:hover': { bgcolor: '#145db2' } }}
+                        >
+                          <Box
+                            component="img"
+                            src={`${CONFIG.assetsDir}/assets/icons/apps/ic-zalo.svg`}
+                            alt="Zalo"
+                            sx={{ width: 24, height: 24 }}
+                          />
+                        </IconButton>
+                      </m.div>
                     </Stack>
                   </Box>
                 </li>

@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { varFade } from 'src/components/animate';
+import { useEffect, useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ type SectionTitleProps = BoxProps & {
   title: React.ReactNode;
   description?: React.ReactNode;
   caption?: string;
+  typingDescription?: boolean;
   slotProps?: {
     title?: Omit<TextProps, 'title'>;
     caption?: Omit<TextProps, 'title'>;
@@ -36,9 +38,41 @@ export function SectionTitle({
   slotProps,
   txtGradient,
   description,
+  typingDescription = false,
   caption,
   ...other
 }: SectionTitleProps) {
+  const [typedText, setTypedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const typingSpeed = 20;
+
+  const characters =
+    typingDescription && typeof description === 'string'
+      ? Array.from(description)
+      : [];
+
+  useEffect(() => {
+    if (!typingDescription || typeof description !== 'string') return;
+    setTypedText('');
+    setCurrentIndex(0);
+  }, [typingDescription, description]);
+
+  useEffect(() => {
+    if (
+      !typingDescription ||
+      typeof description !== 'string' ||
+      currentIndex >= characters.length
+    )
+      return;
+
+    const timeout = setTimeout(() => {
+      setTypedText((prev) => prev + characters[currentIndex]);
+      setCurrentIndex((prev) => prev + 1);
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [currentIndex, characters, typingDescription, description]);
+
   return (
     <Box
       sx={[
@@ -63,9 +97,7 @@ export function SectionTitle({
           sx={(theme) => ({
             opacity: 1,
             display: 'inline-block',
-            ...theme.mixins.textGradient(
-              `to right, #2196F3,rgb(146, 146, 146)`
-            ),
+            ...theme.mixins.textGradient('to right, #2196F3, rgb(146, 146, 146)'),
           })}
         >
           {txtGradient}
@@ -77,18 +109,21 @@ export function SectionTitle({
           component={m.p}
           variants={slotProps?.description?.variants ?? varFade('inUp', { distance: 24 })}
           sx={[
-            { color: 'text.secondary', textAlign: 'justify' },
+            { color: 'text.secondary', textAlign: 'justify', whiteSpace: 'pre-line' },
             ...(Array.isArray(slotProps?.description?.sx)
-              ? (slotProps?.description?.sx ?? [])
+              ? slotProps?.description?.sx
               : [slotProps?.description?.sx]),
           ]}
         >
-          {description}
+          {typingDescription && typeof description === 'string'
+            ? typedText
+            : description}
         </Typography>
       )}
     </Box>
   );
 }
+
 
 // ----------------------------------------------------------------------
 
