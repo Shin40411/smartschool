@@ -38,11 +38,13 @@ export function BackToTopButton({
         (theme) => ({
           width: 48,
           height: 48,
+          backgroundColor: '#0C68E9',
           position: 'fixed',
           transform: 'scale(0)',
           right: { xs: 24, md: 32 },
           bottom: { xs: 24, md: 32 },
           zIndex: theme.zIndex.speedDial,
+          boxShadow: 5,
           transition: theme.transitions.create(['transform']),
           ...(isVisible && { transform: 'scale(1)' }),
         }),

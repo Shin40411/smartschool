@@ -35,6 +35,7 @@ import { Theme } from '@mui/material/styles';
 import { getProducts } from 'src/actions/product-ssr';
 import mapToProductItem from 'src/utils/format-product';
 import productsData from 'public/assets/data/data.json';
+import { SectionTitle } from 'src/sections/home/components/section-title';
 
 // ----------------------------------------------------------------------
 
@@ -150,12 +151,17 @@ export function ProductShopView({ allowTitle, allowFilters = true, allowPaginati
       <CartIcon totalItems={checkoutState.totalItems} />
 
       {allowTitle == true &&
-        <Typography
-          variant="h4"
+        // <Typography
+        //   variant="h4"
+        //   sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
+        // >
+        //   {customTitle || 'Shop'}
+        // </Typography>
+        <SectionTitle
+          title=""
+          txtGradient={customTitle || 'Shop'}
           sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
-        >
-          {customTitle || 'Shop'}
-        </Typography>
+        />
       }
 
       {allowFilters &&

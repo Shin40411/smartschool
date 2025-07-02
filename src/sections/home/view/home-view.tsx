@@ -78,7 +78,7 @@ export function HomeView() {
           limitData={12}
           customTitle='Sản Phẩm Nổi Bật'
           customTitleStyle={(theme) => ({
-            color: '#2196F3',
+            color: '#00B8D9', // Cyan blue, techy feel
             fontWeight: 700,
             textAlign: 'center',
             mb: 10,
@@ -88,19 +88,22 @@ export function HomeView() {
         {/* <PostListHomeView posts={posts}
           CustomTitle='Tin tức & bài viết mới nhất'
           customTitleStyle={() => ({
-        color: '#2196F3',
+        color: '#00B8D9',
         fontWeight: 700,
         textAlign: 'center',
         mb: 5,
-          }
-          )}
+          })}
           allowFilters={false}
           limitData={3}
         /> */}
 
         <HomeTestimonials />
 
-        {/* <HomeFAQs /> */}
+        <HomeFAQs
+          // sx={(theme) => ({
+          //   background: `linear-gradient(135deg, #232526 60%, #00B8D9 100%)`
+          // })}
+        />
       </Stack>
     </>
   );

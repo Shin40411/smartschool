@@ -74,8 +74,8 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
 
   const renderDescription = () => (
     <SectionTitle
-      title="Mọi người đang nói gì"
-      txtGradient="về chúng tôi?"
+      title="Đánh giá"
+      txtGradient="về chúng tôi"
       sx={{ mb: { xs: 5, md: 8 }, textAlign: 'center' }}
     />
   );
@@ -228,7 +228,7 @@ export function HomeTestimonials({ sx, ...other }: BoxProps) {
   return (
     <Box
       component="section"
-      sx={[{ py: 10, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[{ py: 5, position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...other}
     >
       <MotionViewport>

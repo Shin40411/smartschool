@@ -46,22 +46,23 @@ export function HeaderSection({
 
   return (
     <HeaderRoot
-      position="relative"
-      // color="transparent"
+      position="sticky"
+      color="transparent"
       isOffset={isOffset}
       disableOffset={disableOffset}
       disableElevation={disableElevation}
       className={mergeClasses([layoutClasses.header, className])}
-      sx={[
-        {
-          backgroundColor: '#2196F3',
-        },
-        (theme) => ({
-          ...(isOffset && {
-            '--color': `var(--offset-color, ${theme.vars.palette.text.primary})`,
-          }),
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
+      sx={[ 
+        // { 
+        //   backgroundColor: '#2196F3', 
+        // }, 
+        { boxShadow: 2 }, 
+        (theme) => ({ 
+          ...(isOffset && { 
+            '--color': `var(--offset-color, ${theme.vars.palette.text.primary})`, 
+          }), 
+        }), 
+        ...(Array.isArray(sx) ? sx : [sx]), 
       ]}
       {...other}
     >
@@ -132,7 +133,7 @@ const HeaderRoot = styled(AppBar, {
 
   return {
     zIndex: 'var(--layout-header-zIndex)',
-    // ...(!disableOffset && { '&::before': bgStyles }),
+    ...(!disableOffset && { '&::before': bgStyles }),
     ...(!disableElevation && { '&::after': shadowStyles }),
   };
 });
@@ -140,17 +141,11 @@ const HeaderRoot = styled(AppBar, {
 const HeaderContainer = styled(Container, {
   shouldForwardProp: (prop: string) => !['layoutQuery', 'sx'].includes(prop),
 })<Pick<HeaderSectionProps, 'layoutQuery'>>(({ layoutQuery = 'md', theme }) => ({
-  position: 'absolute',
-  top: 50,
-  left: 0,
-  right: 0,
-  borderRadius: '10px',
   display: 'flex',
   alignItems: 'center',
-  color: '#FFF',
-  backgroundColor: '#fff',
-  boxShadow: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+  color: 'var(--color)',
   height: 'var(--layout-header-mobile-height)',
+  width: '100%',
   [theme.breakpoints.up(layoutQuery)]: { height: 'var(--layout-header-desktop-height)' },
 }));
 

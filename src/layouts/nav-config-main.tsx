@@ -11,9 +11,19 @@ import type { NavMainProps } from './main/nav/types';
 export const navData: NavMainProps['data'] = [
   { title: 'Trang chủ', path: '/', icon: <Iconify width={22} icon="solar:home-angle-bold-duotone" /> },
   {
-    title: 'Giới thiệu',
-    path: paths.about,
+    title: 'Sản phẩm',
+    icon: <Iconify width={22} icon="solar:notebook-bold-duotone" />,
+    path: paths.product.root,
+  },
+  {
+    title: 'Về chúng tôi',
+    path: 'https://www.iit.vn/',
     icon: <Iconify width={22} icon="solar:atom-bold-duotone" />,
+  },
+  {
+    title: 'Liên hệ',
+    icon: <Iconify width={22} icon="solar:phone-bold" />,
+    path: paths.contact,
   },
   // {
   //   title: 'Pages',
@@ -68,14 +78,5 @@ export const navData: NavMainProps['data'] = [
   //     { subheader: 'Dashboard', items: [{ title: 'Dashboard', path: CONFIG.auth.redirectPath }] },
   //   ],
   // },
-  {
-    title: 'Sản phẩm',
-    icon: <Iconify width={22} icon="solar:notebook-bold-duotone" />,
-    path: paths.product.root,
-  },
   // {
-  //   title: 'Tin tức',
-  //   icon: <Iconify width={22} icon="solar:notebook-bold-duotone" />,
-  //   path: paths.post.root,
-  // },
 ];

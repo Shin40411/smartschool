@@ -331,7 +331,7 @@ export function ProductDetailsSummary({
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {renderActions()}
-        {renderShare()}
+        {/* {renderShare()} */}
       </Stack>
     </Form>
   );

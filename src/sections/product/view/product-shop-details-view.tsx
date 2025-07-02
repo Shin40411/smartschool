@@ -27,6 +27,7 @@ import { useMemo } from 'react';
 import productsData from 'public/assets/data/data.json';
 import mapToProductItem from 'src/utils/format-product';
 import { usePathname } from 'next/navigation';
+import { Divider } from '@mui/material';
 
 
 // ----------------------------------------------------------------------
@@ -117,32 +118,21 @@ export function ProductShopDetailsView() {
       </Box>
 
       <Card>
-        <Tabs
-          value={tabs.value}
-          onChange={tabs.onChange}
-          sx={[
-            (theme) => ({
-              px: 3,
-              boxShadow: `inset 0 -2px 0 0 ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}`,
-            }),
-          ]}
+        <Box
+          sx={{
+            px: 3,
+            py: 2,
+            borderBottom: (theme) => `inset 0 -2px 0 0 ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}`,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+          }}
         >
-          {[
-            { value: 'description', label: 'Mô tả sản phẩm' },
-            // { value: 'reviews', label: `Đánh giá (${product?.reviews.length})`, icon: 'solar:star-bold' },
-          ].map((tab) => (
-            <Tab
-              key={tab.value}
-              value={tab.value}
-              label={
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Iconify icon="solar:list-bold" width={24} height={24} />
-                  {tab.label}
-                </Box>
-              }
-            />
-          ))}
-        </Tabs>
+          <Iconify icon="solar:list-bold" width={24} height={24} />
+          <Typography variant="subtitle1" sx={{ cursor: 'default' }}>Mô tả sản phẩm</Typography>
+        </Box>
+
+        <Divider />
 
         {tabs.value === 'description' && (
           <ProductDetailsDescription description={product?.description} />

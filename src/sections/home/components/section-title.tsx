@@ -64,7 +64,7 @@ export function SectionTitle({
             opacity: 1,
             display: 'inline-block',
             ...theme.mixins.textGradient(
-              `to right, #2196F3,rgb(255, 255, 255)`
+              `to right, #2196F3,rgb(146, 146, 146)`
             ),
           })}
         >

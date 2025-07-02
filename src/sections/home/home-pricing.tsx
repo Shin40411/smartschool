@@ -150,6 +150,7 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
             borderRadius: 2,
             boxShadow: 3,
             height: '100%',
+            overflow: 'hidden',
             ":before": {
               bgcolor: plan.bg_color,
               position: 'absolute',
@@ -161,36 +162,67 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
               opacity: 0.9,
               zIndex: -1,
               borderRadius: 2,
+              transition: 'background 0.3s',
+            },
+            "& .bg-image": {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              zIndex: -2,
+              backgroundImage: `url(${plan.bg_image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'bottom',
+              transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
+              willChange: 'transform',
+            },
+            "&:hover .bg-image": {
+              transform: 'scale(1.08)',
             },
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
         {...other}
       >
-        {/* Icons */}
-        <Box sx={{
-          display: 'none',
-          justifyContent: 'center',
-          width: 135,
-          height: 131,
-          alignItems: 'center',
-          margin: '-63px auto 20px',
-          backgroundImage: `url(${CONFIG.assetsDir}/assets/icons/glass/ser-col-bg7.svg)`,
-          backgroundPosition: 'center center',
-        }}>
+        <Box className="bg-image" />
+
+        <Box
+          sx={{
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
           {plan.icons.map((icon, index) => (
             <Box
-              component={m.img}
-              variants={varFade('in')}
               key={icon}
-              alt={`icon-${index}`}
-              src={icon}
               sx={{
-                maxWidth: '100%',
-                width: 50,
-                height: 'auto',
+                width: 64,
+                height: 64,
+                borderRadius: '50%',
+                background: '#fff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: 2,
               }}
-            />
+            >
+              <Box
+                component={m.img}
+                variants={varFade('in')}
+                alt={`icon-${index}`}
+                src={icon}
+                draggable={false}
+                sx={{
+                  width: 40,
+                  height: 40,
+                  opacity: '1 !important',
+                  objectFit: 'contain',
+                }}
+              />
+            </Box>
           ))}
         </Box>
 
@@ -198,64 +230,63 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ flex: 1 }}>
             <m.div variants={varFade('inLeft', { distance: 24 })}>
-              <Typography variant="h4" component="h6" sx={{ textAlign: 'center' }}>
+              <Typography variant="subtitle1" sx={{ textAlign: 'center', cursor: 'default' }}>
                 {plan.license}
               </Typography>
             </m.div>
-
             {/* <m.div variants={varScale('inX')}>
-              <Box
-                sx={{
-                  width: 32,
-                  height: 6,
-                  borderRadius: 1,
-                  opacity: 0.24,
-                  bgcolor: 'primary.main',
-                }}
-              />
-            </m.div> */}
+          <Box
+            sx={{
+          width: 32,
+          height: 6,
+          borderRadius: 1,
+          opacity: 0.24,
+          bgcolor: 'primary.main',
+            }}
+          />
+        </m.div> */}
           </Box>
         </Box>
 
         {/* Feature list */}
         {/* <Stack spacing={2.5}>
           {plan.commons.map((option) => (
-            <Box
-              key={option}
-              component={m.div}
-              variants={varFade('in')}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 1.5,
-                typography: 'body2',
-              }}
-            >
-              <Iconify width={16} icon="eva:checkmark-fill" />
-              {option}
-            </Box>
+        <Box
+          key={option}
+          component={m.div}
+          variants={varFade('in')}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            typography: 'body2',
+          }}
+        >
+          <Iconify width={16} icon="eva:checkmark-fill" />
+          {option}
+        </Box>
           ))}
         </Stack> */}
 
         {/* CTA button */}
         {/* <m.div variants={varFade('inUp', { distance: 24 })}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <IconButton
-              // href={paths.minimalStore}
-              // target="_blank"
-              rel="noopener"
-              sx={{
-                bgcolor: 'primary.main',
-                color: '#fff',
-                '&:hover': {
-                  bgcolor: 'primary.dark',
-                },
-                padding: 2,
-                margin: '0 0 -50px 0'
-              }}
-            >
-              <Iconify icon="eva:arrow-ios-forward-fill" width={24} height={24} />
-            </IconButton>
+        <IconButton
+          // href={paths.minimalStore}
+          // target="_blank"
+          rel="noopener"
+          sx={{
+            bgcolor: 'primary.main',
+            color: '#fff',
+            '&:hover': {
+          bgcolor: 'primary.dark',
+            },
+            padding: 2,
+            margin: '0 0 -50px 0'
+          }}
+        >
+          <Iconify icon="eva:arrow-ios-forward-fill" width={24} height={24} />
+        </IconButton>
           </Box>
         </m.div> */}
       </Box>
@@ -267,9 +298,9 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
 
 const PLANS = Array.from({ length: 3 }, (_, index) => ({
   license: [
-    'Sản phẩm Giáo Dục Stem IIT',
-    'Đào tạo trực tuyến E-Learning',
-    'Kiểm soát an toàn, xác minh truy cập'
+    'Xe Tự Hành STEM – Giải pháp học lập trình và công nghệ thông minh',
+    'Khóa học thực hành xe tự hành – Tăng cường kỹ năng công nghệ cho học sinh',
+    'Giám sát, điều khiển và tự động hóa – Ứng dụng thực tiễn với xe tự hành giáo dục'
   ][index],
   commons: [
     [
@@ -288,13 +319,13 @@ const PLANS = Array.from({ length: 3 }, (_, index) => ({
     [`${CONFIG.assetsDir}/assets/images/protection-large.png`],
   ][index],
   bg_color: [
-    '#a5871b',
     '#715cc5',
-    '#334658'
+    '#715cc5',
+    '#715cc5'
   ][index],
   bg_image: [
-    `${CONFIG.assetsDir}/assets/images/mock/course/course-1.webp`,
+    `${CONFIG.assetsDir}/assets/images/mock/m-product/robotnew.jpg`,
     `${CONFIG.assetsDir}/assets/images/mock/course/course-2.webp`,
-    `${CONFIG.assetsDir}/assets/images/mock/course/course-3.webp`
+    `${CONFIG.assetsDir}/assets/images/mock/m-product/security.png`
   ][index],
 }));

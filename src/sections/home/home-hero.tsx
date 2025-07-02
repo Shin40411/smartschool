@@ -105,15 +105,16 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         position: 'relative',
         backgroundImage: `url(${CONFIG.assetsDir}/assets/background/backgroundhero.jpg)`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '830px',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'bottom',
+        minHeight: { xs: '800px', md: '830px' },
         height: '100vh',
         maxHeight: '1440px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: {
           xs: 'center',
-          md: 'flex-end',
+          md: 'flex-start',
         },
         px: { xs: 2, md: 45 },
         '@media (max-width:1103px) and (min-width:425px)': {
@@ -132,23 +133,23 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           },
           '@media (max-width:1024px)': {
             width: 720,
-            marginLeft: 'auto',
-            marginRight: 0,
+            marginRight: 'auto',
+            marginLeft: 0,
           },
           '@media (min-width:1536px)': {
             width: 600,
-            marginLeft: 'auto',
-            marginRight: 0,
+            marginRight: 'auto',
+            marginLeft: 0,
           },
           '@media (max-width:1403px)': {
             width: 500,
-            marginLeft: 'auto',
-            marginRight: 0,
+            marginRight: 'auto',
+            marginLeft: 0,
           },
           '@media (max-width:1103px)': {
             width: 720,
-            marginLeft: 'auto',
-            marginRight: 0,
+            marginRight: 'auto',
+            marginLeft: 0,
           },
           backgroundColor: '#00000096',
           padding: {
@@ -169,13 +170,13 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           mx: {
             xs: 'auto',
             sm: 'auto',
-            md: 'auto',
+            md: 0,
             lg: 0,
             xl: 0,
           },
           ml: {
-            lg: 'auto',
-            xl: 'auto',
+            lg: 0,
+            xl: 0,
           },
 
           '@keyframes floatGlow': {
@@ -190,6 +191,6 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           <m.div>{renderButtons()}</m.div>
         </Stack>
       </Box>
-    </ Box >
+    </Box>
   );
 }

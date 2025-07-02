@@ -19,6 +19,7 @@ import { varFade, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
+import { CONFIG } from 'src/global-config';
 
 // ----------------------------------------------------------------------
 
@@ -134,8 +135,8 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
 
   const renderDescription = () => (
     <SectionTitle
-      title="We’ve got the"
-      txtGradient="answers"
+      title=""
+      txtGradient="Liên hệ với chúng tôi ngay hôm nay"
       sx={{ textAlign: 'center' }}
     />
   );
@@ -203,62 +204,136 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
     </Stack>
   );
 
+
+  const bottomLines = () => (
+    <>
+      <FloatLine sx={{ top: 0, left: 0 }} />
+      {/* <FloatLine sx={{ bottom: 0, left: 0 }} /> */}
+      {/* <FloatPlusIcon sx={{ top: -8, left: 72 }} /> */}
+      {/* <FloatPlusIcon sx={{ bottom: -8, left: 72 }} /> */}
+    </>
+  );
+
   const renderContact = () => (
     <Box
       sx={[
         (theme) => ({
-          px: 3,
-          py: 8,
-          textAlign: 'justify',
-          background: theme.vars.palette.primary.lighter,
+          px: { xs: 2, sm: 20 },
+          py: { xs: 4, sm: 5 },
+          width: '100%',
+          mt: 6,
+          mb: 2,
+          borderRadius: 3,
           color: theme.vars.palette.primary.dark,
-          wordSpacing: 3
+          boxShadow: `0 8px 32px 0 ${theme.vars.palette.primary.main}22`,
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: { xs: 3, md: 5 },
         }),
       ]}
     >
-      <Container>
-        <m.div variants={varFade('in')}>
-          <Typography variant="h4"
-            sx={{
-              letterSpacing: '0.3rem'
-            }}
-          >
-            Liên hệ
-          </Typography>
-        </m.div>
-
-        <m.div variants={varFade('in')}>
-          <Typography variant='h2' sx={{ mt: 2, mb: 3, fontSize: 19 }}>
-            Hãy liên hệ với chúng tôi ngay hôm nay để có những ưu đãi hấp dẫn nhất!
-          </Typography>
-        </m.div>
-
-        <m.div variants={varFade('in')}>
+      <Box
+        sx={{
+          flex: 1,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          mb: { xs: 3, md: 0 },
+          pl: { xs: 0, md: 10 },
+        }}
+      >
+        <Box
+          component={m.img}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.5 }}
+          src={`${CONFIG.assetsDir}/assets/images/mock/cover/getintouch.jpg`}
+          alt="Liên hệ"
+          sx={{
+            width: '100%',
+            maxWidth: '100%',
+            height: { xs: 180, sm: 240, md: 320, lg: 360 },
+            objectFit: 'cover',
+            borderRadius: 2,
+            display: 'block',
+            minHeight: 120,
+            minWidth: { xs: 0, md: 500 },
+            boxShadow: 2,
+          }}
+        />
+      </Box>
+      <Box sx={{ minWidth: 0 }}>
+        <SectionTitle
+          title=""
+          txtGradient="Liên hệ với chúng tôi ngay hôm nay"
+          sx={{
+            textAlign: { xs: 'center', md: 'left' },
+            mb: { xs: 2, md: 0 },
+            fontWeight: 700,
+            fontSize: { xs: 22, sm: 26, md: 28 },
+            letterSpacing: 0.5,
+          }}
+        />
+        <Typography
+          variant="body1"
+          sx={{
+            mt: 1,
+            color: theme => theme.vars.palette.primary.darker,
+            opacity: 0.85,
+            textAlign: { xs: 'center', md: 'left' },
+            maxWidth: 720,
+            width: '100%',
+            mx: { xs: 'auto', md: 0 },
+          }}
+        >
+          Đội ngũ của chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy gửi email cho chúng tôi để được tư vấn và giải đáp mọi thắc mắc về sản phẩm, dịch vụ hoặc hợp tác.
+        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'left' }, mt: { xs: 3, md: 3 } }}>
           <Button
             variant="contained"
             href="mailto:info@iit.vn?subject=[Feedback] from Customer"
             startIcon={<Iconify icon="solar:letter-bold" />}
-            color='warning'
-            sx={{ color: '#fff', borderRadius: 5, px: 3, py: 1.5 }}
+            color="primary"
+            sx={{
+              color: '#fff',
+              borderRadius: 5,
+              px: 4,
+              py: 1.8,
+              fontWeight: 700,
+              fontSize: 18,
+              boxShadow: 2,
+              background: theme => theme.vars.palette.primary.main,
+              transition: 'all 0.2s',
+              '&:hover': {
+                background: theme => theme.vars.palette.primary.dark,
+                color: '#fff',
+                boxShadow: 4,
+              },
+            }}
           >
-            Liên hệ
+            Liên hệ ngay
           </Button>
-        </m.div>
-      </Container>
+        </Box>
+      </Box>
     </Box>
   );
 
   return (
     <Box component="section" sx={sx} {...other}>
-      <MotionViewport sx={{ py: 10, position: 'relative' }}>
-        {topLines()}
+      <MotionViewport sx={{ position: 'relative' }}>
+        {/* {topLines()} */}
+        {bottomLines()}
 
-        <Container>
-          {renderDescription()}
-          {renderContent()}
-        </Container>
-
-        <Stack sx={{ position: 'relative' }}>
+        {/* {renderContent()} */}
+        <Stack sx={{
+          position: 'relative',
+          width: '100%',
+        }}>
           {renderContact()}
         </Stack>
       </MotionViewport>
@@ -292,14 +367,5 @@ const topLines = () => (
     </Stack>
 
     <FloatLine vertical sx={{ top: 0, left: 80 }} />
-  </>
-);
-
-const bottomLines = () => (
-  <>
-    <FloatLine sx={{ top: 0, left: 0 }} />
-    <FloatLine sx={{ bottom: 0, left: 0 }} />
-    <FloatPlusIcon sx={{ top: -8, left: 72 }} />
-    <FloatPlusIcon sx={{ bottom: -8, left: 72 }} />
   </>
 );

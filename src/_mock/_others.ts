@@ -112,22 +112,17 @@ export const _socials = [
   {
     value: 'facebook',
     label: 'Facebook',
-    path: 'https://www.facebook.com/caitlyn.kerluke',
+    path: 'https://www.facebook.com/iitmekong',
   },
   {
-    value: 'instagram',
-    label: 'Instagram',
-    path: 'https://www.instagram.com/caitlyn.kerluke',
+    value: 'youtube',
+    label: 'Youtube',
+    path: 'https://www.youtube.com/@IITJSC',
   },
   {
-    value: 'linkedin',
-    label: 'Linkedin',
-    path: 'https://www.linkedin.com/caitlyn.kerluke',
-  },
-  {
-    value: 'twitter',
-    label: 'Twitter',
-    path: 'https://www.twitter.com/caitlyn.kerluke',
+    value: 'zalo',
+    label: 'Zalo',
+    path: 'https://zalo.me/(+84)368909968',
   },
 ];
 
