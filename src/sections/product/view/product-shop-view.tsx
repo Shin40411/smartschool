@@ -36,6 +36,7 @@ import { getProducts } from 'src/actions/product-ssr';
 import mapToProductItem from 'src/utils/format-product';
 import productsData from 'public/assets/data/data.json';
 import { SectionTitle } from 'src/sections/home/components/section-title';
+import SocialPopin from 'src/components/socials/socical-popin';
 
 // ----------------------------------------------------------------------
 
@@ -156,6 +157,7 @@ export function ProductShopView({
   return (
     <Container sx={{ mt: 10, mb: 10 }}>
       <CartIcon totalItems={checkoutState.totalItems} />
+      <SocialPopin />
 
       {allowTitle == true &&
         // <Typography

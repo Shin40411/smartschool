@@ -39,8 +39,7 @@ export function HomeView() {
 
       <BackToTopButton />
 
-      <SocialPopin />
-      <Stack sx={{ position: 'relative' }}>
+      <Stack sx={{ position: 'relative', mt: { xs: 30, md: 0 }, }}>
         <HomeHero />
       </Stack>
 
@@ -48,7 +47,7 @@ export function HomeView() {
       <Stack
         sx={{
           position: 'relative',
-          mt: -10,
+          mt: { xs: 20, md: -10 },
           backgroundImage: `url(${CONFIG.assetsDir}/assets/background/ser-ab-7-1.png)`,
         }}
         spacing={8}

@@ -20,6 +20,8 @@ import { varFade, MotionViewport } from 'src/components/animate';
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatPlusIcon, FloatTriangleDownIcon } from './components/svg-elements';
 import { CONFIG } from 'src/global-config';
+import path from 'path';
+import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -149,7 +151,6 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           mt: 8,
           mx: 'auto',
           maxWidth: 720,
-          mb: { xs: 5, md: 8 },
         }),
       ]}
     >
@@ -215,103 +216,214 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
   );
 
   const renderContact = () => (
+    // <Box
+    //   sx={[
+    //     (theme) => ({
+    //       px: { xs: 2, sm: 20 },
+    //       py: { xs: 4, sm: 5 },
+    //       width: '100%',
+    //       mt: 6,
+    //       mb: 2,
+    //       borderRadius: 3,
+    //       color: theme.vars.palette.primary.dark,
+    //       boxShadow: `0 8px 32px 0 ${theme.vars.palette.primary.main}22`,
+    //       display: 'flex',
+    //       flexDirection: { xs: 'column', md: 'row' },
+    //       alignItems: 'center',
+    //       flexWrap: 'wrap',
+    //       justifyContent: 'space-between',
+    //       gap: { xs: 3, md: 5 },
+    //     }),
+    //   ]}
+    // >
+    //   <Box
+    //     sx={{
+    //       position: 'relative',
+    //       flex: 1,
+    //       width: '100%',
+    //       display: 'flex',
+    //       alignItems: 'center',
+    //       justifyContent: 'center',
+    //       mb: { xs: 3, md: 0 },
+    //       pl: { xs: 0, md: 10 },
+    //       overflow: 'hidden',
+    //       borderRadius: 2,
+    //       height: { xs: 180, sm: 240, md: 320, lg: 360 },
+    //       backgroundImage: `url(${CONFIG.assetsDir}/assets/images/mock/cover/getintouch.jpg)`,
+    //       backgroundSize: 'cover',
+    //       backgroundPosition: 'center',
+    //     }}
+    //   >
+    //     {[...Array(5)].map((_, i) => (
+    //       <Box
+    //         key={i}
+    //         sx={{
+    //           position: 'absolute',
+    //           top: -50,
+    //           left: `${10 + i * 15}%`,
+    //           width: 48,
+    //           height: 48,
+    //           borderRadius: '50%',
+    //           backgroundColor: '#fff',
+    //           display: 'flex',
+    //           alignItems: 'center',
+    //           justifyContent: 'center',
+    //           boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+    //           zIndex: 2,
+    //           animation: `fall ${4 + i}s infinite linear`,
+    //         }}
+    //       >
+    //         <Box
+    //           component="img"
+    //           src={`${CONFIG.assetsDir}/assets/icons/navbar/ic-mail.svg`}
+    //           sx={{
+    //             width: 24,
+    //             height: 24,
+    //             opacity: 2,
+    //           }}
+    //         />
+    //       </Box>
+    //     ))}
+
+    //     <style>
+    //       {`
+    //         @keyframes fall {
+    //           0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+    //           10% { opacity: 0.4; }
+    //           100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+    //         }
+    //       `}
+    //     </style>
+    //   </Box>
+    //   <Box sx={{ minWidth: 0 }}>
+    //     <SectionTitle
+    //       title=""
+    //       txtGradient="Liên hệ với chúng tôi ngay hôm nay"
+    //       sx={{
+    //         textAlign: { xs: 'center', md: 'left' },
+    //         mb: { xs: 2, md: 0 },
+    //         fontWeight: 700,
+    //         fontSize: { xs: 22, sm: 26, md: 28 },
+    //         letterSpacing: 0.5,
+    //       }}
+    //     />
+    //     <Typography
+    //       variant="body1"
+    //       sx={{
+    //         mt: 1,
+    //         color: theme => theme.vars.palette.primary.darker,
+    //         opacity: 0.85,
+    //         textAlign: { xs: 'center', md: 'left' },
+    //         maxWidth: 720,
+    //         width: '100%',
+    //         mx: { xs: 'auto', md: 0 },
+    //       }}
+    //     >
+    //       Đội ngũ của chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy gửi email cho chúng tôi để được tư vấn và giải đáp mọi thắc mắc về sản phẩm, dịch vụ hoặc hợp tác.
+    //     </Typography>
+    //     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'left' }, mt: { xs: 3, md: 3 } }}>
+    //       <Button
+    //         variant="contained"
+    //         href={paths.contact}
+    //         startIcon={<Iconify icon="solar:letter-bold" />}
+    //         color="primary"
+    //         sx={{
+    //           color: '#fff',
+    //           borderRadius: 5,
+    //           px: 4,
+    //           py: 1.8,
+    //           fontWeight: 700,
+    //           fontSize: 18,
+    //           boxShadow: 2,
+    //           background: theme => theme.vars.palette.primary.main,
+    //           transition: 'all 0.2s',
+    //           '&:hover': {
+    //             background: theme => theme.vars.palette.primary.dark,
+    //             color: '#fff',
+    //             boxShadow: 4,
+    //           },
+    //         }}
+    //       >
+    //         Liên hệ ngay
+    //       </Button>
+    //     </Box>
+    //   </Box>
+    // </Box>
     <Box
       sx={[
         (theme) => ({
-          px: { xs: 2, sm: 20 },
-          py: { xs: 4, sm: 5 },
+          px: { xs: 2, sm: 4 },
+          py: { xs: 8, sm: 10 },
           width: '100%',
-          mt: 6,
-          mb: 2,
-          borderRadius: 3,
           color: theme.vars.palette.primary.dark,
           boxShadow: `0 8px 32px 0 ${theme.vars.palette.primary.main}22`,
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: { xs: 3, md: 5 },
-        }),
-      ]}
-    >
-      <Box
-        sx={{
-          position: 'relative',
-          flex: 1,
-          width: '100%',
-          display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          mb: { xs: 3, md: 0 },
-          pl: { xs: 0, md: 10 },
-          overflow: 'hidden',
-          borderRadius: 2,
-          height: { xs: 180, sm: 240, md: 320, lg: 360 },
+          textAlign: 'center',
           backgroundImage: `url(${CONFIG.assetsDir}/assets/images/mock/cover/getintouch.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          // '&::before': {
-          //   content: '""',
-          //   position: 'absolute',
-          //   inset: 0,
-          //   backgroundColor: 'rgba(0,0,0,0.3)',
-          //   backdropFilter: 'blur(4px)',
-          //   zIndex: 1,
-          // },
-        }}
-      >
-        {[...Array(5)].map((_, i) => (
+          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+          minHeight: { xs: 300, sm: 400, md: 500 },
+          overflow: 'hidden',
+        }),
+      ]}
+    >
+      {/* Falling Icons */}
+      {[...Array(5)].map((_, i) => (
+        <Box
+          key={i}
+          sx={{
+            position: 'absolute',
+            top: -50,
+            left: `${10 + i * 15}%`,
+            width: 48,
+            height: 48,
+            borderRadius: '50%',
+            backgroundColor: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+            zIndex: 2,
+            animation: `fall ${4 + i}s infinite linear`,
+          }}
+        >
           <Box
-            key={i}
+            component="img"
+            src={`${CONFIG.assetsDir}/assets/icons/navbar/ic-mail.svg`}
             sx={{
-              position: 'absolute',
-              top: -50,
-              left: `${10 + i * 15}%`,
-              width: 48,
-              height: 48,
-              borderRadius: '50%',
-              backgroundColor: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              zIndex: 2,
-              animation: `fall ${4 + i}s infinite linear`,
+              width: 24,
+              height: 24,
+              opacity: 1.8,
             }}
-          >
-            <Box
-              component="img"
-              src={`${CONFIG.assetsDir}/assets/icons/navbar/ic-mail.svg`}
-              sx={{
-                width: 24,
-                height: 24,
-                opacity: 2,
-              }}
-            />
-          </Box>
-        ))}
+          />
+        </Box>
+      ))}
 
-        <style>
-          {`
-            @keyframes fall {
-              0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
-              10% { opacity: 0.4; }
-              100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
-            }
-          `}
-        </style>
-      </Box>
-      <Box sx={{ minWidth: 0 }}>
+      {/* CSS animation */}
+      <style>
+        {`
+      @keyframes fall {
+        0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.4; }
+        100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+      }
+    `}
+      </style>
+
+      <Box sx={{ position: 'relative', zIndex: 3, maxWidth: 720 }}>
         <SectionTitle
           title=""
           txtGradient="Liên hệ với chúng tôi ngay hôm nay"
           sx={{
-            textAlign: { xs: 'center', md: 'left' },
-            mb: { xs: 2, md: 0 },
             fontWeight: 700,
             fontSize: { xs: 22, sm: 26, md: 28 },
             letterSpacing: 0.5,
+            mb: 2,
           }}
         />
         <Typography
@@ -319,19 +431,18 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           sx={{
             mt: 1,
             color: theme => theme.vars.palette.primary.darker,
-            opacity: 0.85,
-            textAlign: { xs: 'center', md: 'left' },
-            maxWidth: 720,
-            width: '100%',
-            mx: { xs: 'auto', md: 0 },
+            opacity: 0.9,
+            maxWidth: 680,
+            mx: 'auto',
+            fontWeight: 600
           }}
         >
           Đội ngũ của chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy gửi email cho chúng tôi để được tư vấn và giải đáp mọi thắc mắc về sản phẩm, dịch vụ hoặc hợp tác.
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'center', md: 'left' }, mt: { xs: 3, md: 3 } }}>
+        <Box sx={{ mt: 4 }}>
           <Button
             variant="contained"
-            href="mailto:info@iit.vn?subject=[Feedback] from Customer"
+            href={paths.contact}
             startIcon={<Iconify icon="solar:letter-bold" />}
             color="primary"
             sx={{
@@ -342,7 +453,6 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
               fontWeight: 700,
               fontSize: 18,
               boxShadow: 2,
-              background: theme => theme.vars.palette.primary.main,
               transition: 'all 0.2s',
               '&:hover': {
                 background: theme => theme.vars.palette.primary.dark,
@@ -355,6 +465,17 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
           </Button>
         </Box>
       </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: 'rgba(255,255,255,0.75)',
+          zIndex: 1,
+        }}
+      />
     </Box>
   );
 

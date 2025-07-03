@@ -38,6 +38,7 @@ export function ProductItem({ product, detailsHref }: Props) {
     sizes,
     priceSale,
     newLabel,
+    code,
     saleLabel }
     =
     product;
@@ -87,40 +88,36 @@ export function ProductItem({ product, detailsHref }: Props) {
     );
 
   const renderImage = () => (
-    <Box sx={{ position: 'relative', p: 1 }}>
-      {!!available && (
-        <Fab
-          size="medium"
-          color="primary"
-          onClick={handleAddCart}
-          sx={[
-            (theme) => ({
-              right: 16,
-              zIndex: 9,
-              bottom: 16,
-              opacity: 0,
-              position: 'absolute',
-              transform: 'scale(0)',
-              transition: theme.transitions.create(['opacity', 'transform'], {
-                easing: theme.transitions.easing.easeInOut,
-                duration: theme.transitions.duration.shorter,
-              }),
-            }),
-          ]}
+    <Link component={RouterLink} href={detailsHref}>
+      <Box sx={{ position: 'relative', p: 1 }}>
+        <Box component="span"
+          sx={{
+            position: 'absolute',
+            top: 15,
+            left: 20,
+            color: '#fff',
+            fontWeight: 800,
+            fontSize: 10,
+            backgroundColor: '#000',
+            borderRadius: 0.5,
+            boxShadow: 3,
+            p: 0.5,
+            zIndex: 2,
+          }}
         >
-          <Iconify icon="solar:cart-plus-bold" width={24} />
-        </Fab>
-      )}
+          {code}
+        </Box>
 
-      <Tooltip title={!available && 'Hết hàng'} placement="bottom-end">
-        <Image
-          alt={name}
-          src={coverUrl}
-          ratio="1/1"
-          sx={{ borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
-        />
-      </Tooltip>
-    </Box>
+        <Tooltip title={!available && 'Hết hàng'} placement="bottom-end">
+          <Image
+            alt={name}
+            src={coverUrl}
+            ratio="1/1"
+            sx={{ borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
+          />
+        </Tooltip>
+      </Box>
+    </Link>
   );
 
   const renderContent = () => (
@@ -132,19 +129,27 @@ export function ProductItem({ product, detailsHref }: Props) {
       flexDirection: 'column',
       justifyContent: 'space-between'
     }}>
-      <Link component={RouterLink} href={detailsHref} color="inherit" variant="subtitle2">
+      <Link
+        component={RouterLink}
+        href={detailsHref}
+        color="inherit"
+        textAlign="center"
+        variant="subtitle2"
+        sx={{ '&:hover': { textDecoration: 'none' } }}
+      >
         {name}
       </Link>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Tooltip title="Color">
           <ColorPreview colors={colors} />
         </Tooltip>
 
         <Box sx={{
-          gap: 0.5,
+          gap: 1,
           display: 'flex',
           typography: 'subtitle1',
+          justifyContent: 'center',
           flexWrap: 'wrap',
         }}>
           {priceSale && (
@@ -157,9 +162,38 @@ export function ProductItem({ product, detailsHref }: Props) {
               {fCurrency(priceSale)}
             </Box>
           )}
-
           <Box component="span" sx={{ fontWeight: 800, fontSize: 17, color: '#FF5630' }}>{fCurrency(price)}</Box>
         </Box>
+      </Box>
+
+      <Box sx={{ width: "100%" }}>
+        {!!available && (
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            onClick={handleAddCart}
+            sx={{
+              width: "100%",
+              fontWeight: 700,
+              textTransform: 'none',
+              gap: 1.5,
+              boxShadow: 2,
+              px: 2.5,
+              py: 1,
+              transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+              '&:hover': {
+                backgroundColor: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important',
+                color: '#fff',
+                boxShadow: 6,
+                transform: 'scale(1.05) translateY(-2px)',
+              },
+            }}
+          >
+            <Iconify icon="solar:cart-plus-bold" width={24} />
+            Thêm vào giỏ hàng
+          </Fab>
+        )}
       </Box>
     </Stack>
   );
@@ -170,9 +204,9 @@ export function ProductItem({ product, detailsHref }: Props) {
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 2,
-        '&:hover': {
-          [`& .${fabClasses.root}`]: { opacity: 1, transform: 'scale(1)' },
-        },
+        // '&:hover': {
+        //   [`& .${fabClasses.root}`]: { opacity: 1, transform: 'scale(1)' },
+        // },
         boxShadow: 8,
       }}
     >

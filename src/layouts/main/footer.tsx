@@ -17,9 +17,10 @@ import { _socials } from 'src/_mock';
 import { Logo } from 'src/components/logo';
 import { Iconify } from 'src/components/iconify';
 import { ArcticonsZalo } from '../components/zalo-icon';
+import { Stack } from '@mui/material';
 
 // ----------------------------------------------------------------------
-const addressText = 'Số 38/2D Đường Mậu Thân, Phường An Hòa, Quận Ninh Kiều, Thành phố Cần Thơ, Việt Nam';
+const addressText = 'Số 38/2D Đường Mậu Thân, Phường An Hòa, Quận Ninh Kiều, Thành phố Cần Thơ';
 
 const LINKS = [
   {
@@ -38,7 +39,7 @@ const LINKS = [
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none">
               <path
-                d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.01L12 13 4 6.01V6h16ZM4 20V8.24l7.29 6.59a1 1 0 0 0 1.42 0L20 8.24V20H4Z"
+                d="M12 13.065c-.27 0-.54-.08-.77-.24L3.5 6.98A2 2 0 0 1 5 6h14a2 2 0 0 1 1.5.98l-7.73 5.845a1.25 1.25 0 0 1-.77.24Zm8 1.435V8.25l-7.12 5.39a2.75 2.75 0 0 1-3.76 0L4 8.25v6.25A2 2 0 0 0 6 18h12a2 2 0 0 0 2-2v-1.5Z"
                 fill="currentColor"
               />
             </svg>
@@ -61,6 +62,20 @@ const LINKS = [
         ),
         href: '#',
       },
+      {
+        name: (
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
+            <svg width={30} height={30} viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"
+                fill="currentColor"
+              />
+            </svg>
+            {addressText}
+          </Box>
+        ),
+        href: '#'
+      }
     ],
   },
 ];
@@ -82,10 +97,11 @@ export function Footer({
   return (
     <FooterRoot sx={sx} {...other}>
       <Divider />
-      <Container
+      <Stack
         sx={(theme) => ({
           pb: 5,
-          pt: 10,
+          pt: 3,
+          m: 0,
           textAlign: 'center',
           color: '#fff !important',
           [theme.breakpoints.up(layoutQuery)]: { textAlign: 'unset' },
@@ -97,33 +113,38 @@ export function Footer({
             backgroundColor: 'transparent',
             borderRadius: 5,
             p: 2,
+            width: "100%"
           }}
         >
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Logo />
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+            <Logo sx={{
+              width: '100%',
+              maxWidth: 50,
+              height: '100%'
+            }} />
             <Box
               component="a"
               href="/"
               sx={{
                 textDecoration: 'none',
                 display: { xs: 'none', md: 'block' },
-                pl: 1,
               }}
             >
               <Typography
-                variant='h4'
+                variant='h3'
                 sx={{
                   fontFamily: '"Montserrat", "Roboto", "Arial", sans-serif',
-                  background: 'linear-gradient(130deg, rgb(97, 59, 187, 0.2) 0%,rgba(57, 54, 216) 100%)',
+                  background: '#FFF',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   textFillColor: 'transparent',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   letterSpacing: 2,
+                  textTransform: "uppercase"
                 }}
               >
-                STEM IIT
+                sản phẩm giáo dục stem IIT
               </Typography>
             </Box>
           </Box>
@@ -134,14 +155,16 @@ export function Footer({
           sx={[
             (theme) => ({
               mt: 3,
+              mx: 5,
+              gap: 1,
               justifyContent: 'center',
-              [theme.breakpoints.up(layoutQuery)]: { justifyContent: 'space-between' },
+              [theme.breakpoints.up(layoutQuery)]: { justifyContent: 'center' },
             }),
           ]}
         >
-          <Grid size={{ xs: 12, [layoutQuery]: 3 }}>
+          <Grid size={{ xs: 12, [layoutQuery]: 4 }}>
             <Typography
-              variant="h4"
+              variant="h6"
               sx={(theme) => ({
                 mx: 'auto',
                 textAlign: 'left',
@@ -220,14 +243,12 @@ export function Footer({
               ))}
             </Box>
           </Grid>
-
-          <Grid size={{ xs: 12, [layoutQuery]: 6 }}>
+          <Grid size={{ xs: 5, [layoutQuery]: 5 }}>
             <Box
               sx={(theme) => ({
-                gap: 5,
+                gap: 1,
                 display: 'flex',
                 flexDirection: 'column',
-                width: '100%',
                 [theme.breakpoints.up(layoutQuery)]: { flexDirection: 'row' },
               })}
             >
@@ -239,6 +260,7 @@ export function Footer({
                     width: 1,
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     flexDirection: 'column',
                     [theme.breakpoints.up(layoutQuery)]: { alignItems: 'flex-start' },
                   })}
@@ -263,39 +285,13 @@ export function Footer({
                 </Box>
               ))}
             </Box>
-            <Box
-              sx={{
-                mt: 5,
-                px: { xs: 2, md: 0 },
-                maxWidth: '100%',
-                textAlign: { xs: 'center', [layoutQuery]: 'left' },
-              }}
-            >
-              <Typography component="div" variant="overline" sx={{
-                mb: 2, display: 'flex',
-                alignItems: 'center',
-                justifyContent: { xs: 'center', md: 'flex-start' },
-                gap: 1
-              }}>
-                <svg width={20} height={20} viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.05 10.39 8.09 11.13a1 1 0 0 0 1.18 0C13.95 21.39 21 16.25 21 11c0-4.97-4.03-9-9-9Zm0 17.88C9.14 17.1 5 13.61 5 11c0-3.87 3.13-7 7-7s7 3.13 7 7c0 2.61-4.14 6.1-7 8.88ZM12 6a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                Địa chỉ
-              </Typography>
-              <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
-                {addressText}
-              </Typography>
-            </Box>
           </Grid>
         </Grid>
 
-        <Typography variant="body2" sx={{ mt: 10 }}>
+        <Typography variant="body2" textAlign="center" sx={{ mt: 10 }}>
           © All rights reserved by IIT JSC.
         </Typography>
-      </Container>
+      </Stack>
     </FooterRoot>
   );
 }

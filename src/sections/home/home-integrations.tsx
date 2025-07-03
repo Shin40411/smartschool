@@ -13,7 +13,9 @@ import { varScale, MotionViewport } from 'src/components/animate';
 
 import { SectionTitle } from './components/section-title';
 import { FloatLine, FloatDotIcon } from './components/svg-elements';
-import { Card } from '@mui/material';
+import { Button, Card } from '@mui/material';
+import { RouterLink } from 'src/routes/components';
+import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +46,25 @@ const renderLines = () => (
 );
 
 export function HomeIntegrations({ sx, ...other }: BoxProps) {
+  const renderButtons = () => (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        mt: 2
+      }}
+    >
+      <Button
+        component={RouterLink}
+        href={paths.contact}
+        color="primary"
+        size="large"
+        variant="contained"
+      >
+        Đăng ký tư vấn
+      </Button>
+    </Box>
+  );
   const renderDescription = () => (
     <SectionTitle
       caption="STEM IIT"
@@ -54,18 +75,17 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
           <Box component="span" sx={{ mb: 1, display: 'block', color: '#fff' }}>
             Các bộ sản phẩm như xe tự hành, cảm biến phát hiện rò rỉ nước, hệ thống dò line, điều khiển qua Bluetooth,... đều được thiết kế chuyên biệt cho môi trường giáo dục và nghiên cứu.
           </Box>
-          <Box component="span" sx={{ mb: 1, display: 'block', color: '#fff' }}>
-            Chương trình học luôn cập nhật theo xu hướng công nghệ mới, giúp học sinh phát triển tư duy sáng tạo, kỹ năng thực hành và khả năng làm việc nhóm hiệu quả.
-          </Box>
+          {/* <Box sx={{ mb: 5, display: 'block'}}> */}
+          {/* Chương trình học luôn cập nhật theo xu hướng công nghệ mới, giúp học sinh phát triển tư duy sáng tạo, kỹ năng thực hành và khả năng làm việc nhóm hiệu quả. */}
+          {/* </Box> */}
           <Box
             component="span"
-            sx={{ fontStyle: 'italic', color: '#fff', typography: 'caption' }}
+            sx={{ fontStyle: 'italic', color: '#fff', typography: 'caption', mb: 10 }}
           >
             * Phù hợp với mọi cấp học từ Tiểu học đến THPT.
             <br />* Tích hợp lập trình Arduino, IoT, tự động hóa và kỹ năng giải quyết vấn đề.
           </Box>
           <Box
-            component="span"
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -105,7 +125,6 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
             (+84) 368 909 968
           </Box>
           <Box
-            component="span"
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -144,9 +163,10 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
             </Box>
             info@iit.vn
           </Box>
+          {renderButtons()}
         </>
       }
-      sx={{ textAlign: { xs: 'center', md: 'left', color: '#fff' } }}
+      sx={{ textAlign: { xs: 'center', md: 'left', color: '#fff', justifyContent: 'center' } }}
     />
   );
 

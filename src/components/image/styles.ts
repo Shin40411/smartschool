@@ -33,7 +33,7 @@ export const ImageRoot = styled('span', {
 
 export const ImageImg = styled('img')(() => ({
   ...sharedStyles,
-  objectFit: 'cover',
+  objectFit: 'contain',
 }));
 
 export const ImageOverlay = styled('span')({
