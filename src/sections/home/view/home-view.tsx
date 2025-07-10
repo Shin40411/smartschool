@@ -17,8 +17,10 @@ import { HomeIntegrations } from '../home-integrations';
 import { HomeAdvertisement } from '../home-advertisement';
 import { HomeForDesigner } from '../home-for-designer';
 import { HomeMinimal } from '../home-minimal';
-import { Divider } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import SocialPopin from 'src/components/socials/socical-popin';
+import WaveParallax from 'src/components/animate/wave-paralax';
+import { FloatLine, FloatXIcon } from '../components/svg-elements';
 
 // ----------------------------------------------------------------------
 // type Props = {
@@ -39,21 +41,8 @@ export function HomeView() {
 
       <BackToTopButton />
 
-      <Stack sx={{ position: 'relative', mt: { xs: 30, md: 0 }, }}>
+      <Stack sx={{ position: 'relative', mt: { xs: 2, md: 0 } }}>
         <HomeHero />
-      </Stack>
-
-
-      <Stack
-        sx={{
-          position: 'relative',
-          mt: { xs: 20, md: -10 },
-          backgroundImage: `url(${CONFIG.assetsDir}/assets/background/ser-ab-7-1.png)`,
-        }}
-        spacing={8}
-      >
-        <HomeIntegrations sx={{ mb: { xs: 5, md: 0 } }} />
-        <HomePricing sx={{ display: { xs: 'none', md: 'block' } }} />
       </Stack>
       <Stack
         sx={{
@@ -62,6 +51,21 @@ export function HomeView() {
         }}
       >
         <HomeMinimal />
+        <>
+          <FloatLine sx={{ top: 0, left: 0 }} />
+          <FloatXIcon sx={{ top: -8, left: 72 }} />
+        </>
+      </Stack>
+      <Stack
+        sx={{
+          position: 'relative',
+          mt: { xs: 5, md: -10 },
+          backgroundImage: `url(${CONFIG.assetsDir}/assets/background/ser-ab-7-1.png)`,
+        }}
+        spacing={8}
+      >
+        <HomeIntegrations sx={{ mb: { xs: 5, md: 0 } }} />
+        <HomePricing sx={{ display: { xs: 'none', md: 'block' } }} />
       </Stack>
       <Stack
         sx={{

@@ -10,7 +10,11 @@
     },
     {
         "folder": "BN25-002ST",
-        "images": []
+        "images": [
+            "1.jpg",
+            "2.jpg",
+            "3.jpg"
+        ]
     },
     {
         "folder": "BN25-003ST",

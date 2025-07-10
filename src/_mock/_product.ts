@@ -58,8 +58,8 @@ export const PRODUCT_PUBLISH_OPTIONS = [
 export const PRODUCT_SORT_OPTIONS = [
   { value: 'featured', label: 'Nổi bật' },
   { value: 'newest', label: 'Mới nhất' },
-  { value: 'priceDesc', label: 'Giá: Cao đến Thấp' },
-  { value: 'priceAsc', label: 'Giá: Thấp đến Cao' },
+  // { value: 'priceDesc', label: 'Giá: Cao đến Thấp' },
+  // { value: 'priceAsc', label: 'Giá: Thấp đến Cao' },
 ];
 
 export const PRODUCT_CATEGORY_GROUP_OPTIONS = [

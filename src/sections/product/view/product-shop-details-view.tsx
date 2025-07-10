@@ -67,8 +67,7 @@ export function ProductShopDetailsView() {
   const tabs = useTabs('description');
 
   return (
-    <Container sx={{ mt: 10, mb: 10 }}>
-      <CartIcon totalItems={checkoutState.totalItems} />
+    <Container sx={{ mt: 5, mb: 10 }}>
 
       <CustomBreadcrumbs
         links={[

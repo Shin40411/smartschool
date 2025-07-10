@@ -57,7 +57,6 @@ export function ProductShopView({
   customTitle,
   customTitleStyle
 }: Props) {
-  const { state: checkoutState } = useCheckoutContext();
 
   // const [products, setProducts] = useState<IProductItem[]>([]);
 
@@ -155,8 +154,8 @@ export function ProductShopView({
   const renderNotFound = () => <EmptyContent filled sx={{ py: 10 }} />;
 
   return (
-    <Container sx={{ mt: 10, mb: 10 }}>
-      <CartIcon totalItems={checkoutState.totalItems} />
+    <Container sx={{ mt: 5, mb: 10 }}>
+      {/* <CartIcon totalItems={checkoutState.totalItems} /> */}
       <SocialPopin />
 
       {allowTitle == true &&
@@ -211,7 +210,7 @@ function applyFilter({ inputData, filters, sortBy }: ApplyFilterProps) {
   }
 
   if (sortBy === 'newest') {
-    inputData = orderBy(inputData, ['createdAt'], ['desc']);
+    inputData = orderBy(inputData, ['code'], ['desc']);
   }
 
   if (sortBy === 'priceDesc') {

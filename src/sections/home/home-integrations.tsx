@@ -67,9 +67,9 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
   );
   const renderDescription = () => (
     <SectionTitle
-      caption="STEM IIT"
+      caption="STEM"
       title="Tại sao chọn"
-      txtGradient="STEM IIT"
+      txtGradient="STEM - Bắc Nam"
       description={
         <>
           <Box component="span" sx={{ mb: 1, display: 'block', color: '#fff' }}>

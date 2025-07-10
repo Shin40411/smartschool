@@ -44,7 +44,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
           <AnimateText
             component="h1"
             variant="h1"
-            textContent={['Sản phẩm Giáo Dục Stem IIT', 'là gì?']}
+            textContent={['Sản phẩm Giáo Dục Stem Bắc Nam', 'là gì?']}
             variants={varFade('inRight', { distance: 50 })}
             sx={{
               color: 'common.white',
@@ -61,7 +61,7 @@ export function AboutHero({ sx, ...other }: BoxProps) {
             >
               Giáo dục thông minh đã và đang trở thành xu thế mới của nền giáo dục trên thế giới,
               <br /> hướng đến mục tiêu xây dựng các thế hệ công dân thông minh nhằm xây dựng quốc gia thông minh.
-              <br /> Sản phẩm giáo dục Stem IIT là mô hình trường tiên tiến, tạo điều kiện
+              <br /> Sản phẩm giáo dục Stem Bắc Nam là mô hình trường tiên tiến, tạo điều kiện
               <br /> và cơ hội để tăng cường năng lực phát triển, thích ứng trước những biến đổi nhanh chóng của xã hội.
             </Typography>
           </m.div>

@@ -26,6 +26,9 @@ import type { HeaderSectionProps } from '../core/header-section';
 import type { LayoutSectionProps } from '../core/layout-section';
 import { Typography } from '@mui/material';
 import { Icon } from '@iconify/react';
+import { CartIcon } from 'src/sections/product/cart-icon';
+import { useCheckoutContext } from 'src/sections/checkout/context';
+import { SettingsButton } from '../components/settings-button';
 
 // ----------------------------------------------------------------------
 
@@ -58,6 +61,8 @@ export function MainLayout({
 
   const navData = slotProps?.nav?.data ?? mainNavData;
 
+  const { state: checkoutState } = useCheckoutContext();
+
   const renderHeader = () => {
     if (isCommingSoonPage) return null;
 
@@ -69,7 +74,7 @@ export function MainLayout({
             color='#fff'
             sx={{ display: { xs: 'none', md: 'block' } }}
           >
-            Chào mừng đến với sản phẩm Giáo Dục Stem IIT
+            Chào mừng đến với sản phẩm Giáo Dục Stem Bắc Nam
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
             <>
@@ -106,32 +111,13 @@ export function MainLayout({
           <NavMobile data={navData} open={open} onClose={onClose} />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Logo />
-            <Box
-              component="a"
-              href="/"
+            <Logo
               sx={{
-                textDecoration: 'none',
-                display: { xs: 'none', md: 'block' },
-                pl: 1,
+                width: '100%',
+                maxWidth: 80,
+                height: '100%'
               }}
-            >
-                <Typography
-                variant='h4'
-                sx={{
-                  fontFamily: '"Montserrat", "Roboto", "Arial", sans-serif',
-                  background: 'linear-gradient(90deg, #2196F3 0%, rgb(146,146,146) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textFillColor: 'transparent',
-                  fontWeight: 800,
-                  letterSpacing: 2,
-                }}
-                >
-                STEM IIT
-                </Typography>
-            </Box>
+            />
           </Box>
         </>
       ),
@@ -169,6 +155,8 @@ export function MainLayout({
               [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
             })}
           />
+          <SettingsButton />
+          {/* <CartIcon totalItems={checkoutState.totalItems} /> */}
         </>
       ),
     };

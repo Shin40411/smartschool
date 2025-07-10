@@ -39,6 +39,7 @@ export function ProductItem({ product, detailsHref }: Props) {
     priceSale,
     newLabel,
     code,
+    rawDescription,
     saleLabel }
     =
     product;
@@ -162,7 +163,36 @@ export function ProductItem({ product, detailsHref }: Props) {
               {fCurrency(priceSale)}
             </Box>
           )}
-          <Box component="span" sx={{ fontWeight: 800, fontSize: 17, color: '#FF5630' }}>{fCurrency(price)}</Box>
+          <Box component="span" sx={{ display: 'none', fontWeight: 800, fontSize: 17, color: '#FF5630' }}>{fCurrency(price)}</Box>
+
+          <Tooltip title={rawDescription} placement="top" arrow
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  textAlign: 'justify',
+                  maxWidth: 300,
+                  fontSize: 13,
+                },
+              },
+            }}
+          >
+            <Box
+              component="span"
+              sx={{
+                fontWeight: 500,
+                fontSize: 13,
+                color: 'text.disabled',
+                textAlign: 'justify',
+                display: '-webkit-box',
+                WebkitLineClamp: 4,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                cursor: 'help',
+              }}
+            >
+              {rawDescription}
+            </Box>
+          </Tooltip>
         </Box>
       </Box>
 
@@ -172,9 +202,11 @@ export function ProductItem({ product, detailsHref }: Props) {
             variant="extended"
             size="medium"
             color="primary"
-            onClick={handleAddCart}
+            component="a"
+            href="tel:(+84) 368 909 968"
             sx={{
               width: "100%",
+              fontSize: {xs: 14, md: 17},
               fontWeight: 700,
               textTransform: 'none',
               gap: 1.5,
@@ -190,9 +222,34 @@ export function ProductItem({ product, detailsHref }: Props) {
               },
             }}
           >
-            <Iconify icon="solar:cart-plus-bold" width={24} />
-            Thêm vào giỏ hàng
+            <Iconify icon="solar:phone-bold" width={24} />
+            Liên hệ
           </Fab>
+          // <Fab
+          //   variant="extended"
+          //   size="medium"
+          //   color="primary"
+          //   onClick={handleAddCart}
+          //   sx={{
+          //     width: "100%",
+          //     fontWeight: 700,
+          //     textTransform: 'none',
+          //     gap: 1.5,
+          //     boxShadow: 2,
+          //     px: 2.5,
+          //     py: 1,
+          //     transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+          //     '&:hover': {
+          //       backgroundColor: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important',
+          //       color: '#fff',
+          //       boxShadow: 6,
+          //       transform: 'scale(1.05) translateY(-2px)',
+          //     },
+          //   }}
+          // >
+          //   <Iconify icon="solar:cart-plus-bold" width={24} />
+          //   Thêm vào giỏ hàng
+          // </Fab>
         )}
       </Box>
     </Stack>

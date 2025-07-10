@@ -24,6 +24,7 @@ import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 import { ColorPicker } from 'src/components/color-utils';
 import { NumberInput } from 'src/components/number-input';
+import { RouterLink } from 'src/routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -234,7 +235,7 @@ export function ProductDetailsSummary({
 
   const renderActions = () => (
     <Box sx={{ gap: 2, display: 'flex' }}>
-      <Button
+      {/* <Button
         fullWidth
         disabled={isMaxQuantity || disableActions}
         size="large"
@@ -245,11 +246,22 @@ export function ProductDetailsSummary({
         sx={{ whiteSpace: 'nowrap', p: 1 }}
       >
         Thêm vào giỏ hàng
+      </Button> */}
+      <Button
+        fullWidth
+        size="large"
+        color="primary"
+        variant="contained"
+        startIcon={<Iconify icon="solar:phone-bold" width={24} />}
+        component="a"
+        href="tel:+84368909968"
+        sx={{ whiteSpace: 'nowrap', p: 1 }}
+      >
+        Liên hệ
       </Button>
-
-      <Button fullWidth size="large" type="submit" variant="contained" disabled={disableActions}>
+      {/* <Button fullWidth size="large" type="submit" variant="contained" disabled={disableActions}>
         Mua ngay
-      </Button>
+      </Button> */}
     </Box>
   );
 
@@ -318,15 +330,15 @@ export function ProductDetailsSummary({
           <Typography variant="h5">{name}</Typography>
 
           {/* {renderRating()} */}
-          {renderPrice()}
+          {/* {renderPrice()} */}
           {renderSubDescription()}
         </Stack>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
         {/* {renderColorOptions()} */}
         {/* {renderSizeOptions()} */}
-        {renderQuantity()}
+        {/* {renderQuantity()} */}
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 

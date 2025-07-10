@@ -22,14 +22,14 @@ export function ContactHero({ sx, ...other }: BoxProps) {
         flexDirection: { xs: 'column', md: 'row' },
         bgcolor: 'background.default',
         height: '100%',
-        minHeight: 900
+        // minHeight: 900
       }}
     >
       <Box
         sx={{
           flex: { md: '0 0 70%' },
           width: '100%',
-          // height: 720,
+          height: 720,
           overflow: 'hidden',
           boxShadow: 3,
         }}
@@ -57,7 +57,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
             overflow: 'hidden',
             position: 'relative',
             py: { xs: 10, md: 0 },
-            pl: { xs: 5, md: 3 },
+            px: { xs: 2, md: 3 },
             flex: { md: '0 0 30%' },
             width: '100%',
             boxShadow: 5,
@@ -71,7 +71,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          textAlign: { xs: 'center', md: 'left' },
+          textAlign: 'left',
         }}>
           <Box
             sx={{
@@ -129,7 +129,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.addresstitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5 }}>
+                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
                         {contact.address}
                       </Typography>
                     </m.div>
@@ -149,7 +149,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.phoneNumberTitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5 }}>
+                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
                         {contact.phoneNumber}
                       </Typography>
                     </m.div>
@@ -169,7 +169,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.emailTitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5 }}>
+                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
                         {contact.email}
                       </Typography>
                     </m.div>

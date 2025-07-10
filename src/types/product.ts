@@ -51,6 +51,7 @@ export type IProductItem = {
   createdAt: IDateValue;
   inventoryType: string;
   subDescription: string;
+  rawDescription: string;
   priceSale: number | null;
   reviews: IProductReview[];
   newLabel: {

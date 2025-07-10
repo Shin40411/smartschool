@@ -22,6 +22,7 @@ export default function mapToProductItem(apiItem: any): IProductItem {
         totalSold: 0,
         description: apiItem.description || '',
         subDescription: apiItem.subDescription || '',
+        rawDescription: apiItem.rawDescription || '',
         totalRatings: 0,
         totalReviews: 0,
         createdAt: new Date().toISOString(),
