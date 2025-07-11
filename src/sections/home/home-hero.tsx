@@ -61,7 +61,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
         // height: '75vh',
         maxHeight: '1440px',
         display: 'flex',
-        alignItems: 'self-start',
+        alignItems: 'center',
         justifyContent: {
           xs: 'center',
           md: 'flex-start',

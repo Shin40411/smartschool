@@ -47,7 +47,7 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
   const pageCount = Math.ceil(products.length / itemsPerPage);
 
   return (
-    <>
+    <Box>
       <Box
         sx={[
           () => ({
@@ -55,9 +55,10 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
             display: 'grid',
             gridTemplateColumns: {
               xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
-              md: 'repeat(3, 1fr)',
-              lg: 'repeat(4, 1fr)',
+              sm: 'repeat(1, 1fr)',
+              md: 'repeat(1, 1fr)',
+              lg: 'repeat(2, 1fr)',
+              // lg: 'repeat(4, 1fr)',
             },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
@@ -79,6 +80,6 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
           }}
         />
       )}
-    </>
+    </Box>
   );
 }

@@ -151,7 +151,6 @@ export function MainLayout({
             data={navData}
             sx={(theme) => ({
               display: 'none',
-              color: '#000',
               [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
             })}
           />

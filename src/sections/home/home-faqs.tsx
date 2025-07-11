@@ -415,7 +415,7 @@ export function HomeFAQs({ sx, ...other }: BoxProps) {
     `}
       </style>
 
-      <Box sx={{ position: 'relative', zIndex: 3, maxWidth: 720 }}>
+      <Box sx={{ position: { xs: 'relative', sm: 'relative', md: 'absolute' }, right: { sm: 'unset', md: '10%' }, zIndex: 3, maxWidth: { xs: 720, sm: 720, md: 500 } }}>
         <SectionTitle
           title=""
           txtGradient="Liên hệ với chúng tôi ngay hôm nay"

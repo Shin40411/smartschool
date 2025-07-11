@@ -21,6 +21,7 @@ import { Box, Divider } from '@mui/material';
 import SocialPopin from 'src/components/socials/socical-popin';
 import WaveParallax from 'src/components/animate/wave-paralax';
 import { FloatLine, FloatXIcon } from '../components/svg-elements';
+import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 // type Props = {
@@ -29,6 +30,7 @@ import { FloatLine, FloatXIcon } from '../components/svg-elements';
 
 export function HomeView() {
   const pageProgress = useScrollProgress();
+  const settings = useSettingsContext();
   return (
     <>
       <ScrollProgress
@@ -47,7 +49,10 @@ export function HomeView() {
       <Stack
         sx={{
           position: 'relative',
-          background: 'linear-gradient(50deg,rgb(255, 255, 255) 80%, #2196F3 20%)'
+          background:
+            settings.state.colorScheme === 'light'
+              ? 'linear-gradient(50deg, rgb(255, 255, 255) 80%, #2196F3 20%)'
+              : undefined,
         }}
       >
         <HomeMinimal />
@@ -60,7 +65,10 @@ export function HomeView() {
         sx={{
           position: 'relative',
           mt: { xs: 5, md: -10 },
-          backgroundImage: `url(${CONFIG.assetsDir}/assets/background/ser-ab-7-1.png)`,
+          backgroundImage:
+            settings.state.colorScheme === 'light'
+              ? `url(${CONFIG.assetsDir}/assets/background/ser-ab-7-1.png)`
+              : undefined,
         }}
         spacing={8}
       >
@@ -75,7 +83,7 @@ export function HomeView() {
       >
         <HomeZoneUI />
       </Stack>
-      <Stack>
+      <Stack sx={{ mt: 5 }}>
         <ProductShopView
           allowTitle
           allowFilters={false}
@@ -83,7 +91,7 @@ export function HomeView() {
           limitData={12}
           customTitle='Sản Phẩm Nổi Bật'
           customTitleStyle={(theme) => ({
-            color: '#00B8D9', // Cyan blue, techy feel
+            color: '#00B8D9',
             fontWeight: 700,
             textAlign: 'center',
             mb: 10,

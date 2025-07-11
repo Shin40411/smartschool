@@ -17,6 +17,7 @@ import { Iconify } from 'src/components/iconify';
 import { ColorPreview } from 'src/components/color-utils';
 
 import { useCheckoutContext } from '../checkout/context';
+import { Divider } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -89,32 +90,13 @@ export function ProductItem({ product, detailsHref }: Props) {
     );
 
   const renderImage = () => (
-    <Link component={RouterLink} href={detailsHref}>
-      <Box sx={{ position: 'relative', p: 1 }}>
-        <Box component="span"
-          sx={{
-            position: 'absolute',
-            top: 15,
-            left: 20,
-            color: '#fff',
-            fontWeight: 800,
-            fontSize: 10,
-            backgroundColor: '#000',
-            borderRadius: 0.5,
-            boxShadow: 3,
-            p: 0.5,
-            zIndex: 2,
-          }}
-        >
-          {code}
-        </Box>
-
+    <Link component={RouterLink} href={detailsHref} sx={{ width: { xs: '100%', sm: '100%', md: '40%' } }}>
+      <Box sx={{ position: 'relative', p: 1, pb: { xs: 0, md: '15%' } }}>
         <Tooltip title={!available && 'Hết hàng'} placement="bottom-end">
           <Image
             alt={name}
             src={coverUrl}
-            ratio="1/1"
-            sx={{ borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
+            sx={{ aspectRatio: '1/1', borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
           />
         </Tooltip>
       </Box>
@@ -122,21 +104,20 @@ export function ProductItem({ product, detailsHref }: Props) {
   );
 
   const renderContent = () => (
-    <Stack spacing={2.5} sx={{
-      p: 3,
-      pt: 2,
+    <Stack spacing={2} sx={{
+      width: { xs: '100%', sm: '100%', md: '60%' },
+      p: 2,
+      // pt: 2,
       flexGrow: 1,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between'
+      justifyContent: 'space-evenly'
     }}>
       <Link
         component={RouterLink}
         href={detailsHref}
         color="inherit"
-        textAlign="center"
-        variant="subtitle2"
-        sx={{ '&:hover': { textDecoration: 'none' } }}
+        sx={{ fontSize: { xs: 20, md: '1.25rem', xl: '1rem' }, fontWeight: 700, '&:hover': { textDecoration: 'none' }, textAlign: { xs: 'center', sm: 'left' } }}
       >
         {name}
       </Link>
@@ -180,11 +161,11 @@ export function ProductItem({ product, detailsHref }: Props) {
               component="span"
               sx={{
                 fontWeight: 500,
-                fontSize: 13,
+                fontSize: { xs: 13, sm: '1rem', md: 12, xl: 15 },
                 color: 'text.disabled',
-                textAlign: 'justify',
+                textAlign: { xs: 'justify', sm: 'justify', md: 'justify' },
                 display: '-webkit-box',
-                WebkitLineClamp: 4,
+                WebkitLineClamp: 5,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 cursor: 'help',
@@ -196,35 +177,72 @@ export function ProductItem({ product, detailsHref }: Props) {
         </Box>
       </Box>
 
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%", display: 'flex', justifyContent: { xs: 'space-between', sm: 'space-between', md: 'space-around' }, alignItems: 'center' }}>
         {!!available && (
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            component="a"
-            href="tel:(+84) 368 909 968"
-            sx={{
-              width: "100%",
-              fontSize: {xs: 14, md: 17},
-              fontWeight: 700,
-              textTransform: 'none',
-              gap: 1.5,
-              boxShadow: 2,
-              px: 2.5,
-              py: 1,
-              transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
-              '&:hover': {
-                backgroundColor: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important',
-                color: '#fff',
-                boxShadow: 6,
-                transform: 'scale(1.05) translateY(-2px)',
-              },
-            }}
-          >
-            <Iconify icon="solar:phone-bold" width={24} />
-            Liên hệ
-          </Fab>
+          <>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row', md: 'column' }, gap: { sm: 2, md: 0 }, alignItems: { sm: 'center', md: 'unset' } }}>
+              <Box
+                component="span"
+                sx={{
+                  display: 'block',
+                  fontSize: { xs: 12, sm: 16, md: 14, lg: 12, xl: 13 },
+                  fontWeight: 600,
+                }}
+              >
+                Mã sản phẩm:
+              </Box>
+              <Box
+                component="span"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: { xs: 12, sm: 20, md: 15, lg: 13, xl: 14 },
+                }}
+              >
+                {code}
+              </Box>
+            </Box>
+
+            <Divider
+              component="div"
+              orientation="vertical"
+              flexItem
+              sx={[
+                (theme) => ({
+                  width: '1px',
+                  opacity: 0.16,
+                  border: 'none',
+                  background: `linear-gradient(to bottom, transparent 0%, ${theme.vars.palette.grey[500]} 50%, transparent 100%)`,
+                  display: 'block',
+                }),
+              ]}
+            />
+            <Fab
+              variant="extended"
+              color="primary"
+              component="a"
+              href="tel:(+84) 368 909 968"
+              sx={{
+                height: { xs: 15, sm: 20, md: 24, lg: 34 },
+                minHeight: { xs: 15, sm: 20, md: 24, lg: 34 },
+                fontSize: { xs: 14, sm: 20, md: 15, lg: 16, xl: 16 },
+                fontWeight: 700,
+                textTransform: 'none',
+                gap: 0.5,
+                boxShadow: 2,
+                padding: { xs: '17px', sm: '20px', md: '20px', lg: '2px 10px' },
+                transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+                '&:hover': {
+                  backgroundColor: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important',
+                  color: '#fff',
+                  boxShadow: 6,
+                  transform: 'scale(1.05) translateY(-2px)',
+                },
+              }}
+            >
+              <Iconify icon="solar:phone-bold" sx={{ width: { xs: 25, sm: 20, md: 20, lg: 20, xl: 24 } }} />
+              Liên hệ
+            </Fab>
+          </>
           // <Fab
           //   variant="extended"
           //   size="medium"
@@ -259,7 +277,7 @@ export function ProductItem({ product, detailsHref }: Props) {
     <Card
       sx={{
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: { xs: 'column', sm: 'column', md: 'row' },
         borderRadius: 2,
         // '&:hover': {
         //   [`& .${fabClasses.root}`]: { opacity: 1, transform: 'scale(1)' },

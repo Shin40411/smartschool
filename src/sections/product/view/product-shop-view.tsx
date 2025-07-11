@@ -35,8 +35,9 @@ import { Theme } from '@mui/material/styles';
 import { getProducts } from 'src/actions/product-ssr';
 import mapToProductItem from 'src/utils/format-product';
 import productsData from 'public/assets/data/data.json';
-import { SectionTitle } from 'src/sections/home/components/section-title';
+import { SectionCaption, SectionTitle } from 'src/sections/home/components/section-title';
 import SocialPopin from 'src/components/socials/socical-popin';
+import { CONFIG } from 'src/global-config';
 
 // ----------------------------------------------------------------------
 
@@ -117,8 +118,9 @@ export function ProductShopView({
         gap: 3,
         display: 'flex',
         justifyContent: 'space-between',
-        flexDirection: { xs: 'column', sm: 'row' },
-        alignItems: { xs: 'flex-end', sm: 'center' },
+        // flexDirection: { xs: 'column', sm: 'row' },
+        flexDirection: 'column',
+        // alignItems: { xs: 'flex-end', sm: 'center' },
       }}
     >
       <ProductSearch redirectPath={(id: string) => paths.product.details(id)} />
@@ -154,39 +156,78 @@ export function ProductShopView({
   const renderNotFound = () => <EmptyContent filled sx={{ py: 10 }} />;
 
   return (
-    <Container sx={{ mt: 5, mb: 10 }}>
+    <Stack sx={{
+      mb: 10,
+      // maxWidth: { xs: '800px', md: '1500px' }
+    }}>
       {/* <CartIcon totalItems={checkoutState.totalItems} /> */}
       <SocialPopin />
 
-      {allowTitle == true &&
-        // <Typography
-        //   variant="h4"
-        //   sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
-        // >
-        //   {customTitle || 'Shop'}
-        // </Typography>
-        <SectionTitle
-          title=""
-          txtGradient={customTitle || 'Shop'}
-          sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
-        />
-      }
+      <Box sx={
+        !customTitle ? {
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          minHeight: '30vh',
+          backgroundImage: `url(${CONFIG.assetsDir}/assets/background/backgroundhero.jpg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'right',
+          mb: 4,
+          px: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'center',
+          justifyContent: 'center'
+        }
+          : undefined
+      }>
+        {!customTitle &&
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#000000f7',
+              opacity: 0.5,
+              zIndex: 1,
+              transition: 'opacity 0.5s ease',
+            }}
+          />
+        }
 
-      {allowFilters &&
-        <Stack spacing={2.5} sx={{ mb: { xs: 3, md: 5 } }}>
-          {renderFilters()}
-          {canReset && renderResults()}
-        </Stack>
-      }
+        {allowTitle == true &&
+          <SectionTitle
+            title={''}
+            txtGradient={customTitle || 'Sản phẩm của chúng tôi'}
+            sx={customTitleStyle ? customTitleStyle : { my: { xs: 3, md: 5 } }}
+          />
+        }
 
-      {notFound || isEmpty ? renderNotFound()
-        :
-        <ProductList
-          products={dataFiltered}
-          allowPagination={allowPagination}
-          limitData={limitData}
-        />}
-    </Container>
+        {!customTitle &&
+          <SectionCaption title={!customTitle ? 'Bộ kit trọn gói: đầy đủ cho sự sáng tạo kỳ diệu' : ''} sx={{ color: '#ddd', zIndex: 2, mt: {xs: 2, sm: 0} }} />
+        }
+      </Box>
+
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, px: { xs: 5, sm: 5, md: 5, lg: 10, xl: 30 } }}>
+
+        {allowFilters &&
+          <Stack spacing={2.5} sx={{ mb: { xs: 3, md: 5 } }}>
+            {renderFilters()}
+            {canReset && renderResults()}
+          </Stack>
+        }
+
+        {notFound || isEmpty ? renderNotFound()
+          :
+          <ProductList
+            products={dataFiltered}
+            allowPagination={allowPagination}
+            limitData={limitData}
+          />}
+      </Box>
+    </Stack>
   );
 }
 
