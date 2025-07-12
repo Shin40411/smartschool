@@ -71,12 +71,12 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
       }}
     >
       <Typography variant="h6" sx={{ flexGrow: 1 }}>
-        Settings
+        Tùy chỉnh
       </Typography>
 
-      <FullScreenButton />
+      {/* <FullScreenButton /> */}
 
-      <Tooltip title="Reset all">
+      <Tooltip title="Đặt lại tất cả">
         <IconButton onClick={handleReset}>
           <Badge color="error" variant="dot" invisible={!settings.canReset}>
             <Iconify icon="solar:restart-bold" />
@@ -84,7 +84,7 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
         </IconButton>
       </Tooltip>
 
-      <Tooltip title="Close">
+      <Tooltip title="Đóng">
         <IconButton onClick={settings.onCloseDrawer}>
           <Iconify icon="mingcute:close-line" />
         </IconButton>
@@ -94,7 +94,7 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
 
   const renderMode = () => (
     <BaseOption
-      label="Dark mode"
+      label="Chế độ"
       selected={settings.state.colorScheme === 'dark'}
       icon={<SvgIcon>{settingIcons.moon}</SvgIcon>}
       onChangeOption={() => {
@@ -218,7 +218,7 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
   );
 
   const renderFont = () => (
-    <LargeBlock title="Font" sx={{ gap: 2.5 }}>
+    <LargeBlock title="Phông chữ" sx={{ gap: 2.5 }}>
       {isFontFamilyVisible && (
         <SmallBlock
           label="Family"
@@ -240,7 +240,7 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
       )}
       {isFontSizeVisible && (
         <SmallBlock
-          label="Size"
+          label="Kích cỡ"
           canReset={settings.state.fontSize !== defaultSettings.fontSize}
           onReset={() => settings.setState({ fontSize: defaultSettings.fontSize })}
           sx={{ gap: 5 }}
@@ -289,13 +289,13 @@ export function SettingsDrawer({ sx, defaultSettings }: SettingsDrawerProps) {
         >
           <Box sx={{ gap: 2, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
             {isColorSchemeVisible && renderMode()}
-            {isContrastVisible && renderContrast()}
-            {isDirectionVisible && renderRtl()}
-            {isCompactLayoutVisible && renderCompact()}
+            {/* {isContrastVisible && renderContrast()} */}
+            {/* {isDirectionVisible && renderRtl()} */}
+            {/* {isCompactLayoutVisible && renderCompact()} */}
           </Box>
 
-          {(isNavColorVisible || isNavLayoutVisible) && renderNav()}
-          {isPrimaryColorVisible && renderPresets()}
+          {/* {(isNavColorVisible || isNavLayoutVisible) && renderNav()} */}
+          {/* {isPrimaryColorVisible && renderPresets()} */}
           {(isFontFamilyVisible || isFontSizeVisible) && renderFont()}
         </Box>
       </Scrollbar>

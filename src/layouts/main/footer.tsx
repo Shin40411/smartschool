@@ -22,15 +22,19 @@ import { Stack } from '@mui/material';
 // ----------------------------------------------------------------------
 const addressText = 'Số 38/2D Đường Mậu Thân, Phường An Hòa, Quận Ninh Kiều, Thành phố Cần Thơ';
 
-const LINKS = [
+const NAVS = [
   {
     headline: 'Menu chính',
     children: [
-      { name: 'Về chúng tôi', href: 'https://www.iit.vn/' },
+      { name: 'Trang chủ', href: '/', first: true },
       { name: 'Sản phẩm', href: paths.product.root },
+      { name: 'Về chúng tôi', href: 'https://www.iit.vn/' },
       { name: 'Liên hệ', href: paths.contact },
     ],
-  },
+  }
+];
+
+const LINKS = [
   {
     headline: 'Thông tin liên hệ',
     children: [
@@ -64,7 +68,7 @@ const LINKS = [
       },
       {
         name: (
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, width: '100%', maxWidth: 325, alignItems: 'center', gap: 1 }}>
             <svg
               width="1.5em"
               height="1.5em"
@@ -109,7 +113,6 @@ export function Footer({
           pt: 3,
           m: 0,
           textAlign: 'center',
-          // color: '#fff !important',
           [theme.breakpoints.up(layoutQuery)]: { textAlign: 'unset' },
         })}
       >
@@ -117,15 +120,14 @@ export function Footer({
           container
           sx={[
             (theme) => ({
-              mt: 3,
+              my: 3,
               mx: 5,
-              gap: 1,
-              justifyContent: 'space-around',
+              justifyContent: 'center',
               // [theme.breakpoints.up(layoutQuery)]: { justifyContent: 'center' },
             }),
           ]}
         >
-          <Grid size={{ xs: 12, [layoutQuery]: 4 }}>
+          <Grid size={{ xs: 12, [layoutQuery]: 5 }}>
             <Box
               sx={{
                 display: 'inline-block',
@@ -137,111 +139,69 @@ export function Footer({
                 width: "100%"
               }}
             >
-              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, justifyContent: { xs: 'center', md: 'flex-start' }, gap: 2, alignItems: 'center' }}>
-                <Logo sx={{
-                  width: '100%',
-                  maxWidth: 120,
-                  height: '100%'
-                }} />
-                <Box>
-                  <Typography
-                    variant="h6"
-                    sx={(theme) => ({
-                      mx: 'auto',
-                      textAlign: 'left',
-                      maxWidth: 300,
-                      [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
-                    })}
-                  >
-                    Kết nối giáo dục và công nghệ, mở ra tương lai cho thế hệ trẻ
-                  </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: { xs: 'center', md: 'flex-start' }, alignItems: 'center' }}>
+                <Logo
+                  sx={{
+                    width: '100%',
+                    maxWidth: 120,
+                    height: '100%'
+                  }}
+                />
+                {NAVS.map((nav) => (
                   <Box
-                    sx={(theme) => ({
-                      mt: { xs: 1.5, md: 8 },
-                      mb: 5,
+                    key={nav.headline}
+                    sx={{
                       display: 'flex',
+                      flexDirection: 'row',
                       justifyContent: 'center',
-                      [theme.breakpoints.up(layoutQuery)]: { mb: 0, justifyContent: 'flex-start' },
-                    })}
+                      alignItems: 'baseline',
+                      // gap: 2,
+                      width: 1,
+                    }}
                   >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        mr: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="subtitle2"
+                    {nav.children.map((link, idx) => (
+                      <Link
+                        key={typeof link.name === 'string' ? link.name : `${nav.headline}-${idx}`}
+                        component={RouterLink}
+                        href={link.href}
+                        color="inherit"
+                        variant="body2"
                         sx={{
-                          fontSize: 10,
-                          // color: '#fff',
-                          fontWeight: 600,
-                          letterSpacing: 1,
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        Theo dõi chúng tôi:
-                      </Typography>
-                    </Box>
-                    {_socials.map((social) => (
-                      <IconButton
-                        key={social.label}
-                        component="a"
-                        href={social.path}
-                        target="_blank"
-                        rel="noopener"
-                        sx={{
-                          backgroundColor: '#fff',
-                          color: '#0C68E9',
-                          p: 0.5,
-                          mr: 1,
+                          fontSize: { xs: '12px', sm: '15px', md: '14px', lg: '15px' },
+                          whiteSpace: 'nowrap',
                           '&:hover': {
-                            backgroundColor: '#f0f0f0',
+                            textDecoration: 'none',
+                          },
+                          '&:before': {
+                            content: link.first ? 'none' : '"|"',
+                            fontWeight: 300,
+                            fontSize: { xs: 12, md: 20 },
+                            p: { xs: '5px', sm: 1, md: 1 },
                           },
                         }}
                       >
-                        {social.value === 'facebook' &&
-                          <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
-                            <path
-                              d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562V12h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        }
-                        {social.value === 'youtube' &&
-                          <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
-                            <path
-                              d="M21.8 8.001a2.75 2.75 0 0 0-1.93-1.94C18.2 5.5 12 5.5 12 5.5s-6.2 0-7.87.56A2.75 2.75 0 0 0 2.2 8.001 28.6 28.6 0 0 0 1.5 12a28.6 28.6 0 0 0 .7 3.999 2.75 2.75 0 0 0 1.93 1.94C5.8 18.5 12 18.5 12 18.5s6.2 0 7.87-.56a2.75 2.75 0 0 0 1.93-1.94A28.6 28.6 0 0 0 22.5 12a28.6 28.6 0 0 0-.7-3.999ZM10 15.5v-7l6 3.5-6 3.5Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        }
-                        {social.value === 'zalo' &&
-                          <ArcticonsZalo />
-                        }
-                      </IconButton>
+                        {link.name}
+                      </Link>
                     ))}
                   </Box>
-                </Box>
+                ))}
               </Box>
             </Box>
 
           </Grid>
-          <Grid size={{ xs: 5, [layoutQuery]: 5 }}>
+          <Grid size={{ xs: 12, [layoutQuery]: 7 }}>
             <Box
-              sx={(theme) => ({
-                gap: 5,
+              sx={{
                 display: 'flex',
-                flexDirection: 'column',
-                [theme.breakpoints.up(layoutQuery)]: { flexDirection: 'row' },
-              })}
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: 0, sm: 0, md: 5, lg: 5, xl: 5 },
+              }}
             >
               {LINKS.map((list) => (
                 <Box
                   key={list.headline}
                   sx={(theme) => ({
-                    gap: 2,
+                    gap: { xs: 2, sm: 2 },
                     width: 1,
                     display: 'flex',
                     alignItems: 'center',
@@ -260,23 +220,124 @@ export function Footer({
                       key={typeof link.name === 'string' ? link.name : `${list.headline}-${idx}`}
                       component={RouterLink}
                       href={link.href}
-                      target={link.name === 'Về chúng tôi' ? '_blank' : undefined}
-                      rel={link.name === 'Về chúng tôi' ? 'noopener' : undefined}
                       color="inherit"
                       variant="body2"
+                      sx={{
+                        '&:hover': {
+                          textDecoration: 'none',
+                        },
+                      }}
                     >
                       {link.name}
                     </Link>
                   ))}
                 </Box>
               ))}
+              <Box
+                sx={{
+                  width: 1,
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={(theme) => ({
+                    mx: 'auto',
+                    textAlign: 'left',
+                    maxWidth: 287,
+                    [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
+                  })}
+                >
+                  Kết nối giáo dục và công nghệ
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={(theme) => ({
+                    mx: 'auto',
+                    textAlign: 'left',
+                    maxWidth: 287,
+                    [theme.breakpoints.up(layoutQuery)]: { mx: 'unset' },
+                  })}
+                >
+                  Mở ra tương lai cho thế hệ trẻ
+                </Typography>
+                <Box
+                  sx={(theme) => ({
+                    mt: { xs: 1.5, md: 8 },
+                    mb: { xs: 0, sm: 0, md: 5 },
+                    display: 'flex',
+                    justifyContent: 'center',
+                    [theme.breakpoints.up(layoutQuery)]: { mb: 0, justifyContent: 'flex-start' },
+                  })}
+                >
+                  {/* <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      mr: 2,
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontSize: 10,
+                        // color: '#fff',
+                        fontWeight: 600,
+                        letterSpacing: 1,
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      Theo dõi chúng tôi:
+                    </Typography>
+                  </Box> */}
+                  {_socials.map((social) => (
+                    <IconButton
+                      key={social.label}
+                      component="a"
+                      href={social.path}
+                      target="_blank"
+                      rel="noopener"
+                      sx={{
+                        backgroundColor: '#fff',
+                        color: '#0C68E9',
+                        p: 0.5,
+                        mr: 1,
+                        '&:hover': {
+                          backgroundColor: '#f0f0f0',
+                        },
+                        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
+                      }}
+                    >
+                      {social.value === 'facebook' &&
+                        <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
+                          <path
+                            d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562V12h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      }
+                      {social.value === 'youtube' &&
+                        <svg width={24} height={24} fill="none" viewBox="0 0 24 24">
+                          <path
+                            d="M21.8 8.001a2.75 2.75 0 0 0-1.93-1.94C18.2 5.5 12 5.5 12 5.5s-6.2 0-7.87.56A2.75 2.75 0 0 0 2.2 8.001 28.6 28.6 0 0 0 1.5 12a28.6 28.6 0 0 0 .7 3.999 2.75 2.75 0 0 0 1.93 1.94C5.8 18.5 12 18.5 12 18.5s6.2 0 7.87-.56a2.75 2.75 0 0 0 1.93-1.94A28.6 28.6 0 0 0 22.5 12a28.6 28.6 0 0 0-.7-3.999ZM10 15.5v-7l6 3.5-6 3.5Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      }
+                      {social.value === 'zalo' &&
+                        <ArcticonsZalo />
+                      }
+                    </IconButton>
+                  ))}
+                </Box>
+                <Typography variant="body2" sx={{ pt: 3, px: 0, textAlign: { xs: 'center', md: 'left' } }}>
+                  © All rights reserved by Bắc Nam.
+                </Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>
-
-        <Typography variant="body2" sx={{ px: 3, mt: 3, textAlign: { xs: 'center', md: 'left' } }}>
-          © All rights reserved by Bắc Nam.
-        </Typography>
       </Stack>
     </FooterRoot>
   );

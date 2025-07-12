@@ -19,7 +19,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
+        flexDirection: { xs: 'column-reverse', md: 'row' },
         bgcolor: 'background.default',
         height: '100%',
         // minHeight: 900
@@ -29,7 +29,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
         sx={{
           flex: { md: '0 0 70%' },
           width: '100%',
-          height: 720,
+          height: '100vh',
           overflow: 'hidden',
           boxShadow: 3,
         }}
@@ -72,6 +72,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
           alignItems: 'center',
           justifyContent: 'center',
           textAlign: 'left',
+          px: { xs: 2, md: 2, lg: 3 },
         }}>
           <Box
             sx={{
@@ -80,7 +81,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
           >
             <AnimateText
               component="h1"
-              variant="h1"
+              variant="h2"
               textContent={['Liên hệ']}
               variants={varFade('inUp', { distance: 24 })}
               sx={{
@@ -129,7 +130,14 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.addresstitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
+                      <Typography variant="body2"
+                        sx={{
+                          fontWeight: 800,
+                          fontSize: { xs: 15, sm: 15, md: 14, lg: 17 },
+                          opacity: 0.8,
+                          pl: { md: 0, lg: 3.5 },
+                          textAlign: { xs: 'left', sm: 'left', md: 'justify', lg: 'left', xl: 'left' }
+                        }}>
                         {contact.address}
                       </Typography>
                     </m.div>
@@ -149,7 +157,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.phoneNumberTitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: { xs: 15, sm: 15, md: 14, lg: 17 }, opacity: 0.8, pl: { md: 0, lg: 3.5 }, textAlign: 'left' }}>
                         {contact.phoneNumber}
                       </Typography>
                     </m.div>
@@ -169,7 +177,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
                           {contact.emailTitle}
                         </Typography>
                       </Stack>
-                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: 3.5, textAlign: 'left' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 800, fontSize: 17, opacity: 0.8, pl: { md: 0, lg: 3.5 }, textAlign: 'left' }}>
                         {contact.email}
                       </Typography>
                     </m.div>
@@ -241,7 +249,7 @@ export function ContactHero({ sx, ...other }: BoxProps) {
 const CONTACTS = [
   {
     addresstitle: 'Địa chỉ',
-    address: 'Số 38/2D Đường Mậu Thân, Phường An Hòa, Quận Ninh Kiều, Thành phố Cần Thơ, Việt Nam',
+    address: 'Số 38/2D Đường Mậu Thân, Phường An Hòa, Quận Ninh Kiều, Thành phố Cần Thơ',
     phoneNumberTitle: 'Số điện thoại',
     phoneNumber: '(+84) 368 909 968',
     emailTitle: 'Email',
