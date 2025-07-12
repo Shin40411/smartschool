@@ -90,7 +90,7 @@ const LINKS = [
 
 const FooterRoot = styled('footer')(({ theme }) => ({
   position: 'relative',
-  backgroundColor: '#2196F3',
+  // backgroundColor: '#2196F3',
 }));
 
 export type FooterProps = React.ComponentProps<typeof FooterRoot>;
@@ -109,7 +109,7 @@ export function Footer({
           pt: 3,
           m: 0,
           textAlign: 'center',
-          color: '#fff !important',
+          // color: '#fff !important',
           [theme.breakpoints.up(layoutQuery)]: { textAlign: 'unset' },
         })}
       >
@@ -175,7 +175,7 @@ export function Footer({
                         variant="subtitle2"
                         sx={{
                           fontSize: 10,
-                          color: '#fff',
+                          // color: '#fff',
                           fontWeight: 600,
                           letterSpacing: 1,
                           textTransform: 'uppercase',

@@ -29,6 +29,7 @@ import mapToProductItem from 'src/utils/format-product';
 import { usePathname } from 'next/navigation';
 import { Divider } from '@mui/material';
 import { ProductRelated } from '../product-related';
+import SocialPopin from 'src/components/socials/socical-popin';
 
 
 // ----------------------------------------------------------------------
@@ -77,6 +78,7 @@ export function ProductShopDetailsView() {
         ]}
         sx={{ mb: 5 }}
       />
+      <SocialPopin />
 
       <Grid container spacing={{ xs: 3, md: 5, lg: 8 }}>
         <Grid size={{ xs: 12, md: 6, lg: 7 }}>
@@ -147,7 +149,7 @@ export function ProductShopDetailsView() {
           />
         )}
       </Card>
-      <ProductRelated code={product?.code ?? ''}/>
+      <ProductRelated code={product?.code ?? ''} />
     </Container>
   );
 }

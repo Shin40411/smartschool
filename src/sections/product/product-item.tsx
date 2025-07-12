@@ -24,9 +24,10 @@ import { Divider } from '@mui/material';
 type Props = {
   product: IProductItem;
   detailsHref: string;
+  customTitle?: string;
 };
 
-export function ProductItem({ product, detailsHref }: Props) {
+export function ProductItem({ product, detailsHref, customTitle }: Props) {
   const { onAddToCart } = useCheckoutContext();
 
   const {
@@ -96,7 +97,7 @@ export function ProductItem({ product, detailsHref }: Props) {
           <Image
             alt={name}
             src={coverUrl}
-            sx={{ aspectRatio: '1/1', borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
+            sx={{ width: '100%', aspectRatio: '1/0', borderRadius: 1.5, ...(!available && { opacity: 0.48, filter: 'grayscale(1)' }) }}
           />
         </Tooltip>
       </Box>
@@ -185,7 +186,7 @@ export function ProductItem({ product, detailsHref }: Props) {
                 component="span"
                 sx={{
                   display: 'block',
-                  fontSize: { xs: 12, sm: 16, md: 14, lg: 12, xl: 13 },
+                  fontSize: { xs: 12, sm: 16, md: 14, lg: 12, xl: customTitle ? 15 : 13 },
                   fontWeight: 600,
                 }}
               >
@@ -195,7 +196,7 @@ export function ProductItem({ product, detailsHref }: Props) {
                 component="span"
                 sx={{
                   fontWeight: 800,
-                  fontSize: { xs: 12, sm: 20, md: 15, lg: 13, xl: 14 },
+                  fontSize: { xs: 12, sm: 20, md: 15, lg: 13, xl: customTitle ? 17 : 14 },
                 }}
               >
                 {code}
@@ -216,6 +217,7 @@ export function ProductItem({ product, detailsHref }: Props) {
                 }),
               ]}
             />
+
             <Fab
               variant="extended"
               color="primary"
@@ -224,12 +226,16 @@ export function ProductItem({ product, detailsHref }: Props) {
               sx={{
                 height: { xs: 15, sm: 20, md: 24, lg: 34 },
                 minHeight: { xs: 15, sm: 20, md: 24, lg: 34 },
-                fontSize: { xs: 14, sm: 20, md: 15, lg: 16, xl: 16 },
+                fontSize: { xs: 14, sm: 20, md: 15, lg: 16, xl: customTitle ? 22 : 16 },
                 fontWeight: 700,
                 textTransform: 'none',
                 gap: 0.5,
                 boxShadow: 2,
-                padding: { xs: '17px', sm: '20px', md: '20px', lg: '2px 10px' },
+                padding:
+                {
+                  xs: '17px', sm: '20px', md: '20px',
+                  lg: customTitle ? '20px 20px' : '2px 10px'
+                },
                 transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
                 '&:hover': {
                   backgroundColor: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important',
@@ -239,7 +245,16 @@ export function ProductItem({ product, detailsHref }: Props) {
                 },
               }}
             >
-              <Iconify icon="solar:phone-bold" sx={{ width: { xs: 25, sm: 20, md: 20, lg: 20, xl: 24 } }} />
+              <Iconify icon="solar:phone-bold" sx={{
+                width:
+                {
+                  xs: 25,
+                  sm: 20,
+                  md: 20,
+                  lg: 20,
+                  xl: 24
+                }
+              }} />
               Liên hệ
             </Fab>
           </>

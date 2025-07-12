@@ -206,7 +206,7 @@ export function ProductShopView({
         }
 
         {!customTitle &&
-          <SectionCaption title={!customTitle ? 'Bộ kit trọn gói: đầy đủ cho sự sáng tạo kỳ diệu' : ''} sx={{ color: '#ddd', zIndex: 2, mt: {xs: 2, sm: 0} }} />
+          <SectionCaption title={!customTitle ? 'Bộ kit trọn gói: đầy đủ cho sự sáng tạo kỳ diệu' : ''} sx={{ color: '#ddd', zIndex: 2, mt: { xs: 2, sm: 0 } }} />
         }
       </Box>
 
@@ -222,6 +222,7 @@ export function ProductShopView({
         {notFound || isEmpty ? renderNotFound()
           :
           <ProductList
+            customTitle={customTitle}
             products={dataFiltered}
             allowPagination={allowPagination}
             limitData={limitData}

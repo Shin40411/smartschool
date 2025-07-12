@@ -112,11 +112,7 @@ export function HomeView() {
 
         <HomeTestimonials />
 
-        <HomeFAQs
-        // sx={(theme) => ({
-        //   background: `linear-gradient(135deg, #232526 60%, #00B8D9 100%)`
-        // })}
-        />
+        <HomeFAQs />
       </Stack>
     </>
   );

@@ -72,7 +72,7 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
       txtGradient="STEM - Bắc Nam"
       description={
         <>
-          <Box component="span" sx={{ mb: 1, display: 'block', color: '#fff' }}>
+          <Box component="span" sx={{ mb: 1, display: 'block', color: '#fff', textAlign: { xs: 'center', sm: 'justify' } }}>
             Các bộ sản phẩm như xe tự hành, cảm biến phát hiện rò rỉ nước, hệ thống dò line, điều khiển qua Bluetooth,... đều được thiết kế chuyên biệt cho môi trường giáo dục và nghiên cứu.
           </Box>
           {/* <Box sx={{ mb: 5, display: 'block'}}> */}
@@ -213,7 +213,7 @@ export function HomeIntegrations({ sx, ...other }: BoxProps) {
                 sx={{
                   textAlign: { xs: 'center', md: 'center' },
                   position: 'relative',
-                  display: 'inline-flex',
+                  display: { xs: 'none', sm: 'none', md: 'inline-flex' },
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundImage: `url(${CONFIG.assetsDir}/assets/background/bg-tech.png)`,

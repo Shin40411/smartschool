@@ -18,9 +18,10 @@ type Props = BoxProps & {
   products: IProductItem[];
   allowPagination?: boolean;
   limitData?: number;
+  customTitle?: string;
 };
 
-export function ProductList({ products, loading, allowPagination, limitData, sx, ...other }: Props) {
+export function ProductList({ products, loading, allowPagination, limitData, customTitle, sx, ...other }: Props) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -40,6 +41,7 @@ export function ProductList({ products, loading, allowPagination, limitData, sx,
         key={product.id}
         product={product}
         detailsHref={paths.product.details(product.id)}
+        customTitle={customTitle}
       />
     ));
   };

@@ -18,12 +18,11 @@ export function ProductDetailsDescription({ description, sx }: Props) {
           p: 3,
           '& p, li, ol, table': {
             typography: 'Button',
-            wordSpacing: '2px',
             textAlign: 'justify',
             lineHeight: '30px',
             textIndent: '1rem'
           },
-          '& p,': {
+          '& p, h1': {
             mt: 0
           },
           '& table': {
