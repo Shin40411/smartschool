@@ -43,9 +43,10 @@ export function HomeView() {
 
       <BackToTopButton />
 
-      <Stack sx={{ position: 'relative', mt: { xs: 2, md: 0 } }}>
+      <Stack sx={{ position: 'relative'}}>
         <HomeHero />
       </Stack>
+
       <Stack
         sx={{
           position: 'relative',
@@ -61,6 +62,7 @@ export function HomeView() {
           <FloatXIcon sx={{ top: -8, left: 72 }} />
         </>
       </Stack>
+
       <Stack
         sx={{
           position: 'relative',
@@ -75,6 +77,7 @@ export function HomeView() {
         <HomeIntegrations sx={{ mb: { xs: 5, md: 0 } }} />
         <HomePricing sx={{ display: { xs: 'none', md: 'block' } }} />
       </Stack>
+
       <Stack
         sx={{
           position: 'relative',
@@ -83,6 +86,7 @@ export function HomeView() {
       >
         <HomeZoneUI />
       </Stack>
+
       <Stack sx={{ mt: 5 }}>
         <ProductShopView
           allowTitle

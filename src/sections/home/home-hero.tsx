@@ -11,17 +11,50 @@ import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
-import { _mock } from 'src/_mock';
+import { _carouselsMembers, _mock, _socials } from 'src/_mock';
 import { CONFIG } from 'src/global-config';
 
-import { Container, Icon, List, ListItem, ListItemIcon } from '@mui/material';
+import { Card, Container, Icon, IconButton, List, ListItem, ListItemIcon } from '@mui/material';
 import '@fontsource/michroma';
 import { SectionTitle } from './components/section-title';
+import { Carousel, CarouselArrowFloatButtons, CarouselDotButtons, useCarousel } from 'src/components/carousel';
+import { Iconify } from 'src/components/iconify';
+import { Image } from 'src/components/image';
+import { varFade } from 'src/components/animate';
+import Autoplay from 'embla-carousel-autoplay';
 
 
 // ----------------------------------------------------------------------
 
-const lgKey: Breakpoint = 'lg';
+// const lgKey: Breakpoint = 'lg';
+
+
+const mobileSlider = [
+  {
+    'id': 1,
+    'bacground': `${CONFIG.assetsDir}/assets/images/mock/sample/1.jpg`,
+    'content': 'Khám phá bộ sản phẩm',
+    'contentSub': 'Thu thập dữ liệu nhanh hơn, kết nối thiết bị dễ dàng hơn',
+    'txtGradient': 'Arduino STEM',
+    'blur': 'linear-gradient(to top, rgb(92 52 129 / 91%), rgb(0 0 0 / 53%))'
+  },
+  {
+    'id': 2,
+    'bacground': `${CONFIG.assetsDir}/assets/images/mock/sample/2.jpg`,
+    'content': '',
+    'contentSub': 'Dễ dàng sử dụng',
+    'txtGradient': 'Tích hợp vi điều khiển tân tiến',
+    'blur': 'linear-gradient(to top, rgb(10 40 14 / 74%), rgb(0 0 0 / 54%))'
+  },
+  {
+    'id': 3,
+    'bacground': `${CONFIG.assetsDir}/assets/images/mock/sample/3.jpg`,
+    'content': '',
+    'contentSub': 'Khơi dậy tư duy',
+    'txtGradient': 'Tích hợp cảm biến hiện đại',
+    'blur': 'linear-gradient(to top, rgb(4 0 0 / 88%), rgb(0 0 0 / 44%))'
+  }
+];
 
 export function HomeHero({ sx, ...other }: BoxProps) {
   const renderButtons = () => (
@@ -51,13 +84,21 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     </Box>
   );
 
+  const carousel = useCarousel({
+    align: 'start',
+    // slideSpacing: '24px',
+    slidesToShow: 1,
+    loop: true
+  },
+    // [Autoplay({ playOnInit: true, delay: 8000 })]
+  );
 
   return (
     <Box
       component="section"
       sx={{
         position: 'relative',
-        minHeight: { xs: '800px', md: '800px !important', lg: '100%' },
+        minHeight: { xs: 0, sm: 0, md: '800px !important', lg: '100%' },
         // height: '75vh',
         maxHeight: '1440px',
         display: 'flex',
@@ -66,8 +107,8 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           xs: 'center',
           md: 'flex-start',
         },
-        px: { xs: 2, md: 5 },
-        py: { xs: 2, md: 5 },
+        px: { xs: 0, sm: 0, md: 5 },
+        py: { xs: 0, sm: 0, md: 5 },
         // '@media (max-width:1103px) and (min-width:425px)': {
         //   px: 10
         // },
@@ -75,6 +116,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
     >
       <Box
         sx={{
+          display: { xs: 'none', sm: 'none', md: 'block' },
           width: '100%',
           maxWidth: {
             xs: '100%',
@@ -91,11 +133,6 @@ export function HomeHero({ sx, ...other }: BoxProps) {
           zIndex: 1,
           top: { xs: '5%', md: '10%' },
           bottom: { xs: 0, md: 0, lg: '2%' },
-          // animation: 'floatGlow 4s ease-in-out infinite',
-          // '@keyframes floatGlow': {
-          //   '0%, 100%': { transform: 'translateY(0px)' },
-          //   '50%': { transform: 'translateY(-10px)' },
-          // },
         }}
       >
         <Box
@@ -299,6 +336,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
               <Box
                 sx={{
                   position: 'relative',
+                  top: '10px',
                   zIndex: 3,
                   p: 2,
                   width: '100%',
@@ -319,7 +357,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
                       variant="body1"
                       sx={{
                         fontWeight: 700,
-                        fontSize: { md: '1rem', lg: '2rem' },
+                        fontSize: { md: '1rem', lg: '25px', xl: '2rem' },
                         lineHeight: 2,
                         // textTransform: 'uppercase'
                       }}
@@ -339,12 +377,12 @@ export function HomeHero({ sx, ...other }: BoxProps) {
                       variant="body1"
                       sx={{
                         fontWeight: 700,
-                        fontSize: { md: '1rem', lg: '2rem' },
+                        fontSize: { md: '1rem', lg: '25px', xl: '2rem' },
                         lineHeight: 2,
                         // textTransform: 'uppercase'
                       }}
                     >
-                      Cảm biến thông minh
+                      Dễ dàng sử dụng
                     </Typography>
                   </ListItem>
                 </List>
@@ -427,6 +465,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
               <Box
                 sx={{
                   position: 'relative',
+                  top: '10px',
                   zIndex: 3,
                   p: 2,
                   width: '100%',
@@ -447,7 +486,7 @@ export function HomeHero({ sx, ...other }: BoxProps) {
                       variant="body1"
                       sx={{
                         fontWeight: 700,
-                        fontSize: { md: '1rem', lg: '2rem' },
+                        fontSize: { md: '1rem', lg: '25px', xl: '2rem' },
                         lineHeight: 2,
                         // textTransform: 'uppercase'
                       }}
@@ -467,20 +506,129 @@ export function HomeHero({ sx, ...other }: BoxProps) {
                       variant="body1"
                       sx={{
                         fontWeight: 700,
-                        fontSize: { md: '1rem', lg: '2rem' },
+                        fontSize: { md: '1rem', lg: '25px', xl: '2rem' },
                         lineHeight: 2,
                         // textTransform: 'uppercase'
                       }}
                     >
-                      Dễ dàng sử dụng
+                      Khơi dậy tư duy
                     </Typography>
                   </ListItem>
                 </List>
               </Box>
             </Box>
           </Box>
+
         </Box>
       </Box>
-    </Box>
+
+      <Container sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, px: '0 !important', position: 'relative' }}>
+        <CarouselArrowFloatButtons {...carousel.arrows} options={carousel.options}
+          slotProps={{
+            prevBtn: {
+              sx: {
+                left: 30
+              }
+            },
+            nextBtn: {
+              sx: {
+                right: 30
+              }
+            }
+          }}
+        />
+        <Box sx={{
+          position: 'relative',
+          borderRadius: 2,
+        }}>
+          <CarouselDotButtons
+            scrollSnaps={carousel.dots.scrollSnaps}
+            selectedIndex={carousel.dots.selectedIndex}
+            onClickDot={carousel.dots.onClickDot}
+            sx={{
+              bottom: 16,
+              left: 50,
+              position: 'absolute',
+              color: 'common.white'
+            }}
+          />
+          <Carousel carousel={carousel}>
+            {mobileSlider.map((i) => (
+              <Box
+                key={i.id}
+                component={m.div}
+                variants={varFade('in')}
+                sx={{
+                  px: 5,
+                  py: 10,
+                  backgroundImage: `url(${i.bacground})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  height: '100%',
+                  minHeight: '75vh',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: { xs: 'center', sm: 'flex-end' },
+                  position: 'relative'
+                }}
+              >
+                <HeroContent item={i} />
+              </Box>
+            ))}
+          </Carousel>
+        </Box>
+      </Container>
+    </Box >
+  );
+}
+
+type SlideItem = {
+  id: number;
+  bacground: string;
+  content: string;
+  contentSub: string;
+  txtGradient: string;
+  blur: string
+};
+
+function HeroContent({ item }: { item: SlideItem }) {
+  return (
+    <>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: item.blur,
+        }}
+      />
+      <Box
+        sx={{ textAlign: { xs: 'center', sm: 'left' }, zIndex: 1 }}
+      >
+        {item.content &&
+          <Typography variant="h2" color="common.white"
+            sx={{
+              fontFamily: '"Moterat", "Montserrat", "Arial", sans-serif',
+              fontWeight: 700
+            }}
+          >
+            {item.content}
+          </Typography>
+        }
+        {item.txtGradient &&
+          <SectionTitle title='' txtGradient={item.txtGradient} />
+        }
+        <Typography variant="subtitle1" color="common.white"
+          sx={{
+            fontFamily: '"Moterat", "Montserrat", "Arial", sans-serif',
+            letterSpacing: 1.8,
+          }}
+        >
+          {item.contentSub}
+        </Typography>
+      </Box>
+    </>
   );
 }
